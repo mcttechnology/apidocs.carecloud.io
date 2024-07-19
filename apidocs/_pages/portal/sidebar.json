@@ -1,0 +1,102 @@
+[
+  {
+    "text": "Overview",
+    "link": "/portal"
+  },
+  {
+    "text": "Getting Started",
+    "children": [
+      {
+        "text": "Getting Started",
+        "link": "/portal/get-started"
+      },
+      {
+        "text": "Uploading Data to CareCloud",
+        "link": "portal/uploading-data"
+      },
+      {
+        "text": "Downloading Data from CareCloud",
+        "link": "/portal/downloading-data"
+      },
+      {
+        "text": "Workspace Portal",
+        "link": "/portal/workspace-portal"
+      }
+    ]
+  },
+  {
+    "text": "Data Sync API",
+    "children": [
+      {
+        "text": "Authentication",
+        "link": "/portal/api-authentication"
+      },
+      {
+        "text": "Data CRUD",
+        "link": "/portal/api-crud"
+      },
+      {
+        "text": "Query Data",
+        "link": "/portal/api-query-data"
+      },
+      {
+        "text": "Import Data",
+        "link": "/portal/api-import-data"
+      },
+      {
+        "text": " Importing File Through API",
+        "link": "/portal/api-import-file"
+      }
+    ]
+  },
+  {
+    "text": "Data Sync File",
+    "link": "/portal/data-sync-file",
+    "children": [
+      {
+        "text": "Uploading Sync File",
+        "link": "/portal/data-sync-file-upload"
+      }
+    ]
+  },
+  {
+    "text": "Data Synchronization Model",
+    "link": "/portal/model/data-model"
+  },
+  {
+    "text": "Best Practices",
+    "link": "/portal/bp-best-proctices",
+    "children": [
+      {
+        "text": "Uploading Timesheet and EOP",
+        "link": "/portal/bp-uploading-timesheet"
+      },
+      {
+        "text": "Retrieving Attendance Data",
+        "link": "/portal/bp-retrieving-attendance-data"
+      },
+      {
+        "text": "Receiving CareCloud Notifications with AWS SNS Integration",
+        "link": "/portal/bp-sns"
+      }
+    ]
+  },
+  {
+    "text": "Troubleshooting and Support",
+    "link": "/portal/tbs-troubleshooting-and-support",
+    "children": [
+      {
+        "text": "Workspace Files",
+        "link": "/portal/tbs-workspace-files"
+      },
+      {
+        "text": "Status Refresh",
+        "link": "/portal/tbs-status-refresh"
+      }
+    ]
+  },
+  {
+    "text": "API Documentation",
+    "link": "/portal/api-postman"
+  }
+]

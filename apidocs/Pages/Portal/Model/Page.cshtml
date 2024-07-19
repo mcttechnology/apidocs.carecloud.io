@@ -1,0 +1,15 @@
+@page "/portal/model/{Slug}"
+@model apidocs.Page
+@inject MarkdownPages Markdown
+@implements IRenderStatic<apidocs.Page>
+
+@functions {
+    public List<Page> GetStaticProps(RenderContext ctx) =>
+        ctx.Resolve<MarkdownPages>().GetVisiblePages("portal/model").Map(page => new Page { Slug = page.Slug.RightPart("model/") });
+}
+
+@await Html.PartialAsync("DocsPage", new Shared.DocsPage {
+   Brand = "CarePortal",
+   Slug = Model.Slug,
+   Folder = "portal/model"
+}.Init(this, Markdown))

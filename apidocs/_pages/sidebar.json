@@ -1,0 +1,33 @@
+[
+  {
+    "text": "Introduction",
+    "link": "/",
+    "children": [
+      {
+        "text": "CarePortal",
+        "link": "/portal"
+      },
+      {
+        "text": "CareControl",
+        "link": "/cct"
+      },
+      {
+        "text": "CareConnect",
+        "link": "/ccn/coming_soon"
+      },
+      {
+        "text": "CareWait",
+        "link": "/cw/coming_soon"
+      }
+    ]
+  },
+  {
+    "text": "Release Notes",
+    "children": [
+      {
+        "text": "2024",
+        "link": "/release_2024.html"
+      }
+    ]
+  }
+]

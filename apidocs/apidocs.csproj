@@ -1,0 +1,81 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+  </PropertyGroup>
+  <ItemGroup>
+    <Using Include="apidocs" />
+    <Using Include="ServiceStack" />
+    <Using Include="ServiceStack.Mvc" />
+  </ItemGroup>
+
+  <!-- dotnet watch support -->
+  <Target Name="RazorWatch" BeforeTargets="_CoreCollectWatchItems">
+    <ItemGroup>
+      <RazorWatch Include="**\*.cshtml" />
+      <Watch Include="%(RazorWatch.FullPath)" />
+    </ItemGroup>
+  </Target>
+
+  <ItemGroup>
+    <PackageReference Include="Markdig" Version="0.34.*" />
+    <PackageReference Include="ServiceStack" Version="8.*" />
+    <PackageReference Include="ServiceStack.Mvc" Version="8.*" />
+
+    <!-- Required for Razor compilation on change: https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-compilation?view=aspnetcore-5.0 -->
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="_pages\vue\sidebar.json" />
+    <_ContentIncludedByDefault Remove="_pages\_older\vue\sidebar.json" />
+    <_ContentIncludedByDefault Remove="Pages\CreatorKit\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\CreatorKit\Page.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Vue\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Vue\Page.cshtml" />
+    <_ContentIncludedByDefault Remove="wwwroot\pages\vue\1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\pages\vue\alerts.mjs" />
+    <_ContentIncludedByDefault Remove="wwwroot\pages\vue\autocomplete.mjs" />
+    <_ContentIncludedByDefault Remove="wwwroot\pages\vue\autoform.mjs" />
+    <_ContentIncludedByDefault Remove="wwwroot\pages\vue\autoform\edit.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\pages\vue\autoform\new.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\pages\vue\autoquerygrid.mjs" />
+    <_ContentIncludedByDefault Remove="wwwroot\pages\vue\autoquerygrid\CustomBooking.mjs" />
+    <_ContentIncludedByDefault Remove="wwwroot\pages\vue\autoquerygrid\Responsive.mjs" />
+    <_ContentIncludedByDefault Remove="wwwroot\pages\vue\bookings.json" />
+    <_ContentIncludedByDefault Remove="wwwroot\pages\vue\combobox.mjs" />
+    <_ContentIncludedByDefault Remove="wwwroot\pages\vue\data.mjs" />
+    <_ContentIncludedByDefault Remove="wwwroot\pages\vue\datagrid.mjs" />
+    <_ContentIncludedByDefault Remove="wwwroot\pages\vue\dtos.mjs" />
+    <_ContentIncludedByDefault Remove="wwwroot\pages\vue\fileinput.mjs" />
+    <_ContentIncludedByDefault Remove="wwwroot\pages\vue\form-inputs.mjs" />
+    <_ContentIncludedByDefault Remove="wwwroot\pages\vue\formats.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\pages\vue\formats.mjs" />
+    <_ContentIncludedByDefault Remove="wwwroot\pages\vue\gallery.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\pages\vue\metadata.json" />
+    <_ContentIncludedByDefault Remove="wwwroot\pages\vue\modals.mjs" />
+    <_ContentIncludedByDefault Remove="wwwroot\pages\vue\navigation.mjs" />
+    <_ContentIncludedByDefault Remove="wwwroot\pages\vue\styles.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\pages\vue\taginput.mjs" />
+    <_ContentIncludedByDefault Remove="wwwroot\pages\vue\use-metadata.mjs" />
+    <_ContentIncludedByDefault Remove="wwwroot\meta\2023\all.json" />
+    <_ContentIncludedByDefault Remove="wwwroot\meta\2023\videos.json" />
+    <_ContentIncludedByDefault Remove="wwwroot\meta\2023\whatsnew.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="Pages\CCT\Index.cshtml" />
+    <AdditionalFiles Include="Pages\CCT\Page.cshtml" />
+    <AdditionalFiles Include="Pages\Portal\Model\Page.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\meta\" />
+    <Folder Include="_videos\" />
+    <Folder Include="_whatsnew\" />
+  </ItemGroup>
+
+</Project>

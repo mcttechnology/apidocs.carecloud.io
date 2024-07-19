@@ -1,0 +1,105 @@
+[
+  {
+    "text": "Back",
+    "link": "/portal",
+    "icon": "<img class='w-6 h-6' src='/img/left-arrow.svg' />"
+  },
+  {
+    "text": "Data Synchronization Model",
+    "children": [
+      {
+        "text": "Overview",
+        "link": "/portal/model/data-model"
+      },
+      {
+        "text": "Core Resources",
+        "link": "/portal/model/core-resources"
+      }
+    ]
+  },
+  {
+    "text": "Family",
+    "children": [
+      {
+        "text": "Family",
+        "link": "/portal/model/family"
+      },
+      {
+        "text": "Family Member",
+        "link": "/portal/model/family-member"
+      },
+      {
+        "text": "Family Need",
+        "link": "/portal/model/family-need"
+      },
+      {
+        "text": "Family Income",
+        "link": "/portal/model/family-income"
+      },
+      {
+        "text": "Family Case",
+        "link": "/portal/model/family-case"
+      },
+      {
+        "text": "Family Invoice",
+        "link": "/portal/model/family-invoice"
+      }
+    ]
+  },
+  {
+    "text": "Provider",
+    "children": [
+      {
+        "text": "Provider",
+        "link": "/portal/model/provider"
+      },
+      {
+        "text": "Provider Holider",
+        "link": "/portal/model/provider-holiday"
+      },
+      {
+        "text": "Provider Payment",
+        "link": "/portal/model/provider-payment"
+      }
+    ]
+  },
+  {
+    "text": "Service",
+    "children": [
+      {
+        "text": "Care",
+        "link": "/portal/model/service-care"
+      }
+    ]
+  },
+  {
+    "text": "Claim",
+    "children": [
+      {
+        "text": "Claim",
+        "link": "/portal/model/claim"
+      },
+      {
+        "text": "Claim Attendance",
+        "link": "/portal/model/claim-attendance"
+      }
+    ]
+  },
+  {
+    "text": "Document",
+    "children": [
+      {
+        "text": "Timesheet",
+        "link": "/portal/model/doc-timesheet"
+      },
+      {
+        "text": "EOP",
+        "link": "/portal/model/doc-eop"
+      }
+    ]
+  },
+  {
+    "text": "Note",
+    "link": "/portal/model/note"
+  }
+]

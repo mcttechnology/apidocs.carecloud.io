@@ -1,0 +1,35 @@
+[
+  {
+    "text": "Overview",
+    "link": "/cct"
+  },
+  {
+    "text": "Data Sources",
+    "children": [
+      {
+        "text": "Claim",
+        "link": "/cct/ds-claim"
+      },
+      {
+        "text": "Care",
+        "link": "/cct/ds-care"
+      },
+      {
+        "text": "Case",
+        "link": "/cct/ds-case"
+      },
+      {
+        "text": "Children",
+        "link": "/cct/ds-child"
+      },
+      {
+        "text": "Family",
+        "link": "/cct/ds-family"
+      },
+      {
+        "text": "Provider",
+        "link": "/cct/ds-provider"
+      }
+    ]
+  }
+]

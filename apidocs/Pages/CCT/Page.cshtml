@@ -1,0 +1,25 @@
+@page "/cct/{Slug}"
+@model apidocs.Page
+@inject MarkdownPages Markdown
+@implements IRenderStatic<apidocs.Page>
+
+@functions {
+    public List<Page> GetStaticProps(RenderContext ctx) =>
+        ctx.Resolve<MarkdownPages>().GetVisiblePages("cct").Map(page => new Page { Slug = page.Slug.RightPart('/') });
+}
+
+@await Html.PartialAsync("DocsPage", new Shared.DocsPage {
+   Brand = "CarePortal",
+   Slug = Model.Slug,
+   Folder = "cct",
+   DefaultMenu = new MarkdownMenu {
+       Icon = Markdown.DefaultMenuIcon,
+       Text = "CareControl",
+       Link = "/cct/",
+   },
+}.Init(this, Markdown))
+
+<script type="module">
+import { setMetadata } from "/pages/vue/data.mjs"
+setMetadata()
+</script>

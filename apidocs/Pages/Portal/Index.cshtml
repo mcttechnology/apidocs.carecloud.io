@@ -1,0 +1,9 @@
+@page "/portal"
+@inject MarkdownPages Markdown
+@attribute [RenderStatic]
+
+@await Html.PartialAsync("DocsPage", new Shared.DocsPage {
+    Brand = "CarePortal",
+    Slug = "index",
+    Folder = "portal",
+}.Init(this, Markdown))
