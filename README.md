@@ -1,20 +1,8 @@
-# razor-press
+# MCT Press
 
-.NET 6.0 razor-press Static Generated Razor Pages Project Template
+Based on .NET 6.0 razor-press Static Generated Razor Pages Project Template
 
-[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/razor-press.png)](https://razor-press.web-templates.io)
-
-> Browse [source code](https://github.com/NetCoreTemplates/razor-press), view live demo [razor-press.web-templates.io](https://razor-press.web-templates.io) and install with [dotnet-new](https://docs.servicestack.net/dotnet-new):
-
-    $ dotnet tool install -g x
-
-    $ x new razor-press ProjectName
-
-Alternatively write new project files directly into an razor-press repository, using the Directory Name as the ProjectName:
-
-    $ git clone https://github.com/<User>/<ProjectName>.git
-    $ cd <ProjectName>
-    $ x new razor-press
+> Browse [source code](https://github.com/NetCoreTemplates/razor-press), 
 
 ## Development Tasks
 
