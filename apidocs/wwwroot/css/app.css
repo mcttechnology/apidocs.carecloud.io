@@ -3143,10 +3143,6 @@ select{
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
 
-.\[index\:string\] {
-  index: string;
-}
-
 .file\:mr-4::file-selector-button {
   margin-right: 1rem;
 }
@@ -4342,10 +4338,6 @@ select{
     margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
   }
 
-  .sm\:overflow-hidden {
-    overflow: hidden;
-  }
-
   .sm\:rounded {
     border-radius: 0.25rem;
   }
@@ -4374,11 +4366,6 @@ select{
   .sm\:px-10 {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
-  }
-
-  .sm\:px-12 {
-    padding-left: 3rem;
-    padding-right: 3rem;
   }
 
   .sm\:px-3 {

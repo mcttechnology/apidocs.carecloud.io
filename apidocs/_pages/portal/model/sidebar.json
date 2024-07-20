@@ -14,6 +14,10 @@
       {
         "text": "Core Resources",
         "link": "/portal/model/core-resources"
+      },
+      {
+        "text": "Note",
+        "link": "/portal/model/note"
       }
     ]
   },
@@ -22,7 +26,7 @@
     "children": [
       {
         "text": "Family",
-        "link": "/portal/model/family"
+        "link": "/portal/model/family-entity"
       },
       {
         "text": "Family Member",
@@ -51,10 +55,10 @@
     "children": [
       {
         "text": "Provider",
-        "link": "/portal/model/provider"
+        "link": "/portal/model/provider-entity"
       },
       {
-        "text": "Provider Holider",
+        "text": "Provider Holiday",
         "link": "/portal/model/provider-holiday"
       },
       {
@@ -77,7 +81,7 @@
     "children": [
       {
         "text": "Claim",
-        "link": "/portal/model/claim"
+        "link": "/portal/model/claim-entity"
       },
       {
         "text": "Claim Attendance",
@@ -97,9 +101,6 @@
         "link": "/portal/model/doc-eop"
       }
     ]
-  },
-  {
-    "text": "Note",
-    "link": "/portal/model/note"
   }
+ 
 ]

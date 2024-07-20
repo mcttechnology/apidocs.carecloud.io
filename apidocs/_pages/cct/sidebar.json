@@ -4,6 +4,27 @@
     "link": "/cct"
   },
   {
+    "text": "Table",
+    "children": [
+      {
+        "text": "Family",
+        "link": "/cct/tb-family"
+      },
+      {
+        "text": "Provider",
+        "link": "/cct/tb-family"
+      },
+      {
+        "text": "Care",
+        "link": "/cct/tb-care"
+      },
+      {
+        "text": "Claim",
+        "link": "/cct/tb-claim"
+      }
+    ]
+  },
+  {
     "text": "Data Sources",
     "children": [
       {
