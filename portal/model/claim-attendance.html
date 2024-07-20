@@ -1,0 +1,1582 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="/img/logo.svg">
+    <title>Claim Attendance</title>
+    <script>
+    if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
+    if (location.search === "?light") localStorage.removeItem('color-scheme') 
+    const cls = document.querySelector('html').classList
+    if (localStorage.getItem('color-scheme') === 'dark')
+        cls.add('dark')
+    else
+        cls.remove('dark')
+    </script>
+    <link rel="stylesheet" href="/css/app.css">
+
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "/mjs/app.mjs",
+        "vue": "/lib/mjs/vue.min.mjs",
+        "@servicestack/client": "/lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "/lib/mjs/servicestack-vue.min.mjs"
+    }
+}
+</script>
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+<header id="header" class="top-0 fixed z-50 h-14 bg-white dark:bg-black opacity-90 w-full shadow">
+  <nav class="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-black">
+    <div class="mx-auto max-w-[100rem] pr-4 sm:pr-6 lg:pr-8">
+      <div class="flex h-16 justify-between">
+        <div class="flex">
+          <div class="flex flex-shrink-0 items-center">
+            <a class="mr-2 lg:mr-8 flex items-center" href="/">
+                <img class="w-8 h-8 mr-1 ml-2" src="/img/favicon.png" width="24" height="24"/>
+                <span class="hidden sm:block text-2xl font-semibold">CareCloud Docs</span>
+            </a>
+          </div>
+            <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-4 lg:space-x-8">
+                <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
+                        <a href="/portal" class="inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium border-indigo-500 text-gray-900">
+                            CarePortal
+                        </a>
+                        <a href="/cct" class="inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-200">
+                            CareControl
+                        </a>
+                        <a href="/ccn/coming_soon" class="inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-200">
+                            CareConnect
+                        </a>
+                        <a href="/cw/coming_soon" class="inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-200">
+                            CareWait
+                        </a>
+            </div>
+        </div>
+        <div class="hidden sm:ml-6 sm:flex sm:items-center">
+            <dark-mode-toggle class="ml-2 w-10"></dark-mode-toggle>
+        </div>
+        <div class="-mr-2 flex items-center sm:hidden">
+          <!-- Mobile menu button -->
+          <button type="button" v-on:click="open=!open" class="inline-flex items-center justify-center rounded-md bg-white dark:bg-black p-2 text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:ring-offset-black" aria-controls="mobile-menu" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <!-- Menu open: "hidden", Menu closed: "block" -->
+            <svg :class="['h-6 w-6', open ? 'hidden' : 'block']" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+            <!-- Menu open: "block", Menu closed: "hidden" -->
+            <svg :class="['h-6 w-6', open ? 'block' : 'hidden']" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile menu, show/hide based on menu state. -->
+    <div v-cloak v-if="open" class="sm:hidden">
+        <div class="space-y-1 pb-3 pt-2">
+            <!-- Current: "border-indigo-500 bg-indigo-50 text-indigo-700", Default: "border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800" -->
+                    <a href="/portal" class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium border-indigo-500 bg-indigo-50 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200">
+                        CarePortal
+                    </a>
+                    <a href="/cct" class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium border-transparent text-gray-600 dark:text-gray-300 hover:border-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-gray-800 dark:hover:text-gray-100">
+                        CareControl
+                    </a>
+                    <a href="/ccn/coming_soon" class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium border-transparent text-gray-600 dark:text-gray-300 hover:border-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-gray-800 dark:hover:text-gray-100">
+                        CareConnect
+                    </a>
+                    <a href="/cw/coming_soon" class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium border-transparent text-gray-600 dark:text-gray-300 hover:border-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-gray-800 dark:hover:text-gray-100">
+                        CareWait
+                    </a>
+        </div>
+    </div>
+  </nav>
+</header>
+
+<script type="module">
+import { ref } from "vue"
+import { mount } from "app.mjs"
+
+const Header = {
+    setup() {
+        const open = ref(false)
+        return { open }
+    }
+}
+mount('#header', Header)
+</script>
+
+
+<div class="min-h-screen">
+    <main role="main" class="pt-16 pb-3">
+        
+
+
+
+<style>
+.active {
+    color: #0ea5e9 !important;
+}
+</style>
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/typography.css">
+<link rel="stylesheet" href="/css/lite-yt-embed.css">
+
+<div class="w-full max-w-[100rem] mx-auto">
+    <div class="flex flex-wrap">
+        <div id="sidebar" class="z-40 inset-0 flex-none bg-white dark:bg-black lg:w-64 xl:w-80">
+            <button v-cloak v-on:click="open=true" :class="['text-gray-400 hover:text-gray-500 pt-4 pl-2 absolute transform transition-all duration-200', open ? 'opacity-0 translate-x-56' : 'opacity-100']" title="Open Sidebar">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H10m10 0l-4 4m4-4l-4-4M4 4v16"/></svg>
+            </button>
+            <div :class="['fixed bg-white dark:bg-black h-screen overflow-y-auto scrolling-touch overflow-hidden shadow lg:shadow-none transform transition-transform duration-200', open ? '' : 'translate-x-[-100%]']">
+                <nav class="sidebar lg:w-64 xl:w-80 px-1 pt-6 pb-16 overflow-y-auto font-medium text-sm lg:text-base sm:px-3 xl:px-5" aria-label="Sidebar">
+                    <close-button title="Close Sidebar" class="lg:hidden -mr-2" v-on:close="open=false"></close-button>
+                                <a href="/portal" class="block flex items-center whitespace-nowrap">
+<img class='w-6 h-6' src='/img/left-arrow.svg' />                                    <span class="p-2 pl-3 font-display font-medium text-slate-900 dark:text-white">
+Back                                    </span>
+                                </a>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                        </ul>
+                                <h2 class="font-display font-medium text-slate-900 dark:text-white whitespace-nowrap">
+                                    Data Synchronization Model
+                                </h2>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                                <li class="relative">
+                                    <a href="/portal/model/data-model" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Overview
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/model/core-resources" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Core Resources
+                                    </a>
+                                </li>
+                        </ul>
+                                <h2 class="font-display font-medium text-slate-900 dark:text-white whitespace-nowrap">
+                                    Family
+                                </h2>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                                <li class="relative">
+                                    <a href="/portal/model/family" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Family
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/model/family-member" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Family Member
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/model/family-need" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Family Need
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/model/family-income" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Family Income
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/model/family-case" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Family Case
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/model/family-invoice" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Family Invoice
+                                    </a>
+                                </li>
+                        </ul>
+                                <h2 class="font-display font-medium text-slate-900 dark:text-white whitespace-nowrap">
+                                    Provider
+                                </h2>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                                <li class="relative">
+                                    <a href="/portal/model/provider" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Provider
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/model/provider-holiday" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Provider Holider
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/model/provider-payment" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Provider Payment
+                                    </a>
+                                </li>
+                        </ul>
+                                <h2 class="font-display font-medium text-slate-900 dark:text-white whitespace-nowrap">
+                                    Service
+                                </h2>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                                <li class="relative">
+                                    <a href="/portal/model/service-care" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Care
+                                    </a>
+                                </li>
+                        </ul>
+                                <h2 class="font-display font-medium text-slate-900 dark:text-white whitespace-nowrap">
+                                    Claim
+                                </h2>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                                <li class="relative">
+                                    <a href="/portal/model/claim" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full active font-semibold text-sky-500 before:bg-sky-500">
+                                        Claim
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/model/claim-attendance" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full active font-semibold text-sky-500 before:bg-sky-500">
+                                        Claim Attendance
+                                    </a>
+                                </li>
+                        </ul>
+                                <h2 class="font-display font-medium text-slate-900 dark:text-white whitespace-nowrap">
+                                    Document
+                                </h2>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                                <li class="relative">
+                                    <a href="/portal/model/doc-timesheet" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Timesheet
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/model/doc-eop" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        EOP
+                                    </a>
+                                </li>
+                        </ul>
+                                <a href="/portal/model/note" class="block flex items-center whitespace-nowrap">
+                                    <span class="p-2 pl-3 font-display font-medium text-slate-900 dark:text-white">
+Note                                    </span>
+                                </a>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                        </ul>
+                </nav>
+            </div>
+        </div>
+        <div id="doc" class="mx-auto flex">
+            <div class="mt-8 mx-auto prose lg:prose-lg">
+                
+                    <section class="not-prose mb-16 md:mb-12">
+                        <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-50 sm:text-5xl md:text-6xl">
+                            Claim Attendance
+                        </h1>
+                    </section>
+
+                <div class="not-prose"></div>
+
+                <div class="content">
+                    <h2 id="data-model">Data Model<a class="header-anchor" href="javascript:;" onclick="location.hash='#data-model'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>entityId</td>
+<td>string</td>
+<td>PK</td>
+<td>The Claim Id from the third-party system will be used in the Cloud to determine whether to update an existing Claim record or create a new one.</td>
+<td></td>
+</tr>
+<tr>
+<td>claimId</td>
+<td>string</td>
+<td>FK</td>
+<td>claim entity Id</td>
+<td></td>
+</tr>
+<tr>
+<td>childId</td>
+<td>string</td>
+<td>FK</td>
+<td>child entity Id</td>
+<td></td>
+</tr>
+<tr>
+<td>childName</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>childDOB</td>
+<td>string</td>
+<td></td>
+<td>yyyyMMdd</td>
+<td></td>
+</tr>
+<tr>
+<td>providerId</td>
+<td>string</td>
+<td>FK</td>
+<td>provider entity Id</td>
+<td></td>
+</tr>
+<tr>
+<td>providerName</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>providerType</td>
+<td>string</td>
+<td></td>
+<td>The type of the provider is either <code>licensed-center</code>, <code>infant-center</code>, <code>school</code>,<code>family</code>,</td>
+<td></td>
+</tr>
+<tr>
+<td>startDate</td>
+<td>string</td>
+<td></td>
+<td>yyyyMMdd</td>
+<td></td>
+</tr>
+<tr>
+<td>endDate</td>
+<td>string</td>
+<td></td>
+<td>yyyyMMdd</td>
+<td></td>
+</tr>
+<tr>
+<td>familyId</td>
+<td>string</td>
+<td>FK</td>
+<td>family entity id</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>attendance</strong></td>
+<td>object</td>
+<td></td>
+<td><a href="#attendance-submission-model">Attendance submission Model</a></td>
+<td></td>
+</tr>
+<tr>
+<td>parentSignDate</td>
+<td>string</td>
+<td></td>
+<td>yyyyMMddHHmmss</td>
+<td></td>
+</tr>
+<tr>
+<td>parentSignature</td>
+<td>string</td>
+<td></td>
+<td>Base64 image</td>
+<td></td>
+</tr>
+<tr>
+<td>providerSignDate</td>
+<td>string</td>
+<td></td>
+<td>yyyyMMddHHmmss</td>
+<td></td>
+</tr>
+<tr>
+<td>providerSignature</td>
+<td>string</td>
+<td></td>
+<td>Base64 image</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td></td>
+<td>The status of the care is either <code>new</code>, <code>pending</code>, <code>active</code>, <code>inactive</code>, <code>void</code>,</td>
+<td></td>
+</tr>
+<tr>
+<td>comment</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td></td>
+<td>Custom data objects can include additional Submission attributes, with field definitions adhering to established guidelines.</td>
+<td></td>
+</tr>
+<tr>
+<td>disabled</td>
+<td>bool</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tags</td>
+<td>array</td>
+<td></td>
+<td>string array</td>
+<td></td>
+</tr>
+<tr>
+<td>category</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>metadata</td>
+<td>object</td>
+<td></td>
+<td>Set of <strong>key-value pairs</strong> that you can attach to an object. This can be useful for storing additional information about the object in a structured format.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="attendance-submission-model">Attendance submission Model<a class="header-anchor" href="javascript:;" onclick="location.hash='#attendance-submission-model'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>header</td>
+<td>object</td>
+<td>Container for header information</td>
+</tr>
+<tr>
+<td>- agencycode</td>
+<td>string</td>
+<td>Agency code</td>
+</tr>
+<tr>
+<td>- type</td>
+<td>string</td>
+<td>Type of the document (e.g., attendance)</td>
+</tr>
+<tr>
+<td>- createtime</td>
+<td>string</td>
+<td>Creation time of the document</td>
+</tr>
+<tr>
+<td>body</td>
+<td>object</td>
+<td>Container for the body of the document</td>
+</tr>
+<tr>
+<td>- claimid</td>
+<td>string</td>
+<td>Unique claim identifier</td>
+</tr>
+<tr>
+<td>- invoiceamount</td>
+<td>number</td>
+<td>Invoice amount (null indicates potentially a number)</td>
+</tr>
+<tr>
+<td>- familyfee</td>
+<td>number</td>
+<td>Family fee (null indicates potentially a number)</td>
+</tr>
+<tr>
+<td>- comment</td>
+<td>string</td>
+<td>Comment (null indicates a string type)</td>
+</tr>
+<tr>
+<td>- attendanceinfo</td>
+<td>array</td>
+<td>Array of attendance information objects</td>
+</tr>
+<tr>
+<td>--- attendancedate</td>
+<td>string</td>
+<td>Date of attendance</td>
+</tr>
+<tr>
+<td>--- isabsence</td>
+<td>boolean</td>
+<td>Indicates if there was an absence</td>
+</tr>
+<tr>
+<td>--- absencetype</td>
+<td>string</td>
+<td>Type of absence (null indicates a string type)</td>
+</tr>
+<tr>
+<td>--- signinout</td>
+<td>array</td>
+<td>Array of sign-in and sign-out information</td>
+</tr>
+<tr>
+<td>----- signin</td>
+<td>string</td>
+<td>Sign-in time</td>
+</tr>
+<tr>
+<td>----- signout</td>
+<td>string</td>
+<td>Sign-out time</td>
+</tr>
+<tr>
+<td>----- signInId</td>
+<td>string</td>
+<td>Unique sign-in identifier</td>
+</tr>
+<tr>
+<td>----- signOutId</td>
+<td>string</td>
+<td>Unique sign-out identifier</td>
+</tr>
+<tr>
+<td>----- comment</td>
+<td>string</td>
+<td>Comment related to sign-in/out</td>
+</tr>
+<tr>
+<td>--- dailysummary</td>
+<td>object</td>
+<td>Summary of daily attendance information</td>
+</tr>
+<tr>
+<td>----- totaldays</td>
+<td>string</td>
+<td>Total days attended</td>
+</tr>
+<tr>
+<td>----- nhtotaldays</td>
+<td>number</td>
+<td>Total non-holiday days attended (null indicates number)</td>
+</tr>
+<tr>
+<td>----- ahtotaldays</td>
+<td>number</td>
+<td>Total holiday days attended (null indicates number)</td>
+</tr>
+<tr>
+<td>----- thtotalhours</td>
+<td>number</td>
+<td>Total hours attended</td>
+</tr>
+<tr>
+<td>----- nhtotalhours</td>
+<td>number</td>
+<td>Total non-holiday hours attended</td>
+</tr>
+<tr>
+<td>----- ahtotalhours</td>
+<td>number</td>
+<td>Total holiday hours attended</td>
+</tr>
+<tr>
+<td>----- satotalhours</td>
+<td>number</td>
+<td>Total Saturday hours attended (null indicates number)</td>
+</tr>
+<tr>
+<td>----- sutotalhours</td>
+<td>number</td>
+<td>Total Sunday hours attended (null indicates number)</td>
+</tr>
+<tr>
+<td>----- totalabsence</td>
+<td>string</td>
+<td>Total days of absence</td>
+</tr>
+<tr>
+<td>summary</td>
+<td>object</td>
+<td>Container for summary of attendance</td>
+</tr>
+<tr>
+<td>- [wk1, wk2, wk3, wk4, wk5, wk6, month]</td>
+<td>object</td>
+<td>Weekly and monthly attendance summaries</td>
+</tr>
+<tr>
+<td>--- totaldays</td>
+<td>string</td>
+<td>Total days in the period</td>
+</tr>
+<tr>
+<td>--- nhtotaldays</td>
+<td>string</td>
+<td>Total non-holiday days in the period</td>
+</tr>
+<tr>
+<td>--- ahtotaldays</td>
+<td>string</td>
+<td>Total holiday days in the period</td>
+</tr>
+<tr>
+<td>--- thtotalhours</td>
+<td>number</td>
+<td>Total hours in the period</td>
+</tr>
+<tr>
+<td>--- nhtotalhours</td>
+<td>number</td>
+<td>Total non-holiday hours in the period</td>
+</tr>
+<tr>
+<td>--- ahtotalhours</td>
+<td>number</td>
+<td>Total holiday hours in the period</td>
+</tr>
+<tr>
+<td>--- satotalhours</td>
+<td>number</td>
+<td>Total Saturday hours in the period (null indicates number)</td>
+</tr>
+<tr>
+<td>--- sutotalhours</td>
+<td>number</td>
+<td>Total Sunday hours in the period (null indicates number)</td>
+</tr>
+<tr>
+<td>--- totalabsence</td>
+<td>string</td>
+<td>Total days of absence in the period</td>
+</tr>
+<tr>
+<td>version</td>
+<td>string</td>
+<td>Document version</td>
+</tr>
+<tr>
+<td>versiondate</td>
+<td>string</td>
+<td>Date of the version</td>
+</tr>
+<tr>
+<td>DigitalSubmission</td>
+<td>string</td>
+<td>Digital submission indicator</td>
+</tr>
+<tr>
+<td>SubmitDate</td>
+<td>string</td>
+<td>Date of submission</td>
+</tr>
+<tr>
+<td>MissingDailySignature</td>
+<td>string</td>
+<td>Indicator for missing daily signature</td>
+</tr>
+<tr>
+<td>MissingConfirmSignature</td>
+<td>string</td>
+<td>Indicator for missing confirmation signature</td>
+</tr>
+<tr>
+<td>footer</td>
+<td>object</td>
+<td>Container for footer information</td>
+</tr>
+<tr>
+<td>- crc</td>
+<td>string</td>
+<td>CRC checksum value</td>
+</tr>
+</tbody>
+</table>
+<h2 id="for-careconnect-metadata">For CareConnect metadata<a class="header-anchor" href="javascript:;" onclick="location.hash='#for-careconnect-metadata'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>customerId</td>
+<td>string</td>
+<td>CCN CustomerId</td>
+</tr>
+<tr>
+<td>customerName</td>
+<td>string</td>
+<td>CCN customerName</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example">Example<a class="header-anchor" href="javascript:;" onclick="location.hash='#example'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<pre><code class="language-json">{
+  &quot;header&quot;: {
+    &quot;agencycode&quot;: &quot;RBUSD&quot;,
+    &quot;type&quot;: &quot;attendance&quot;,
+    &quot;createtime&quot;: &quot;20170419&quot;
+  },
+  &quot;body&quot;: {
+    &quot;claimid&quot;: &quot;35293&quot;,
+    &quot;invocieamount&quot;: null,
+    &quot;familyfee&quot;: null,
+    &quot;comment&quot;: null,
+    &quot;attendanceinfo&quot;: [
+      {
+        &quot;attendancedate&quot;: &quot;20170103&quot;,
+        &quot;isabsence&quot;: false,
+        &quot;absencetype&quot;: null,
+        &quot;signinout&quot;: [
+          {
+            &quot;signin&quot;: &quot;20170103 02:44 PM&quot;,
+            &quot;signout&quot;: &quot;20170103 05:05 PM&quot;,
+            &quot;signInId&quot;: &quot;a8a87698-7b80-425e-835c-8caf41d95736&quot;,
+            &quot;signOutId&quot;: &quot;5122e453-eb79-4ec7-ad80-6e75d6cb26ee&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :a8a87698-7b80-425e-835c-8caf41d95736&quot;
+          },
+          {
+            &quot;signin&quot;: &quot;20170103 07:00 AM&quot;,
+            &quot;signout&quot;: &quot;20170103 07:56 AM&quot;,
+            &quot;signInId&quot;: &quot;51d17406-8889-45a0-b0fb-08457ca97774&quot;,
+            &quot;signOutId&quot;: &quot;20c28ac0-2dd4-4d9b-9565-e9b6d9d7c6f7&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :51d17406-8889-45a0-b0fb-08457ca97774&quot;
+          }
+        ],
+        &quot;dailysummary&quot;: {
+          &quot;totaldays&quot;: &quot;1&quot;,
+          &quot;nhtotaldays&quot;: null,
+          &quot;ahtotaldays&quot;: null,
+          &quot;thtotalhours&quot;: &quot;3.28&quot;,
+          &quot;nhtotalhours&quot;: &quot;3.28&quot;,
+          &quot;ahtotalhours&quot;: &quot;0.00&quot;,
+          &quot;satotalhours&quot;: null,
+          &quot;sutotalhours&quot;: null,
+          &quot;totalabsence&quot;: &quot;0&quot;
+        },
+        &quot;comment&quot;: &quot; &quot;
+      },
+      {
+        &quot;attendancedate&quot;: &quot;20170104&quot;,
+        &quot;isabsence&quot;: false,
+        &quot;absencetype&quot;: null,
+        &quot;signinout&quot;: [
+          {
+            &quot;signin&quot;: &quot;20170104 01:46 PM&quot;,
+            &quot;signout&quot;: &quot;20170104 05:03 PM&quot;,
+            &quot;signInId&quot;: &quot;67268325-898b-48e6-abf0-26d01f28e816&quot;,
+            &quot;signOutId&quot;: &quot;500c0d5d-a52e-4e58-ad92-608796b7b95f&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :67268325-898b-48e6-abf0-26d01f28e816&quot;
+          },
+          {
+            &quot;signin&quot;: &quot;20170104 06:33 AM&quot;,
+            &quot;signout&quot;: &quot;20170104 07:57 AM&quot;,
+            &quot;signInId&quot;: &quot;e8b9a9bb-6d0a-433d-bb91-f669f0315f5a&quot;,
+            &quot;signOutId&quot;: &quot;be577498-4dce-4010-826c-3682cc0ec776&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :e8b9a9bb-6d0a-433d-bb91-f669f0315f5a&quot;
+          }
+        ],
+        &quot;dailysummary&quot;: {
+          &quot;totaldays&quot;: &quot;1&quot;,
+          &quot;nhtotaldays&quot;: null,
+          &quot;ahtotaldays&quot;: null,
+          &quot;thtotalhours&quot;: &quot;4.68&quot;,
+          &quot;nhtotalhours&quot;: &quot;4.68&quot;,
+          &quot;ahtotalhours&quot;: &quot;0.00&quot;,
+          &quot;satotalhours&quot;: null,
+          &quot;sutotalhours&quot;: null,
+          &quot;totalabsence&quot;: &quot;0&quot;
+        },
+        &quot;comment&quot;: &quot;&quot;
+      },
+      {
+        &quot;attendancedate&quot;: &quot;20170105&quot;,
+        &quot;isabsence&quot;: false,
+        &quot;absencetype&quot;: null,
+        &quot;signinout&quot;: [
+          {
+            &quot;signin&quot;: &quot;20170105 02:49 PM&quot;,
+            &quot;signout&quot;: &quot;20170105 05:01 PM&quot;,
+            &quot;signInId&quot;: &quot;57e5c359-150b-45d1-a4f1-ec53042d5e9e&quot;,
+            &quot;signOutId&quot;: &quot;d60370e0-be9a-468b-af57-8a0a6edae256&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :57e5c359-150b-45d1-a4f1-ec53042d5e9e&quot;
+          },
+          {
+            &quot;signin&quot;: &quot;20170105 06:31 AM&quot;,
+            &quot;signout&quot;: &quot;20170105 07:58 AM&quot;,
+            &quot;signInId&quot;: &quot;950c2594-df97-42c3-ae1f-41989b05ab2d&quot;,
+            &quot;signOutId&quot;: &quot;95fcdd49-8bf8-4e91-97e1-f759e9e9a849&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :950c2594-df97-42c3-ae1f-41989b05ab2d&quot;
+          }
+        ],
+        &quot;dailysummary&quot;: {
+          &quot;totaldays&quot;: &quot;1&quot;,
+          &quot;nhtotaldays&quot;: null,
+          &quot;ahtotaldays&quot;: null,
+          &quot;thtotalhours&quot;: &quot;3.65&quot;,
+          &quot;nhtotalhours&quot;: &quot;3.65&quot;,
+          &quot;ahtotalhours&quot;: &quot;0.00&quot;,
+          &quot;satotalhours&quot;: null,
+          &quot;sutotalhours&quot;: null,
+          &quot;totalabsence&quot;: &quot;0&quot;
+        },
+        &quot;comment&quot;: &quot; &quot;
+      },
+      {
+        &quot;attendancedate&quot;: &quot;20170106&quot;,
+        &quot;isabsence&quot;: false,
+        &quot;absencetype&quot;: null,
+        &quot;signinout&quot;: [
+          {
+            &quot;signin&quot;: &quot;20170106 03:02 PM&quot;,
+            &quot;signout&quot;: &quot;20170106 05:07 PM&quot;,
+            &quot;signInId&quot;: &quot;ae8f1d12-2364-40be-8892-58ceae8a7f33&quot;,
+            &quot;signOutId&quot;: &quot;9c820371-a387-460e-bda0-395fefca6ac8&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :ae8f1d12-2364-40be-8892-58ceae8a7f33&quot;
+          },
+          {
+            &quot;signin&quot;: &quot;20170106 06:34 AM&quot;,
+            &quot;signout&quot;: &quot;20170106 08:02 AM&quot;,
+            &quot;signInId&quot;: &quot;8d5deac8-10bf-11e7-a38e-06a4938c473d&quot;,
+            &quot;signOutId&quot;: &quot;8d60621f-10bf-11e7-a38e-06a4938c473d&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :811653e6-4a21-4995-9f69-fa937277d722&quot;
+          }
+        ],
+        &quot;dailysummary&quot;: {
+          &quot;totaldays&quot;: &quot;1&quot;,
+          &quot;nhtotaldays&quot;: null,
+          &quot;ahtotaldays&quot;: null,
+          &quot;thtotalhours&quot;: &quot;3.55&quot;,
+          &quot;nhtotalhours&quot;: &quot;3.55&quot;,
+          &quot;ahtotalhours&quot;: &quot;0.00&quot;,
+          &quot;satotalhours&quot;: null,
+          &quot;sutotalhours&quot;: null,
+          &quot;totalabsence&quot;: &quot;0&quot;
+        },
+        &quot;comment&quot;: &quot; &quot;
+      },
+      {
+        &quot;attendancedate&quot;: &quot;20170109&quot;,
+        &quot;isabsence&quot;: true,
+        &quot;absencetype&quot;: null,
+        &quot;signinout&quot;: null,
+        &quot;dailysummary&quot;: {
+          &quot;totaldays&quot;: &quot;0&quot;,
+          &quot;nhtotaldays&quot;: null,
+          &quot;ahtotaldays&quot;: null,
+          &quot;thtotalhours&quot;: null,
+          &quot;nhtotalhours&quot;: null,
+          &quot;ahtotalhours&quot;: null,
+          &quot;satotalhours&quot;: null,
+          &quot;sutotalhours&quot;: null,
+          &quot;totalabsence&quot;: &quot;1&quot;
+        },
+        &quot;comment&quot;: &quot;&quot;
+      },
+      {
+        &quot;attendancedate&quot;: &quot;20170110&quot;,
+        &quot;isabsence&quot;: false,
+        &quot;absencetype&quot;: null,
+        &quot;signinout&quot;: [
+          {
+            &quot;signin&quot;: &quot;20170110 02:45 PM&quot;,
+            &quot;signout&quot;: &quot;20170110 04:28 PM&quot;,
+            &quot;signInId&quot;: &quot;0ccddae2-b12e-467a-b009-9160cf44015a&quot;,
+            &quot;signOutId&quot;: &quot;28a27cb6-49dc-41f2-97b5-b53251fb51f6&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :0ccddae2-b12e-467a-b009-9160cf44015a&quot;
+          },
+          {
+            &quot;signin&quot;: &quot;20170110 06:34 AM&quot;,
+            &quot;signout&quot;: &quot;20170110 07:59 AM&quot;,
+            &quot;signInId&quot;: &quot;5c05879e-9173-4f5c-9859-0847817766be&quot;,
+            &quot;signOutId&quot;: &quot;93c4a792-08d1-4d85-8ad6-9cb1540618e6&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :5c05879e-9173-4f5c-9859-0847817766be&quot;
+          }
+        ],
+        &quot;dailysummary&quot;: {
+          &quot;totaldays&quot;: &quot;1&quot;,
+          &quot;nhtotaldays&quot;: null,
+          &quot;ahtotaldays&quot;: null,
+          &quot;thtotalhours&quot;: &quot;3.13&quot;,
+          &quot;nhtotalhours&quot;: &quot;3.13&quot;,
+          &quot;ahtotalhours&quot;: &quot;0.00&quot;,
+          &quot;satotalhours&quot;: null,
+          &quot;sutotalhours&quot;: null,
+          &quot;totalabsence&quot;: &quot;0&quot;
+        },
+        &quot;comment&quot;: &quot;&quot;
+      },
+      {
+        &quot;attendancedate&quot;: &quot;20170111&quot;,
+        &quot;isabsence&quot;: false,
+        &quot;absencetype&quot;: null,
+        &quot;signinout&quot;: [
+          {
+            &quot;signin&quot;: &quot;20170111 01:45 PM&quot;,
+            &quot;signout&quot;: &quot;20170111 04:09 PM&quot;,
+            &quot;signInId&quot;: &quot;70ec5db3-57b7-4678-8755-c28c6a39802a&quot;,
+            &quot;signOutId&quot;: &quot;c5c2efd3-44c0-4380-b807-86285be15a9c&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :70ec5db3-57b7-4678-8755-c28c6a39802a&quot;
+          },
+          {
+            &quot;signin&quot;: &quot;20170111 06:32 AM&quot;,
+            &quot;signout&quot;: &quot;20170111 07:59 AM&quot;,
+            &quot;signInId&quot;: &quot;ec6663dd-a362-42ce-84c5-8d0218bce653&quot;,
+            &quot;signOutId&quot;: &quot;faa30f24-8cec-406a-93f5-8d24a421732a&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :ec6663dd-a362-42ce-84c5-8d0218bce653&quot;
+          }
+        ],
+        &quot;dailysummary&quot;: {
+          &quot;totaldays&quot;: &quot;1&quot;,
+          &quot;nhtotaldays&quot;: null,
+          &quot;ahtotaldays&quot;: null,
+          &quot;thtotalhours&quot;: &quot;3.85&quot;,
+          &quot;nhtotalhours&quot;: &quot;3.85&quot;,
+          &quot;ahtotalhours&quot;: &quot;0.00&quot;,
+          &quot;satotalhours&quot;: null,
+          &quot;sutotalhours&quot;: null,
+          &quot;totalabsence&quot;: &quot;0&quot;
+        },
+        &quot;comment&quot;: &quot;&quot;
+      },
+      {
+        &quot;attendancedate&quot;: &quot;20170112&quot;,
+        &quot;isabsence&quot;: false,
+        &quot;absencetype&quot;: null,
+        &quot;signinout&quot;: [
+          {
+            &quot;signin&quot;: &quot;20170112 06:40 AM&quot;,
+            &quot;signout&quot;: &quot;20170112 08:10 AM&quot;,
+            &quot;signInId&quot;: &quot;93081aeb-10bf-11e7-a38e-06a4938c473d&quot;,
+            &quot;signOutId&quot;: &quot;930a628a-10bf-11e7-a38e-06a4938c473d&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :b6fe6228-ae6e-47fc-a99b-e175b4a9d0a0&quot;
+          },
+          {
+            &quot;signin&quot;: &quot;20170112 02:41 PM&quot;,
+            &quot;signout&quot;: &quot;20170112 04:29 PM&quot;,
+            &quot;signInId&quot;: &quot;150ba19b-da5a-49cf-a43d-4d0478a86741&quot;,
+            &quot;signOutId&quot;: &quot;dac942c7-1754-4bc4-897e-34edeb27a7d9&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :150ba19b-da5a-49cf-a43d-4d0478a86741&quot;
+          }
+        ],
+        &quot;dailysummary&quot;: {
+          &quot;totaldays&quot;: &quot;1&quot;,
+          &quot;nhtotaldays&quot;: null,
+          &quot;ahtotaldays&quot;: null,
+          &quot;thtotalhours&quot;: &quot;3.30&quot;,
+          &quot;nhtotalhours&quot;: &quot;3.30&quot;,
+          &quot;ahtotalhours&quot;: &quot;0.00&quot;,
+          &quot;satotalhours&quot;: null,
+          &quot;sutotalhours&quot;: null,
+          &quot;totalabsence&quot;: &quot;0&quot;
+        },
+        &quot;comment&quot;: &quot; &quot;
+      },
+      {
+        &quot;attendancedate&quot;: &quot;20170113&quot;,
+        &quot;isabsence&quot;: false,
+        &quot;absencetype&quot;: null,
+        &quot;signinout&quot;: [
+          {
+            &quot;signin&quot;: &quot;20170113 06:34 AM&quot;,
+            &quot;signout&quot;: &quot;20170113 07:59 AM&quot;,
+            &quot;signInId&quot;: &quot;2a846bb2-1b5f-49ea-acc1-93728291df03&quot;,
+            &quot;signOutId&quot;: &quot;9fc79301-0961-40f2-92a1-1224c7799b65&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :2a846bb2-1b5f-49ea-acc1-93728291df03&quot;
+          },
+          {
+            &quot;signin&quot;: &quot;20170113 02:48 PM&quot;,
+            &quot;signout&quot;: &quot;20170113 03:13 PM&quot;,
+            &quot;signInId&quot;: &quot;3a6ec2cd-1f7e-4416-a1c5-0daa17990e3c&quot;,
+            &quot;signOutId&quot;: &quot;ea105d7e-fdc9-48e4-a5bf-1069c9e6be14&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :3a6ec2cd-1f7e-4416-a1c5-0daa17990e3c&quot;
+          }
+        ],
+        &quot;dailysummary&quot;: {
+          &quot;totaldays&quot;: &quot;1&quot;,
+          &quot;nhtotaldays&quot;: null,
+          &quot;ahtotaldays&quot;: null,
+          &quot;thtotalhours&quot;: &quot;1.83&quot;,
+          &quot;nhtotalhours&quot;: &quot;1.83&quot;,
+          &quot;ahtotalhours&quot;: &quot;0.00&quot;,
+          &quot;satotalhours&quot;: null,
+          &quot;sutotalhours&quot;: null,
+          &quot;totalabsence&quot;: &quot;0&quot;
+        },
+        &quot;comment&quot;: &quot;&quot;
+      },
+      {
+        &quot;attendancedate&quot;: &quot;20170117&quot;,
+        &quot;isabsence&quot;: false,
+        &quot;absencetype&quot;: null,
+        &quot;signinout&quot;: [
+          {
+            &quot;signin&quot;: &quot;20170117 06:33 AM&quot;,
+            &quot;signout&quot;: &quot;20170117 05:23 PM&quot;,
+            &quot;signInId&quot;: &quot;b7b77725-a51c-4f90-b5f4-c50be437aae6&quot;,
+            &quot;signOutId&quot;: &quot;119438e1-defc-43c6-96ac-75c0d110ad05&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :b7b77725-a51c-4f90-b5f4-c50be437aae6&quot;
+          }
+        ],
+        &quot;dailysummary&quot;: {
+          &quot;totaldays&quot;: &quot;1&quot;,
+          &quot;nhtotaldays&quot;: null,
+          &quot;ahtotaldays&quot;: null,
+          &quot;thtotalhours&quot;: &quot;10.83&quot;,
+          &quot;nhtotalhours&quot;: &quot;10.83&quot;,
+          &quot;ahtotalhours&quot;: &quot;0.00&quot;,
+          &quot;satotalhours&quot;: null,
+          &quot;sutotalhours&quot;: null,
+          &quot;totalabsence&quot;: &quot;0&quot;
+        },
+        &quot;comment&quot;: &quot;&quot;
+      },
+      {
+        &quot;attendancedate&quot;: &quot;20170118&quot;,
+        &quot;isabsence&quot;: false,
+        &quot;absencetype&quot;: null,
+        &quot;signinout&quot;: [
+          {
+            &quot;signin&quot;: &quot;20170118 06:33 AM&quot;,
+            &quot;signout&quot;: &quot;20170118 08:07 AM&quot;,
+            &quot;signInId&quot;: &quot;bbc87575-0b5f-48eb-9b8d-0099913017c1&quot;,
+            &quot;signOutId&quot;: &quot;9106ecf9-f9da-4955-ad15-94302eb70bf4&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :bbc87575-0b5f-48eb-9b8d-0099913017c1&quot;
+          },
+          {
+            &quot;signin&quot;: &quot;20170118 01:44 PM&quot;,
+            &quot;signout&quot;: &quot;20170118 05:11 PM&quot;,
+            &quot;signInId&quot;: &quot;5cc46cc4-d7ec-4b53-bce7-cccb1c80209a&quot;,
+            &quot;signOutId&quot;: &quot;54f39b14-6521-4b66-8c7e-67233e1c54f7&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :5cc46cc4-d7ec-4b53-bce7-cccb1c80209a&quot;
+          }
+        ],
+        &quot;dailysummary&quot;: {
+          &quot;totaldays&quot;: &quot;1&quot;,
+          &quot;nhtotaldays&quot;: null,
+          &quot;ahtotaldays&quot;: null,
+          &quot;thtotalhours&quot;: &quot;5.02&quot;,
+          &quot;nhtotalhours&quot;: &quot;5.02&quot;,
+          &quot;ahtotalhours&quot;: &quot;0.00&quot;,
+          &quot;satotalhours&quot;: null,
+          &quot;sutotalhours&quot;: null,
+          &quot;totalabsence&quot;: &quot;0&quot;
+        },
+        &quot;comment&quot;: &quot;&quot;
+      },
+      {
+        &quot;attendancedate&quot;: &quot;20170119&quot;,
+        &quot;isabsence&quot;: false,
+        &quot;absencetype&quot;: null,
+        &quot;signinout&quot;: [
+          {
+            &quot;signin&quot;: &quot;20170119 06:32 AM&quot;,
+            &quot;signout&quot;: &quot;20170119 07:59 AM&quot;,
+            &quot;signInId&quot;: &quot;8c6af318-66a1-4758-8588-0b180227bee0&quot;,
+            &quot;signOutId&quot;: &quot;19e9c4a4-cbf7-4465-88dc-6f6d1c24e8e6&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :8c6af318-66a1-4758-8588-0b180227bee0&quot;
+          },
+          {
+            &quot;signin&quot;: &quot;20170119 02:51 PM&quot;,
+            &quot;signout&quot;: &quot;20170119 04:51 PM&quot;,
+            &quot;signInId&quot;: &quot;2014bb46-f423-483d-a675-94d8f891494d&quot;,
+            &quot;signOutId&quot;: &quot;020523a8-d4b9-4811-a1f5-262b26759890&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :2014bb46-f423-483d-a675-94d8f891494d&quot;
+          }
+        ],
+        &quot;dailysummary&quot;: {
+          &quot;totaldays&quot;: &quot;1&quot;,
+          &quot;nhtotaldays&quot;: null,
+          &quot;ahtotaldays&quot;: null,
+          &quot;thtotalhours&quot;: &quot;3.45&quot;,
+          &quot;nhtotalhours&quot;: &quot;3.45&quot;,
+          &quot;ahtotalhours&quot;: &quot;0.00&quot;,
+          &quot;satotalhours&quot;: null,
+          &quot;sutotalhours&quot;: null,
+          &quot;totalabsence&quot;: &quot;0&quot;
+        },
+        &quot;comment&quot;: &quot;&quot;
+      },
+      {
+        &quot;attendancedate&quot;: &quot;20170120&quot;,
+        &quot;isabsence&quot;: false,
+        &quot;absencetype&quot;: null,
+        &quot;signinout&quot;: [
+          {
+            &quot;signin&quot;: &quot;20170120 06:34 AM&quot;,
+            &quot;signout&quot;: &quot;20170120 07:56 AM&quot;,
+            &quot;signInId&quot;: &quot;2eddac98-62bf-4f74-9ef5-24b278fee0eb&quot;,
+            &quot;signOutId&quot;: &quot;aa5ea2f2-6886-4bb9-bd0e-81179cdecefc&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :2eddac98-62bf-4f74-9ef5-24b278fee0eb&quot;
+          },
+          {
+            &quot;signin&quot;: &quot;20170120 02:51 PM&quot;,
+            &quot;signout&quot;: &quot;20170120 03:00 PM&quot;,
+            &quot;signInId&quot;: &quot;d9d25b0f-1660-4311-b54d-88b84a0877e4&quot;,
+            &quot;signOutId&quot;: &quot;fdbc0239-6944-4ce4-ab45-a2dc550aaf41&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :d9d25b0f-1660-4311-b54d-88b84a0877e4&quot;
+          }
+        ],
+        &quot;dailysummary&quot;: {
+          &quot;totaldays&quot;: &quot;1&quot;,
+          &quot;nhtotaldays&quot;: null,
+          &quot;ahtotaldays&quot;: null,
+          &quot;thtotalhours&quot;: &quot;1.52&quot;,
+          &quot;nhtotalhours&quot;: &quot;1.52&quot;,
+          &quot;ahtotalhours&quot;: &quot;0.00&quot;,
+          &quot;satotalhours&quot;: null,
+          &quot;sutotalhours&quot;: null,
+          &quot;totalabsence&quot;: &quot;0&quot;
+        },
+        &quot;comment&quot;: &quot;&quot;
+      },
+      {
+        &quot;attendancedate&quot;: &quot;20170123&quot;,
+        &quot;isabsence&quot;: false,
+        &quot;absencetype&quot;: null,
+        &quot;signinout&quot;: [
+          {
+            &quot;signin&quot;: &quot;20170123 06:51 AM&quot;,
+            &quot;signout&quot;: &quot;20170123 07:58 AM&quot;,
+            &quot;signInId&quot;: &quot;28842737-a4b4-4fa4-b8df-16ac0db5213d&quot;,
+            &quot;signOutId&quot;: &quot;f431ecd0-d136-4057-aa2b-6cc7c355993a&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :28842737-a4b4-4fa4-b8df-16ac0db5213d&quot;
+          },
+          {
+            &quot;signin&quot;: &quot;20170123 02:47 PM&quot;,
+            &quot;signout&quot;: &quot;20170123 05:08 PM&quot;,
+            &quot;signInId&quot;: &quot;96b92bca-de4a-4a75-8f5e-ca29b1f51287&quot;,
+            &quot;signOutId&quot;: &quot;d00df900-05a1-4412-b631-cfe57f1f4a01&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :96b92bca-de4a-4a75-8f5e-ca29b1f51287&quot;
+          }
+        ],
+        &quot;dailysummary&quot;: {
+          &quot;totaldays&quot;: &quot;1&quot;,
+          &quot;nhtotaldays&quot;: null,
+          &quot;ahtotaldays&quot;: null,
+          &quot;thtotalhours&quot;: &quot;3.47&quot;,
+          &quot;nhtotalhours&quot;: &quot;3.47&quot;,
+          &quot;ahtotalhours&quot;: &quot;0.00&quot;,
+          &quot;satotalhours&quot;: null,
+          &quot;sutotalhours&quot;: null,
+          &quot;totalabsence&quot;: &quot;0&quot;
+        },
+        &quot;comment&quot;: &quot; &quot;
+      },
+      {
+        &quot;attendancedate&quot;: &quot;20170124&quot;,
+        &quot;isabsence&quot;: false,
+        &quot;absencetype&quot;: null,
+        &quot;signinout&quot;: [
+          {
+            &quot;signin&quot;: &quot;20170124 06:33 AM&quot;,
+            &quot;signout&quot;: &quot;20170124 07:59 AM&quot;,
+            &quot;signInId&quot;: &quot;a3ce6ad4-39c1-4ba6-a0ae-ae6cc7b4da4d&quot;,
+            &quot;signOutId&quot;: &quot;96628daa-3b2a-4e44-97fd-1f53c83a6e5b&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :a3ce6ad4-39c1-4ba6-a0ae-ae6cc7b4da4d&quot;
+          },
+          {
+            &quot;signin&quot;: &quot;20170124 02:52 PM&quot;,
+            &quot;signout&quot;: &quot;20170124 05:09 PM&quot;,
+            &quot;signInId&quot;: &quot;c4d7cd30-9c89-4082-8b76-0d1d883a17cf&quot;,
+            &quot;signOutId&quot;: &quot;e16a1c1f-cac1-4f01-9f1f-09278321d427&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :c4d7cd30-9c89-4082-8b76-0d1d883a17cf&quot;
+          }
+        ],
+        &quot;dailysummary&quot;: {
+          &quot;totaldays&quot;: &quot;1&quot;,
+          &quot;nhtotaldays&quot;: null,
+          &quot;ahtotaldays&quot;: null,
+          &quot;thtotalhours&quot;: &quot;3.72&quot;,
+          &quot;nhtotalhours&quot;: &quot;3.72&quot;,
+          &quot;ahtotalhours&quot;: &quot;0.00&quot;,
+          &quot;satotalhours&quot;: null,
+          &quot;sutotalhours&quot;: null,
+          &quot;totalabsence&quot;: &quot;0&quot;
+        },
+        &quot;comment&quot;: &quot;&quot;
+      },
+      {
+        &quot;attendancedate&quot;: &quot;20170125&quot;,
+        &quot;isabsence&quot;: false,
+        &quot;absencetype&quot;: null,
+        &quot;signinout&quot;: [
+          {
+            &quot;signin&quot;: &quot;20170125 01:52 PM&quot;,
+            &quot;signout&quot;: &quot;20170125 05:19 PM&quot;,
+            &quot;signInId&quot;: &quot;2eb18722-b5f8-4fa6-a1aa-f8433deb104d&quot;,
+            &quot;signOutId&quot;: &quot;147ec109-7bd4-4fc1-8605-caf6fd01e474&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :2eb18722-b5f8-4fa6-a1aa-f8433deb104d&quot;
+          },
+          {
+            &quot;signin&quot;: &quot;20170125 06:59 AM&quot;,
+            &quot;signout&quot;: &quot;20170125 07:59 AM&quot;,
+            &quot;signInId&quot;: &quot;eb96d51b-d071-4f25-becd-77b928757cb1&quot;,
+            &quot;signOutId&quot;: &quot;800bb668-c1af-4c23-97a7-d1ef16139028&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :eb96d51b-d071-4f25-becd-77b928757cb1&quot;
+          }
+        ],
+        &quot;dailysummary&quot;: {
+          &quot;totaldays&quot;: &quot;1&quot;,
+          &quot;nhtotaldays&quot;: null,
+          &quot;ahtotaldays&quot;: null,
+          &quot;thtotalhours&quot;: &quot;4.45&quot;,
+          &quot;nhtotalhours&quot;: &quot;4.45&quot;,
+          &quot;ahtotalhours&quot;: &quot;0.00&quot;,
+          &quot;satotalhours&quot;: null,
+          &quot;sutotalhours&quot;: null,
+          &quot;totalabsence&quot;: &quot;0&quot;
+        },
+        &quot;comment&quot;: &quot;&quot;
+      },
+      {
+        &quot;attendancedate&quot;: &quot;20170126&quot;,
+        &quot;isabsence&quot;: false,
+        &quot;absencetype&quot;: null,
+        &quot;signinout&quot;: [
+          {
+            &quot;signin&quot;: &quot;20170126 02:47 PM&quot;,
+            &quot;signout&quot;: &quot;20170126 04:04 PM&quot;,
+            &quot;signInId&quot;: &quot;bbd0e035-80c0-417f-b18f-af7da81f8e24&quot;,
+            &quot;signOutId&quot;: &quot;f63f9529-7695-43a1-a234-6599cb53bfc2&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :bbd0e035-80c0-417f-b18f-af7da81f8e24&quot;
+          },
+          {
+            &quot;signin&quot;: &quot;20170126 06:35 AM&quot;,
+            &quot;signout&quot;: &quot;20170126 07:58 AM&quot;,
+            &quot;signInId&quot;: &quot;7875cdd2-1d5d-43a0-8964-35d954d30859&quot;,
+            &quot;signOutId&quot;: &quot;cbdecfe2-72e7-4ec0-8a83-50f26677f1bd&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :7875cdd2-1d5d-43a0-8964-35d954d30859&quot;
+          }
+        ],
+        &quot;dailysummary&quot;: {
+          &quot;totaldays&quot;: &quot;1&quot;,
+          &quot;nhtotaldays&quot;: null,
+          &quot;ahtotaldays&quot;: null,
+          &quot;thtotalhours&quot;: &quot;2.67&quot;,
+          &quot;nhtotalhours&quot;: &quot;2.67&quot;,
+          &quot;ahtotalhours&quot;: &quot;0.00&quot;,
+          &quot;satotalhours&quot;: null,
+          &quot;sutotalhours&quot;: null,
+          &quot;totalabsence&quot;: &quot;0&quot;
+        },
+        &quot;comment&quot;: &quot;&quot;
+      },
+      {
+        &quot;attendancedate&quot;: &quot;20170127&quot;,
+        &quot;isabsence&quot;: false,
+        &quot;absencetype&quot;: null,
+        &quot;signinout&quot;: [
+          {
+            &quot;signin&quot;: &quot;20170127 02:58 PM&quot;,
+            &quot;signout&quot;: &quot;20170127 04:20 PM&quot;,
+            &quot;signInId&quot;: &quot;f830ed04-38e4-48fe-8e47-05e710b73867&quot;,
+            &quot;signOutId&quot;: &quot;fe261a53-7f3f-4dda-968b-632f2f28b760&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :f830ed04-38e4-48fe-8e47-05e710b73867&quot;
+          },
+          {
+            &quot;signin&quot;: &quot;20170127 06:31 AM&quot;,
+            &quot;signout&quot;: &quot;20170127 07:59 AM&quot;,
+            &quot;signInId&quot;: &quot;c416e1d1-ea59-44ac-949d-ca623056dcb9&quot;,
+            &quot;signOutId&quot;: &quot;9db4c6f7-e4c5-4ad4-b2bb-670af2ee59ef&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :c416e1d1-ea59-44ac-949d-ca623056dcb9&quot;
+          }
+        ],
+        &quot;dailysummary&quot;: {
+          &quot;totaldays&quot;: &quot;1&quot;,
+          &quot;nhtotaldays&quot;: null,
+          &quot;ahtotaldays&quot;: null,
+          &quot;thtotalhours&quot;: &quot;2.83&quot;,
+          &quot;nhtotalhours&quot;: &quot;2.83&quot;,
+          &quot;ahtotalhours&quot;: &quot;0.00&quot;,
+          &quot;satotalhours&quot;: null,
+          &quot;sutotalhours&quot;: null,
+          &quot;totalabsence&quot;: &quot;0&quot;
+        },
+        &quot;comment&quot;: &quot;&quot;
+      },
+      {
+        &quot;attendancedate&quot;: &quot;20170130&quot;,
+        &quot;isabsence&quot;: false,
+        &quot;absencetype&quot;: null,
+        &quot;signinout&quot;: [
+          {
+            &quot;signin&quot;: &quot;20170130 02:30 PM&quot;,
+            &quot;signout&quot;: &quot;20170130 02:55 PM&quot;,
+            &quot;signInId&quot;: &quot;ae6d9189-10bf-11e7-a38e-06a4938c473d&quot;,
+            &quot;signOutId&quot;: &quot;ae6fce27-10bf-11e7-a38e-06a4938c473d&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :57e6b6e4-984a-41f3-aec4-d2c767a588fc&quot;
+          }
+        ],
+        &quot;dailysummary&quot;: {
+          &quot;totaldays&quot;: &quot;1&quot;,
+          &quot;nhtotaldays&quot;: null,
+          &quot;ahtotaldays&quot;: null,
+          &quot;thtotalhours&quot;: &quot;0.42&quot;,
+          &quot;nhtotalhours&quot;: &quot;0.42&quot;,
+          &quot;ahtotalhours&quot;: &quot;0.00&quot;,
+          &quot;satotalhours&quot;: null,
+          &quot;sutotalhours&quot;: null,
+          &quot;totalabsence&quot;: &quot;0&quot;
+        },
+        &quot;comment&quot;: &quot; &quot;
+      },
+      {
+        &quot;attendancedate&quot;: &quot;20170131&quot;,
+        &quot;isabsence&quot;: false,
+        &quot;absencetype&quot;: null,
+        &quot;signinout&quot;: [
+          {
+            &quot;signin&quot;: &quot;20170131 06:34 AM&quot;,
+            &quot;signout&quot;: &quot;20170131 07:59 AM&quot;,
+            &quot;signInId&quot;: &quot;86565200-4678-4dc0-b947-76615147134a&quot;,
+            &quot;signOutId&quot;: &quot;c35ee2b9-c784-489b-ac8f-c13f2327c464&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :86565200-4678-4dc0-b947-76615147134a&quot;
+          },
+          {
+            &quot;signin&quot;: &quot;20170131 03:04 PM&quot;,
+            &quot;signout&quot;: &quot;20170131 04:27 PM&quot;,
+            &quot;signInId&quot;: &quot;99f36e5d-294e-4ddb-b390-30070b45c4f4&quot;,
+            &quot;signOutId&quot;: &quot;bbc1add5-8df3-455d-b4ca-6bcedd477f63&quot;,
+            &quot;comment&quot;: &quot;Sync from EAttendanceTime :99f36e5d-294e-4ddb-b390-30070b45c4f4&quot;
+          }
+        ],
+        &quot;dailysummary&quot;: {
+          &quot;totaldays&quot;: &quot;1&quot;,
+          &quot;nhtotaldays&quot;: null,
+          &quot;ahtotaldays&quot;: null,
+          &quot;thtotalhours&quot;: &quot;2.80&quot;,
+          &quot;nhtotalhours&quot;: &quot;2.80&quot;,
+          &quot;ahtotalhours&quot;: &quot;0.00&quot;,
+          &quot;satotalhours&quot;: null,
+          &quot;sutotalhours&quot;: null,
+          &quot;totalabsence&quot;: &quot;0&quot;
+        },
+        &quot;comment&quot;: &quot;&quot;
+      }
+    ],
+    &quot;summary&quot;: {
+      &quot;wk1&quot;: {
+        &quot;totaldays&quot;: &quot;4&quot;,
+        &quot;nhtotaldays&quot;: &quot;4&quot;,
+        &quot;ahtotaldays&quot;: &quot;0&quot;,
+        &quot;thtotalhours&quot;: &quot;15.16&quot;,
+        &quot;nhtotalhours&quot;: &quot;15.16&quot;,
+        &quot;ahtotalhours&quot;: &quot;0.00&quot;,
+        &quot;satotalhours&quot;: &quot;0.00&quot;,
+        &quot;sutotalhours&quot;: &quot;0.00&quot;,
+        &quot;totalabsence&quot;: &quot;0&quot;
+      },
+      &quot;wk2&quot;: {
+        &quot;totaldays&quot;: &quot;4&quot;,
+        &quot;nhtotaldays&quot;: &quot;4&quot;,
+        &quot;ahtotaldays&quot;: &quot;0&quot;,
+        &quot;thtotalhours&quot;: &quot;12.11&quot;,
+        &quot;nhtotalhours&quot;: &quot;12.11&quot;,
+        &quot;ahtotalhours&quot;: &quot;0.00&quot;,
+        &quot;satotalhours&quot;: &quot;0.00&quot;,
+        &quot;sutotalhours&quot;: &quot;0.00&quot;,
+        &quot;totalabsence&quot;: &quot;1&quot;
+      },
+      &quot;wk3&quot;: {
+        &quot;totaldays&quot;: &quot;4&quot;,
+        &quot;nhtotaldays&quot;: &quot;4&quot;,
+        &quot;ahtotaldays&quot;: &quot;0&quot;,
+        &quot;thtotalhours&quot;: &quot;20.82&quot;,
+        &quot;nhtotalhours&quot;: &quot;20.82&quot;,
+        &quot;ahtotalhours&quot;: &quot;0.00&quot;,
+        &quot;satotalhours&quot;: &quot;0.00&quot;,
+        &quot;sutotalhours&quot;: &quot;0.00&quot;,
+        &quot;totalabsence&quot;: &quot;0&quot;
+      },
+      &quot;wk4&quot;: {
+        &quot;totaldays&quot;: &quot;5&quot;,
+        &quot;nhtotaldays&quot;: &quot;5&quot;,
+        &quot;ahtotaldays&quot;: &quot;0&quot;,
+        &quot;thtotalhours&quot;: &quot;17.14&quot;,
+        &quot;nhtotalhours&quot;: &quot;17.14&quot;,
+        &quot;ahtotalhours&quot;: &quot;0.00&quot;,
+        &quot;satotalhours&quot;: &quot;0.00&quot;,
+        &quot;sutotalhours&quot;: &quot;0.00&quot;,
+        &quot;totalabsence&quot;: &quot;0&quot;
+      },
+      &quot;wk5&quot;: {
+        &quot;totaldays&quot;: &quot;2&quot;,
+        &quot;nhtotaldays&quot;: &quot;2&quot;,
+        &quot;ahtotaldays&quot;: &quot;0&quot;,
+        &quot;thtotalhours&quot;: &quot;3.22&quot;,
+        &quot;nhtotalhours&quot;: &quot;3.22&quot;,
+        &quot;ahtotalhours&quot;: &quot;0.00&quot;,
+        &quot;satotalhours&quot;: &quot;0.00&quot;,
+        &quot;sutotalhours&quot;: &quot;0.00&quot;,
+        &quot;totalabsence&quot;: &quot;0&quot;
+      },
+      &quot;wk6&quot;: {
+        &quot;totaldays&quot;: &quot;0&quot;,
+        &quot;nhtotaldays&quot;: &quot;0&quot;,
+        &quot;ahtotaldays&quot;: &quot;0&quot;,
+        &quot;thtotalhours&quot;: &quot;0.00&quot;,
+        &quot;nhtotalhours&quot;: &quot;0.00&quot;,
+        &quot;ahtotalhours&quot;: &quot;0.00&quot;,
+        &quot;satotalhours&quot;: &quot;0.00&quot;,
+        &quot;sutotalhours&quot;: &quot;0.00&quot;,
+        &quot;totalabsence&quot;: &quot;0&quot;
+      },
+      &quot;month&quot;: {
+        &quot;totaldays&quot;: &quot;19&quot;,
+        &quot;nhtotaldays&quot;: &quot;19&quot;,
+        &quot;ahtotaldays&quot;: null,
+        &quot;thtotalhours&quot;: &quot;68.45&quot;,
+        &quot;nhtotalhours&quot;: &quot;68.45&quot;,
+        &quot;ahtotalhours&quot;: &quot;0.00&quot;,
+        &quot;satotalhours&quot;: null,
+        &quot;sutotalhours&quot;: null,
+        &quot;totalabsence&quot;: &quot;1&quot;
+      }
+    },
+    &quot;version&quot;: &quot;v1&quot;,
+    &quot;versiondate&quot;: &quot;20170419183242&quot;,
+    &quot;DigitalSubmission&quot;: &quot;1&quot;,
+    &quot;SubmitDate&quot;: &quot;20170419112822&quot;,
+    &quot;MissingDailySiguature&quot;: &quot;1&quot;,
+    &quot;MissingConfirmSiguature&quot;: &quot;0&quot;
+  },
+  &quot;footer&quot;: {
+    &quot;crc&quot;: &quot;&quot;
+  }
+}
+</code></pre>
+
+                </div>
+
+                <div class="not-prose"></div>
+                
+
+                    <div class="not-prose my-20">
+                                <nav class="flex items-center justify-between border-t border-gray-200 dark:border-gray-700 px-4 sm:px-0">
+                                    <div class="-mt-px flex w-0 flex-1">
+                                            <a href="/portal/model/service-care" class="inline-flex items-center border-t-2 border-transparent pt-4 pr-1 text-sm font-medium text-gray-500 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-gray-200">
+                                                <!-- Heroicon name: mini/arrow-long-left -->
+                                                <svg class="mr-3 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                    <path fill-rule="evenodd" d="M18 10a.75.75 0 01-.75.75H4.66l2.1 1.95a.75.75 0 11-1.02 1.1l-3.5-3.25a.75.75 0 010-1.1l3.5-3.25a.75.75 0 111.02 1.1l-2.1 1.95h12.59A.75.75 0 0118 10z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                Care
+                                            </a>
+                                    </div>
+                                    <div class="hidden md:-mt-px md:flex"></div>
+                                    <div class="-mt-px flex w-0 flex-1 justify-end">
+                                            <a href="/portal/model/claim-attendance" class="inline-flex items-center border-t-2 border-transparent pt-4 pl-1 text-sm font-medium text-gray-500 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-gray-200">
+                                                Claim Attendance
+                                                <!-- Heroicon name: mini/arrow-long-right -->
+                                                <svg class="ml-3 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                    <path fill-rule="evenodd" d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z" clip-rule="evenodd"></path>
+                                                </svg>
+                                            </a>
+                                    </div>
+                                </nav>
+                    </div>
+            </div>
+                
+                <div class="docmap hidden 2xl:block flex-none w-64 pl-8 mr-8">
+                    <div class="fixed bg-white dark:bg-black flex flex-col overflow-y-auto pt-10 px-8 pb-6" style="height:calc(100vh - 50px);">
+                        <div>
+                            <h5 class="text-slate-900 font-semibold mb-4 text-sm leading-6 dark:text-slate-100">
+                                On This Page
+                            </h5>
+                            <ul class="text-slate-700 text-sm leading-6">
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#data-model'" data-id="data-model" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            Data Model
+                                        </span>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#attendance-submission-model'" data-id="attendance-submission-model" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            Attendance submission Model
+                                        </span>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#for-careconnect-metadata'" data-id="for-careconnect-metadata" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            For CareConnect metadata
+                                        </span>
+                                            <ul class="ml-4">
+                                                    <li data-id="example" class="text-gray-500 hover:text-gray-900">
+                                                        <span v-hash="'#example'" class="cursor-pointer flex text-sm transform transition-colors duration-200 py-2">
+                                                            <svg width="3" height="24" viewBox="0 -9 3 24" class="mr-2 overflow-visible"><path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                                                            Example
+                                                        </span>
+                                                    </li>
+                                            </ul>
+                                    </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+        </div>
+    </div>    
+</div>
+
+<script>
+//doc instructions
+if (document.querySelector('.hide-title')) {
+    const el = document.querySelector('#doc section h1') 
+    if (el) el.style.display='none'
+}
+</script>
+
+<script type="module">
+import { ref } from "vue"
+import { mount } from "app.mjs"
+
+
+    const App = {
+        setup() {
+            function nav(url) {
+                window.open(url)
+            }
+            return { nav }
+        }
+    }
+    
+const Sidebar = {
+    setup() {
+        const open = ref(true)
+        return { open }
+    }
+}
+
+mount('#doc', App)
+mount('#sidebar', Sidebar)
+</script>
+
+<script src="/lib/js/highlight.js"></script>
+<script>hljs.highlightAll()</script>
+<script src="/lib/js/lite-yt-embed.js"></script>
+<script src="/mjs/docs.mjs" type="module"></script>
+
+
+    </main>
+</div>
+
+<div class="text-center  dark:bg-black"> MCT Technology Inc. &copy; 2024 </div>
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>

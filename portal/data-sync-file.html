@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="/img/logo.svg">
+    <title>Data Sync File</title>
+    <script>
+    if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
+    if (location.search === "?light") localStorage.removeItem('color-scheme') 
+    const cls = document.querySelector('html').classList
+    if (localStorage.getItem('color-scheme') === 'dark')
+        cls.add('dark')
+    else
+        cls.remove('dark')
+    </script>
+    <link rel="stylesheet" href="/css/app.css">
+
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "/mjs/app.mjs",
+        "vue": "/lib/mjs/vue.min.mjs",
+        "@servicestack/client": "/lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "/lib/mjs/servicestack-vue.min.mjs"
+    }
+}
+</script>
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+<header id="header" class="top-0 fixed z-50 h-14 bg-white dark:bg-black opacity-90 w-full shadow">
+  <nav class="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-black">
+    <div class="mx-auto max-w-[100rem] pr-4 sm:pr-6 lg:pr-8">
+      <div class="flex h-16 justify-between">
+        <div class="flex">
+          <div class="flex flex-shrink-0 items-center">
+            <a class="mr-2 lg:mr-8 flex items-center" href="/">
+                <img class="w-8 h-8 mr-1 ml-2" src="/img/favicon.png" width="24" height="24"/>
+                <span class="hidden sm:block text-2xl font-semibold">CareCloud Docs</span>
+            </a>
+          </div>
+            <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-4 lg:space-x-8">
+                <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
+                        <a href="/portal" class="inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium border-indigo-500 text-gray-900">
+                            CarePortal
+                        </a>
+                        <a href="/cct" class="inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-200">
+                            CareControl
+                        </a>
+                        <a href="/ccn/coming_soon" class="inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-200">
+                            CareConnect
+                        </a>
+                        <a href="/cw/coming_soon" class="inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-200">
+                            CareWait
+                        </a>
+            </div>
+        </div>
+        <div class="hidden sm:ml-6 sm:flex sm:items-center">
+            <dark-mode-toggle class="ml-2 w-10"></dark-mode-toggle>
+        </div>
+        <div class="-mr-2 flex items-center sm:hidden">
+          <!-- Mobile menu button -->
+          <button type="button" v-on:click="open=!open" class="inline-flex items-center justify-center rounded-md bg-white dark:bg-black p-2 text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:ring-offset-black" aria-controls="mobile-menu" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <!-- Menu open: "hidden", Menu closed: "block" -->
+            <svg :class="['h-6 w-6', open ? 'hidden' : 'block']" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+            <!-- Menu open: "block", Menu closed: "hidden" -->
+            <svg :class="['h-6 w-6', open ? 'block' : 'hidden']" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile menu, show/hide based on menu state. -->
+    <div v-cloak v-if="open" class="sm:hidden">
+        <div class="space-y-1 pb-3 pt-2">
+            <!-- Current: "border-indigo-500 bg-indigo-50 text-indigo-700", Default: "border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800" -->
+                    <a href="/portal" class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium border-indigo-500 bg-indigo-50 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200">
+                        CarePortal
+                    </a>
+                    <a href="/cct" class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium border-transparent text-gray-600 dark:text-gray-300 hover:border-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-gray-800 dark:hover:text-gray-100">
+                        CareControl
+                    </a>
+                    <a href="/ccn/coming_soon" class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium border-transparent text-gray-600 dark:text-gray-300 hover:border-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-gray-800 dark:hover:text-gray-100">
+                        CareConnect
+                    </a>
+                    <a href="/cw/coming_soon" class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium border-transparent text-gray-600 dark:text-gray-300 hover:border-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-gray-800 dark:hover:text-gray-100">
+                        CareWait
+                    </a>
+        </div>
+    </div>
+  </nav>
+</header>
+
+<script type="module">
+import { ref } from "vue"
+import { mount } from "app.mjs"
+
+const Header = {
+    setup() {
+        const open = ref(false)
+        return { open }
+    }
+}
+mount('#header', Header)
+</script>
+
+
+<div class="min-h-screen">
+    <main role="main" class="pt-16 pb-3">
+        
+
+
+
+<style>
+.active {
+    color: #0ea5e9 !important;
+}
+</style>
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/typography.css">
+<link rel="stylesheet" href="/css/lite-yt-embed.css">
+
+<div class="w-full max-w-[100rem] mx-auto">
+    <div class="flex flex-wrap">
+        <div id="sidebar" class="z-40 inset-0 flex-none bg-white dark:bg-black lg:w-64 xl:w-80">
+            <button v-cloak v-on:click="open=true" :class="['text-gray-400 hover:text-gray-500 pt-4 pl-2 absolute transform transition-all duration-200', open ? 'opacity-0 translate-x-56' : 'opacity-100']" title="Open Sidebar">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H10m10 0l-4 4m4-4l-4-4M4 4v16"/></svg>
+            </button>
+            <div :class="['fixed bg-white dark:bg-black h-screen overflow-y-auto scrolling-touch overflow-hidden shadow lg:shadow-none transform transition-transform duration-200', open ? '' : 'translate-x-[-100%]']">
+                <nav class="sidebar lg:w-64 xl:w-80 px-1 pt-6 pb-16 overflow-y-auto font-medium text-sm lg:text-base sm:px-3 xl:px-5" aria-label="Sidebar">
+                    <close-button title="Close Sidebar" class="lg:hidden -mr-2" v-on:close="open=false"></close-button>
+                                <a href="/portal" class="block flex items-center whitespace-nowrap">
+<svg class='h-6 w-6 shrink-0 text-sky-500' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' aria-hidden='true'><path stroke-linecap='round' stroke-linejoin='round' d='M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25'></path></svg>                                    <span class="p-2 pl-3 font-display font-medium text-slate-900 dark:text-white">
+Overview                                    </span>
+                                </a>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                        </ul>
+                                <h2 class="font-display font-medium text-slate-900 dark:text-white whitespace-nowrap">
+                                    Getting Started
+                                </h2>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                                <li class="relative">
+                                    <a href="/portal/get-started" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Getting Started
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/uploading-data" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Uploading Data to CareCloud
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/downloading-data" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Downloading Data from CareCloud
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/workspace-portal" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Workspace Portal
+                                    </a>
+                                </li>
+                        </ul>
+                                <h2 class="font-display font-medium text-slate-900 dark:text-white whitespace-nowrap">
+                                    Data Sync API
+                                </h2>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                                <li class="relative">
+                                    <a href="/portal/api-authentication" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Authentication
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/api-crud" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Data CRUD
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/api-query-data" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Query Data
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/api-import-data" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Import Data
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/api-import-file" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                         Importing File Through API
+                                    </a>
+                                </li>
+                        </ul>
+                                <a href="/portal/data-sync-file" class="block flex items-center whitespace-nowrap">
+                                    <span class="p-2 pl-3 font-display font-medium text-slate-900 dark:text-white">
+Data Sync File                                    </span>
+                                </a>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                                <li class="relative">
+                                    <a href="/portal/data-sync-file-upload" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Uploading Sync File
+                                    </a>
+                                </li>
+                        </ul>
+                                <a href="/portal/model/data-model" class="block flex items-center whitespace-nowrap">
+                                    <span class="p-2 pl-3 font-display font-medium text-slate-900 dark:text-white">
+Data Synchronization Model                                    </span>
+                                </a>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                        </ul>
+                                <a href="/portal/bp-best-proctices" class="block flex items-center whitespace-nowrap">
+                                    <span class="p-2 pl-3 font-display font-medium text-slate-900 dark:text-white">
+Best Practices                                    </span>
+                                </a>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                                <li class="relative">
+                                    <a href="/portal/bp-uploading-timesheet" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Uploading Timesheet and EOP
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/bp-retrieving-attendance-data" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Retrieving Attendance Data
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/bp-sns" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Receiving CareCloud Notifications with AWS SNS Integration
+                                    </a>
+                                </li>
+                        </ul>
+                                <a href="/portal/tbs-troubleshooting-and-support" class="block flex items-center whitespace-nowrap">
+                                    <span class="p-2 pl-3 font-display font-medium text-slate-900 dark:text-white">
+Troubleshooting and Support                                    </span>
+                                </a>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                                <li class="relative">
+                                    <a href="/portal/tbs-workspace-files" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Workspace Files
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/tbs-status-refresh" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Status Refresh
+                                    </a>
+                                </li>
+                        </ul>
+                                <a href="/portal/api-postman" class="block flex items-center whitespace-nowrap">
+                                    <span class="p-2 pl-3 font-display font-medium text-slate-900 dark:text-white">
+API Documentation                                    </span>
+                                </a>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                        </ul>
+                </nav>
+            </div>
+        </div>
+        <div id="doc" class="mx-auto flex">
+            <div class="mt-8 mx-auto prose lg:prose-lg">
+                
+                    <section class="not-prose mb-16 md:mb-12">
+                        <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-50 sm:text-5xl md:text-6xl">
+                            Data Sync File
+                        </h1>
+                    </section>
+
+                <div class="not-prose"></div>
+
+                <div class="content">
+                    <p>This document contains the file format reference for data file uploads in the TXT formats,
+with the extension <strong>.cc5txt</strong>, is used for data uploads and has the following format:</p>
+<pre><code>00|Customer Code|File Type|Create Time|Reference Id
+01|Entity Type|Workspace Id|Bucket Id|DataSource Code|Action Code
+02|PK - field 1 code|PK - field 2 code
+03|field 1 code: type|field 2 code:type|.....|field n code:type
+10|field 1|field 2|.....|field n|
+10|field 1|field 2|.....|field n|
+10|field 1|field 2|.....|field n|
+99|rows|validation code|
+</code></pre>
+<p>It's similar to CSV but with distinct characteristics. This format is designed to facilitate efficient and accurate data transfer.</p>
+<p>The file is structured with rows, each representing different types of data, and uses the pipe symbol <code>|</code> as a delimiter. Each row begins with a two-digit number that signifies the row type, playing a crucial role in the data synchronization process. Rows labeled <code>01</code> to <code>09</code> are used to describe the file's metadata, including headers, configuration details, and field definitions. The <code>10</code> prefix indicates a data row, containing the actual information to be synchronized. Finally, a row beginning with <code>99</code> serves as the closing line, summarizing the file's content and providing validation information. This structured approach ensures clarity and consistency in data processing.</p>
+<h2 id="file-header">File Header<a class="header-anchor" href="javascript:;" onclick="location.hash='#file-header'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The file header identifies the type of file being parsed and is composed of sections 00 to 09, which are required.</p>
+<h3 id="header">00 - Header<a class="header-anchor" href="javascript:;" onclick="location.hash='#header'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The first line of the file, designated by the prefix <code>00</code>, serves as the header row and provides essential metadata about the file. This line is structured as follows:</p>
+<p><code>00|Customer Code|File Type|Create Time|Reference ID</code></p>
+<ul>
+<li><p><strong>Customer Code</strong>: This field identifies the customer or agency to which the file is related. It is a unique identifier that helps in categorizing and managing the data synchronization specific to each customer.</p>
+</li>
+<li><p><strong>File Type</strong>: This indicates the type of file or the nature of the data contained within. It helps in determining the processing logic that should be applied to the file.</p>
+</li>
+<li><p><strong>Create Time</strong>: This is a timestamp indicating when the file was created. The format is typically in a standard date-time format, which is crucial for maintaining the sequence of file processing and for audit purposes.</p>
+</li>
+<li><p><strong>Reference ID</strong>: The Reference Id is a key element for tracking the file throughout its processing journey. It is used to trace the file in various stages of synchronization, from upload to final integration, and is essential for troubleshooting and ensuring the integrity of the data transfer process.</p>
+</li>
+</ul>
+<p>Each of these fields plays a vital role in the data synchronization process, ensuring that every file is accurately tracked, categorized, and processed according to its specific requirements.</p>
+<h3 id="metadata">01 - Metadata<a class="header-anchor" href="javascript:;" onclick="location.hash='#metadata'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The second line of the file, beginning with the prefix <code>01</code>, is a configuration row that provides critical information for the processing and management of the data file. This line is structured as follows:</p>
+<p><code>01|Entity Type|Workspace Id|Bucket Id|DataSource Code|Action Code</code></p>
+<ul>
+<li><p><strong>Entity Type</strong>: This field specifies the type of entity the data represents. The value for the Entity Type is fixed and varies based on the nature of the entity. It is crucial for categorizing the data and determining the appropriate processing logic.</p>
+</li>
+<li><p><strong>Workspace Id</strong>: This is an identifier provided to developers when they register their account for development purposes. The Workspace Id is used to specify the virtual workspace in the cloud where the data will be processed or stored.</p>
+</li>
+<li><p><strong>Bucket Id</strong>: Similar to the Workspace Id, the Bucket Id is also assigned during the developer account registration process. It identifies a specific storage location (or 'bucket') within the cloud workspace, where the data files are to be placed.</p>
+</li>
+<li><p><strong>DataSource Code</strong>: This code is fixed and varies according to the Entity Type. It helps in identifying the source of the data, which is essential for data validation and processing.</p>
+</li>
+<li><p><strong>Action Code</strong>: The Action Code is provided based on the specific business needs of the data. It instructs the cloud service on the actions to be taken once the data is received. This could involve various processes such as data validation, synchronization, transformation, or any other required operation.</p>
+</li>
+</ul>
+<p>Each of these fields is integral to the cloud service's ability to correctly receive and process the data. They ensure that the data is accurately routed, stored, and managed in the cloud environment, facilitating efficient and effective data synchronization.</p>
+<h3 id="keys">02 - Keys<a class="header-anchor" href="javascript:;" onclick="location.hash='#keys'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The third line of the file, marked with the prefix <code>02</code>, is designated as the Primary Key (PK) definition row. This line plays a crucial role in data identification and integrity within the file. It is structured as follows:</p>
+<p><code>02|PK - field 1 code|PK - field 2 code</code></p>
+<p>The use of primary keys is a fundamental aspect of database management and data synchronization processes. It ensures that each piece of data can be accurately tracked and managed throughout its lifecycle in the system. By defining primary keys in this row, the file format establishes a robust framework for data integrity and efficient data handling.</p>
+<h3 id="fields">03 - Fields<a class="header-anchor" href="javascript:;" onclick="location.hash='#fields'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The fourth line of the file, prefixed with <code>03</code>, is known as the field type definition row. This line is critical as it defines the structure and data types of the fields in the data rows (marked with <code>10</code>). It is structured as follows:</p>
+<p><code>03|field 1 code: type|field 2 code: type|...|field n code: type</code></p>
+<ul>
+<li><p><strong>Field Code and Type</strong>: Each segment in this row follows the format <code>field code: type</code>, where <code>field code</code> is a unique identifier for the field, and <code>type</code> specifies the data type of that field. The data types can be one of the following: <code>string</code>, <code>int</code>, <code>number</code>, <code>bool</code>, <code>date</code>, <code>array</code>, <code>list</code>, <code>object</code>. The default type is <code>string</code> if not specified.</p>
+</li>
+<li><p><strong>Date Format</strong>: For fields of type <code>date</code>, the format should be either <code>&quot;yyyyMMddHHmmss&quot;</code> or <code>&quot;yyyyMMdd&quot;</code>, depending on the level of precision required.</p>
+</li>
+<li><p><strong>Boolean Values</strong>: Fields with the <code>bool</code> type accept either <code>true</code> / <code>false</code> or <code>0</code> / <code>1</code> as valid values.</p>
+</li>
+<li><p><strong>Array Value</strong>: Fields of the <code>array</code> type should be comma-separated strings, such as <code>a,b,c</code> or <code>1,2,3</code>.</p>
+</li>
+<li><p><strong>Object Value</strong>: Fields of the <code>object</code> type should be standard JSON strings, including <code>&quot;{&quot;</code> and <code>&quot;}&quot;</code>.</p>
+</li>
+<li><p><strong>List Value</strong>: Fields of the <code>list</code> type should be standard array JSON strings, including <code>&quot;[&quot;</code> and <code>&quot;]&quot;</code>.</p>
+</li>
+<li><p><strong>Primary Key Fields</strong>: Fields that are designated as primary keys (as defined in the <code>02</code> PK row) should be listed first in this row. This prioritization ensures that these critical fields are easily identifiable and processed accordingly.</p>
+</li>
+<li><p><strong>Naming Conventions</strong>: It's important to note that fields ending with <code>_id</code> are reserved for system-level use. Therefore, such naming should be avoided to prevent conflicts or confusion with system-defined fields.</p>
+</li>
+</ul>
+<p>This row is essential for ensuring that the data in the <code>10</code> Data rows is correctly interpreted and processed. By defining the data types and formats, it provides a blueprint for how the data should be handled, ensuring consistency and accuracy in data synchronization and processing.</p>
+<h2 id="file-content">File Content<a class="header-anchor" href="javascript:;" onclick="location.hash='#file-content'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The file format includes two types of content rows, marked with the prefixes <code>10</code> and <code>90</code>, each serving a distinct purpose in data management.</p>
+<h3 id="data">10 - Data<a class="header-anchor" href="javascript:;" onclick="location.hash='#data'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<ul>
+<li><strong>Structure</strong>: <code>10|field 1|field 2|...|field n|</code></li>
+<li><strong>Purpose</strong>: The <code>10</code> rows are the primary data rows, containing the actual entity data to be synchronized with the cloud.</li>
+<li><strong>Data Handling Based on Primary Key</strong>: The cloud system uses the primary key fields defined in the <code>02</code> row to determine whether to insert new data or update existing data. This decision is based on the presence or absence of the primary key values in the cloud database.</li>
+<li><strong>Field Consistency</strong>: The number and order of fields in a <code>10</code> row must match exactly with those defined in the <code>03</code> field type definition row. This consistency is crucial for accurate data processing.</li>
+<li><strong>Handling Empty Values</strong>: Fields can be empty, represented by consecutive delimiters (e.g., <code>||</code>). This allows for flexibility in data entry.</li>
+<li><strong>Special Characters</strong>: If a field value contains the pipe symbol <code>|</code>, it should be replaced with <code>#/#</code> to avoid delimiter confusion. Similarly, newline characters <code>\r\n</code> should be replaced with <code>#Enter#</code> to maintain the integrity of the data format.</li>
+</ul>
+<h3 id="delete">90 - Delete<a class="header-anchor" href="javascript:;" onclick="location.hash='#delete'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Please use 'Delete section' cautiously, as it physically removes a row of data, causing difficulties in data synchronization. You can use the 'disabled' field for a soft delete operation, which is safer.
+This operation is useful in the event of a physical error, so use it cautiously and only in necessary scenarios.</p>
+<ul>
+<li><strong>Structure</strong>: <code>90|PK1|PK2</code></li>
+<li><strong>Purpose</strong>: The <code>90</code> row is used for deletion requests. When the cloud system encounters a <code>90</code> row, it will delete the data associated with the provided primary key values.</li>
+<li><strong>Primary Key Requirement</strong>: Only the primary key fields are required in a <code>90</code> row. These keys correspond to the records in the cloud database that need to be deleted.</li>
+</ul>
+<p>In summary, the <code>10</code> rows are used for inserting or updating data based on the primary key logic, while the <code>90</code> rows are specifically for deletion requests. The careful structuring of these rows, along with adherence to the defined field formats and special character handling, ensures efficient and error-free data synchronization with the cloud service.</p>
+<h2 id="file-footer">File Footer<a class="header-anchor" href="javascript:;" onclick="location.hash='#file-footer'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<h3 id="footer">99 - Footer<a class="header-anchor" href="javascript:;" onclick="location.hash='#footer'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The final line of the file is the footer, marked with the prefix <code>99</code>. This line serves as a crucial component for data integrity and validation. It is structured as follows:</p>
+<p><code>99|total rows</code></p>
+<ul>
+<li><strong>Purpose</strong>: The <code>99</code> row acts as the closing line of the file and is primarily used for summarizing the file content.</li>
+<li><strong>Content</strong>: This row records the total number of data rows in the file. Specifically, it counts the sum of all <code>10</code> and <code>90</code> rows.</li>
+<li><strong>Data Validation</strong>: The primary function of the <code>99</code> row is to facilitate data validation on the cloud side. When the file is uploaded, the cloud service uses the number in the <code>99</code> row to verify that all data rows (both for insertion/update and deletion) have been received correctly. This check helps to ensure the completeness and integrity of the data transfer.</li>
+<li><strong>Format</strong>: The format is straightforward, with the total number of data rows provided after the delimiter.</li>
+</ul>
+<p>By including the total count of the data and deletion rows, the <code>99</code> footer provides a simple yet effective way for the receiving system to perform a basic integrity check, ensuring that the file has been transmitted and received in its entirety. This mechanism is vital for maintaining the reliability of the data synchronization process.</p>
+
+                </div>
+
+                <div class="not-prose"></div>
+                
+
+                    <div class="not-prose my-20">
+                    </div>
+            </div>
+                
+                <div class="docmap hidden 2xl:block flex-none w-64 pl-8 mr-8">
+                    <div class="fixed bg-white dark:bg-black flex flex-col overflow-y-auto pt-10 px-8 pb-6" style="height:calc(100vh - 50px);">
+                        <div>
+                            <h5 class="text-slate-900 font-semibold mb-4 text-sm leading-6 dark:text-slate-100">
+                                On This Page
+                            </h5>
+                            <ul class="text-slate-700 text-sm leading-6">
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#file-header'" data-id="file-header" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            File Header
+                                        </span>
+                                            <ul class="ml-4">
+                                                    <li data-id="header" class="text-gray-500 hover:text-gray-900">
+                                                        <span v-hash="'#header'" class="cursor-pointer flex text-sm transform transition-colors duration-200 py-2">
+                                                            <svg width="3" height="24" viewBox="0 -9 3 24" class="mr-2 overflow-visible"><path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                                                            00 - Header
+                                                        </span>
+                                                    </li>
+                                                    <li data-id="metadata" class="text-gray-500 hover:text-gray-900">
+                                                        <span v-hash="'#metadata'" class="cursor-pointer flex text-sm transform transition-colors duration-200 py-2">
+                                                            <svg width="3" height="24" viewBox="0 -9 3 24" class="mr-2 overflow-visible"><path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                                                            01 - Metadata
+                                                        </span>
+                                                    </li>
+                                                    <li data-id="keys" class="text-gray-500 hover:text-gray-900">
+                                                        <span v-hash="'#keys'" class="cursor-pointer flex text-sm transform transition-colors duration-200 py-2">
+                                                            <svg width="3" height="24" viewBox="0 -9 3 24" class="mr-2 overflow-visible"><path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                                                            02 - Keys
+                                                        </span>
+                                                    </li>
+                                                    <li data-id="fields" class="text-gray-500 hover:text-gray-900">
+                                                        <span v-hash="'#fields'" class="cursor-pointer flex text-sm transform transition-colors duration-200 py-2">
+                                                            <svg width="3" height="24" viewBox="0 -9 3 24" class="mr-2 overflow-visible"><path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                                                            03 - Fields
+                                                        </span>
+                                                    </li>
+                                            </ul>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#file-content'" data-id="file-content" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            File Content
+                                        </span>
+                                            <ul class="ml-4">
+                                                    <li data-id="data" class="text-gray-500 hover:text-gray-900">
+                                                        <span v-hash="'#data'" class="cursor-pointer flex text-sm transform transition-colors duration-200 py-2">
+                                                            <svg width="3" height="24" viewBox="0 -9 3 24" class="mr-2 overflow-visible"><path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                                                            10 - Data
+                                                        </span>
+                                                    </li>
+                                                    <li data-id="delete" class="text-gray-500 hover:text-gray-900">
+                                                        <span v-hash="'#delete'" class="cursor-pointer flex text-sm transform transition-colors duration-200 py-2">
+                                                            <svg width="3" height="24" viewBox="0 -9 3 24" class="mr-2 overflow-visible"><path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                                                            90 - Delete
+                                                        </span>
+                                                    </li>
+                                            </ul>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#file-footer'" data-id="file-footer" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            File Footer
+                                        </span>
+                                            <ul class="ml-4">
+                                                    <li data-id="footer" class="text-gray-500 hover:text-gray-900">
+                                                        <span v-hash="'#footer'" class="cursor-pointer flex text-sm transform transition-colors duration-200 py-2">
+                                                            <svg width="3" height="24" viewBox="0 -9 3 24" class="mr-2 overflow-visible"><path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                                                            99 - Footer
+                                                        </span>
+                                                    </li>
+                                            </ul>
+                                    </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+        </div>
+    </div>    
+</div>
+
+<script>
+//doc instructions
+if (document.querySelector('.hide-title')) {
+    const el = document.querySelector('#doc section h1') 
+    if (el) el.style.display='none'
+}
+</script>
+
+<script type="module">
+import { ref } from "vue"
+import { mount } from "app.mjs"
+
+
+    const App = {
+        setup() {
+            function nav(url) {
+                window.open(url)
+            }
+            return { nav }
+        }
+    }
+    
+const Sidebar = {
+    setup() {
+        const open = ref(true)
+        return { open }
+    }
+}
+
+mount('#doc', App)
+mount('#sidebar', Sidebar)
+</script>
+
+<script src="/lib/js/highlight.js"></script>
+<script>hljs.highlightAll()</script>
+<script src="/lib/js/lite-yt-embed.js"></script>
+<script src="/mjs/docs.mjs" type="module"></script>
+
+
+
+    </main>
+</div>
+
+<div class="text-center  dark:bg-black"> MCT Technology Inc. &copy; 2024 </div>
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="/img/logo.svg">
+    <title>Family Member</title>
+    <script>
+    if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
+    if (location.search === "?light") localStorage.removeItem('color-scheme') 
+    const cls = document.querySelector('html').classList
+    if (localStorage.getItem('color-scheme') === 'dark')
+        cls.add('dark')
+    else
+        cls.remove('dark')
+    </script>
+    <link rel="stylesheet" href="/css/app.css">
+
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "/mjs/app.mjs",
+        "vue": "/lib/mjs/vue.min.mjs",
+        "@servicestack/client": "/lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "/lib/mjs/servicestack-vue.min.mjs"
+    }
+}
+</script>
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+<header id="header" class="top-0 fixed z-50 h-14 bg-white dark:bg-black opacity-90 w-full shadow">
+  <nav class="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-black">
+    <div class="mx-auto max-w-[100rem] pr-4 sm:pr-6 lg:pr-8">
+      <div class="flex h-16 justify-between">
+        <div class="flex">
+          <div class="flex flex-shrink-0 items-center">
+            <a class="mr-2 lg:mr-8 flex items-center" href="/">
+                <img class="w-8 h-8 mr-1 ml-2" src="/img/favicon.png" width="24" height="24"/>
+                <span class="hidden sm:block text-2xl font-semibold">CareCloud Docs</span>
+            </a>
+          </div>
+            <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-4 lg:space-x-8">
+                <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
+                        <a href="/portal" class="inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium border-indigo-500 text-gray-900">
+                            CarePortal
+                        </a>
+                        <a href="/cct" class="inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-200">
+                            CareControl
+                        </a>
+                        <a href="/ccn/coming_soon" class="inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-200">
+                            CareConnect
+                        </a>
+                        <a href="/cw/coming_soon" class="inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-200">
+                            CareWait
+                        </a>
+            </div>
+        </div>
+        <div class="hidden sm:ml-6 sm:flex sm:items-center">
+            <dark-mode-toggle class="ml-2 w-10"></dark-mode-toggle>
+        </div>
+        <div class="-mr-2 flex items-center sm:hidden">
+          <!-- Mobile menu button -->
+          <button type="button" v-on:click="open=!open" class="inline-flex items-center justify-center rounded-md bg-white dark:bg-black p-2 text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:ring-offset-black" aria-controls="mobile-menu" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <!-- Menu open: "hidden", Menu closed: "block" -->
+            <svg :class="['h-6 w-6', open ? 'hidden' : 'block']" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+            <!-- Menu open: "block", Menu closed: "hidden" -->
+            <svg :class="['h-6 w-6', open ? 'block' : 'hidden']" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile menu, show/hide based on menu state. -->
+    <div v-cloak v-if="open" class="sm:hidden">
+        <div class="space-y-1 pb-3 pt-2">
+            <!-- Current: "border-indigo-500 bg-indigo-50 text-indigo-700", Default: "border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800" -->
+                    <a href="/portal" class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium border-indigo-500 bg-indigo-50 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200">
+                        CarePortal
+                    </a>
+                    <a href="/cct" class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium border-transparent text-gray-600 dark:text-gray-300 hover:border-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-gray-800 dark:hover:text-gray-100">
+                        CareControl
+                    </a>
+                    <a href="/ccn/coming_soon" class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium border-transparent text-gray-600 dark:text-gray-300 hover:border-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-gray-800 dark:hover:text-gray-100">
+                        CareConnect
+                    </a>
+                    <a href="/cw/coming_soon" class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium border-transparent text-gray-600 dark:text-gray-300 hover:border-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-gray-800 dark:hover:text-gray-100">
+                        CareWait
+                    </a>
+        </div>
+    </div>
+  </nav>
+</header>
+
+<script type="module">
+import { ref } from "vue"
+import { mount } from "app.mjs"
+
+const Header = {
+    setup() {
+        const open = ref(false)
+        return { open }
+    }
+}
+mount('#header', Header)
+</script>
+
+
+<div class="min-h-screen">
+    <main role="main" class="pt-16 pb-3">
+        
+
+
+
+<style>
+.active {
+    color: #0ea5e9 !important;
+}
+</style>
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/typography.css">
+<link rel="stylesheet" href="/css/lite-yt-embed.css">
+
+<div class="w-full max-w-[100rem] mx-auto">
+    <div class="flex flex-wrap">
+        <div id="sidebar" class="z-40 inset-0 flex-none bg-white dark:bg-black lg:w-64 xl:w-80">
+            <button v-cloak v-on:click="open=true" :class="['text-gray-400 hover:text-gray-500 pt-4 pl-2 absolute transform transition-all duration-200', open ? 'opacity-0 translate-x-56' : 'opacity-100']" title="Open Sidebar">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H10m10 0l-4 4m4-4l-4-4M4 4v16"/></svg>
+            </button>
+            <div :class="['fixed bg-white dark:bg-black h-screen overflow-y-auto scrolling-touch overflow-hidden shadow lg:shadow-none transform transition-transform duration-200', open ? '' : 'translate-x-[-100%]']">
+                <nav class="sidebar lg:w-64 xl:w-80 px-1 pt-6 pb-16 overflow-y-auto font-medium text-sm lg:text-base sm:px-3 xl:px-5" aria-label="Sidebar">
+                    <close-button title="Close Sidebar" class="lg:hidden -mr-2" v-on:close="open=false"></close-button>
+                                <a href="/portal" class="block flex items-center whitespace-nowrap">
+<img class='w-6 h-6' src='/img/left-arrow.svg' />                                    <span class="p-2 pl-3 font-display font-medium text-slate-900 dark:text-white">
+Back                                    </span>
+                                </a>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                        </ul>
+                                <h2 class="font-display font-medium text-slate-900 dark:text-white whitespace-nowrap">
+                                    Data Synchronization Model
+                                </h2>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                                <li class="relative">
+                                    <a href="/portal/model/data-model" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Overview
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/model/core-resources" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Core Resources
+                                    </a>
+                                </li>
+                        </ul>
+                                <h2 class="font-display font-medium text-slate-900 dark:text-white whitespace-nowrap">
+                                    Family
+                                </h2>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                                <li class="relative">
+                                    <a href="/portal/model/family" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full active font-semibold text-sky-500 before:bg-sky-500">
+                                        Family
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/model/family-member" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full active font-semibold text-sky-500 before:bg-sky-500">
+                                        Family Member
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/model/family-need" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Family Need
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/model/family-income" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Family Income
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/model/family-case" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Family Case
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/model/family-invoice" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Family Invoice
+                                    </a>
+                                </li>
+                        </ul>
+                                <h2 class="font-display font-medium text-slate-900 dark:text-white whitespace-nowrap">
+                                    Provider
+                                </h2>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                                <li class="relative">
+                                    <a href="/portal/model/provider" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Provider
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/model/provider-holiday" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Provider Holider
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/model/provider-payment" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Provider Payment
+                                    </a>
+                                </li>
+                        </ul>
+                                <h2 class="font-display font-medium text-slate-900 dark:text-white whitespace-nowrap">
+                                    Service
+                                </h2>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                                <li class="relative">
+                                    <a href="/portal/model/service-care" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Care
+                                    </a>
+                                </li>
+                        </ul>
+                                <h2 class="font-display font-medium text-slate-900 dark:text-white whitespace-nowrap">
+                                    Claim
+                                </h2>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                                <li class="relative">
+                                    <a href="/portal/model/claim" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Claim
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/model/claim-attendance" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Claim Attendance
+                                    </a>
+                                </li>
+                        </ul>
+                                <h2 class="font-display font-medium text-slate-900 dark:text-white whitespace-nowrap">
+                                    Document
+                                </h2>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                                <li class="relative">
+                                    <a href="/portal/model/doc-timesheet" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Timesheet
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/model/doc-eop" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        EOP
+                                    </a>
+                                </li>
+                        </ul>
+                                <a href="/portal/model/note" class="block flex items-center whitespace-nowrap">
+                                    <span class="p-2 pl-3 font-display font-medium text-slate-900 dark:text-white">
+Note                                    </span>
+                                </a>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                        </ul>
+                </nav>
+            </div>
+        </div>
+        <div id="doc" class="mx-auto flex">
+            <div class="mt-8 mx-auto prose lg:prose-lg">
+                
+                    <section class="not-prose mb-16 md:mb-12">
+                        <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-50 sm:text-5xl md:text-6xl">
+                            Family Member
+                        </h1>
+                    </section>
+
+                <div class="not-prose"></div>
+
+                <div class="content">
+                    <h2 id="data-model">Data Model<a class="header-anchor" href="javascript:;" onclick="location.hash='#data-model'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>entityId</td>
+<td>string</td>
+<td>PK</td>
+<td>Y</td>
+<td>The Member Id from the third-party system will be used in the Cloud to determine whether to update an existing Family member record or create a new one.</td>
+</tr>
+<tr>
+<td>familyEntityId</td>
+<td>string</td>
+<td>FK</td>
+<td>Y</td>
+<td>The entityId to family model</td>
+</tr>
+<tr>
+<td>firstName</td>
+<td>string</td>
+<td></td>
+<td>Y</td>
+<td></td>
+</tr>
+<tr>
+<td>lastName</td>
+<td>string</td>
+<td></td>
+<td>Y</td>
+<td></td>
+</tr>
+<tr>
+<td>middleInitial</td>
+<td>string</td>
+<td></td>
+<td>Y</td>
+<td></td>
+</tr>
+<tr>
+<td>dob</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>The date of birth, <strong>yyyyMMdd.</strong></td>
+</tr>
+<tr>
+<td>gender</td>
+<td>string</td>
+<td></td>
+<td>Y</td>
+<td>such as <code>male</code>, <code>female</code>,</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>phone</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>default cell phone</td>
+</tr>
+<tr>
+<td>phone2</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>default work phone</td>
+</tr>
+<tr>
+<td>address</td>
+<td>object</td>
+<td></td>
+<td></td>
+<td>address</td>
+</tr>
+<tr>
+<td>mailAddress</td>
+<td>object</td>
+<td></td>
+<td></td>
+<td>address object</td>
+</tr>
+<tr>
+<td>sameAddress</td>
+<td>bool</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ethnicity</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>The ethnicity of the family member is either <code>hispanic-latino</code>, <code>no-hispanic-latino</code></td>
+</tr>
+<tr>
+<td>race</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>The race of the family member is either <code>caucasian</code>, <code>asian</code>, <code>american-indian</code>, <code>black</code>, <code>pacific-islander</code>, <code>other</code>,</td>
+</tr>
+<tr>
+<td>citizenInfo</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>includeInSize</td>
+<td>bool</td>
+<td></td>
+<td></td>
+<td>indicates whether a family member is included in the calculation of the family size.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td></td>
+<td>Y</td>
+<td>The status of the family member is either <code>new</code>, <code>pending</code>, <code>active</code>, <code>inactive</code>, <code>void</code>.</td>
+</tr>
+<tr>
+<td>isParent</td>
+<td>bool</td>
+<td></td>
+<td>Y</td>
+<td></td>
+</tr>
+<tr>
+<td>isChild</td>
+<td>bool</td>
+<td></td>
+<td>Y</td>
+<td></td>
+</tr>
+<tr>
+<td>primaryParent</td>
+<td>bool</td>
+<td></td>
+<td>Y</td>
+<td><code>true</code> is Parent A</td>
+</tr>
+<tr>
+<td>minorParent</td>
+<td>bool</td>
+<td></td>
+<td>Y</td>
+<td></td>
+</tr>
+<tr>
+<td>ssn</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>language</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Supported code is either <code>en</code>: English <code>es</code>: Spanish <code>zh</code>: Chinese.</td>
+</tr>
+<tr>
+<td>limitedEnglish</td>
+<td>bool</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>relationship</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>such as <code>son</code>, <code>daughter</code>, <code>father</code>, <code>mother</code>, <code>foster-child</code>, <code>grandparent</code>, <code>guardian</code>,<code>other</code>,</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td></td>
+<td></td>
+<td>Custom data objects can include additional Family member attributes, with field definitions adhering to established guidelines.</td>
+</tr>
+<tr>
+<td>disabled</td>
+<td>bool</td>
+<td></td>
+<td>Y</td>
+<td></td>
+</tr>
+<tr>
+<td>tags</td>
+<td>array</td>
+<td></td>
+<td></td>
+<td>string array</td>
+</tr>
+<tr>
+<td>category</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>metadata</td>
+<td>object</td>
+<td></td>
+<td></td>
+<td>set of <strong>key-value pairs</strong> that you can attach to an object. This can be useful for storing additional information about the object in a structured format.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cc4-data">CC4 Data<a class="header-anchor" href="javascript:;" onclick="location.hash='#cc4-data'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<h3 id="child-data">Child Data<a class="header-anchor" href="javascript:;" onclick="location.hash='#child-data'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>isProtectiveService</td>
+<td>bool</td>
+<td></td>
+</tr>
+<tr>
+<td>countyChildId</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>specialNeed</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>cpsAtRisk</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>school</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>customerFields</td>
+<td>object</td>
+<td>Set of <strong>key-value pairs</strong> that you can attach to an object</td>
+</tr>
+</tbody>
+</table>
+<h3 id="parent-data">Parent Data<a class="header-anchor" href="javascript:;" onclick="location.hash='#parent-data'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>countyParentId</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>familyApp</td>
+<td>bool</td>
+<td><code>true</code> is linked family portal</td>
+</tr>
+<tr>
+<td>portalAccount</td>
+<td>string</td>
+<td>logon name</td>
+</tr>
+<tr>
+<td>trainingStartDate</td>
+<td>string</td>
+<td>yyyyMMdd</td>
+</tr>
+<tr>
+<td>trainingEndDate</td>
+<td>string</td>
+<td>yyyyMMdd</td>
+</tr>
+<tr>
+<td>customerFields</td>
+<td>object</td>
+<td>Set of <strong>key-value pairs</strong> that you can attach to an object</td>
+</tr>
+</tbody>
+</table>
+<h2 id="customer-fields">Customer Fields<a class="header-anchor" href="javascript:;" onclick="location.hash='#customer-fields'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<h3 id="ccsf">CCSF<a class="header-anchor" href="javascript:;" onclick="location.hash='#ccsf'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<h4 id="child">Child<a class="header-anchor" href="javascript:;" onclick="location.hash='#child'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<pre><code class="language-json">{
+  &quot;targetPopulation&quot;: &quot;CPS,African American&quot;,
+  &quot;fCBPlacementDate&quot;: &quot;2024-03-08T08:00:00Z&quot;,
+  &quot;lowIncome&quot;: &quot;Below 85% SMI&quot;,
+  &quot;childwith-1015CONLY&quot;: &quot;Relative&quot;,
+  &quot;caseStatus-1015CONLY&quot;: &quot;LTP&quot;,
+  &quot;incountyFFA&quot;: &quot;No&quot;,
+  &quot;eLSSiblingAdd&quot;: &quot;N/A&quot;,
+  &quot;cAPPSiblingAdd&quot;: &quot;N/A&quot;
+}
+</code></pre>
+
+                </div>
+
+                <div class="not-prose"></div>
+                
+
+                    <div class="not-prose my-20">
+                                <nav class="flex items-center justify-between border-t border-gray-200 dark:border-gray-700 px-4 sm:px-0">
+                                    <div class="-mt-px flex w-0 flex-1">
+                                            <a href="/portal/model/core-resources" class="inline-flex items-center border-t-2 border-transparent pt-4 pr-1 text-sm font-medium text-gray-500 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-gray-200">
+                                                <!-- Heroicon name: mini/arrow-long-left -->
+                                                <svg class="mr-3 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                    <path fill-rule="evenodd" d="M18 10a.75.75 0 01-.75.75H4.66l2.1 1.95a.75.75 0 11-1.02 1.1l-3.5-3.25a.75.75 0 010-1.1l3.5-3.25a.75.75 0 111.02 1.1l-2.1 1.95h12.59A.75.75 0 0118 10z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                Core Resources
+                                            </a>
+                                    </div>
+                                    <div class="hidden md:-mt-px md:flex"></div>
+                                    <div class="-mt-px flex w-0 flex-1 justify-end">
+                                            <a href="/portal/model/family-member" class="inline-flex items-center border-t-2 border-transparent pt-4 pl-1 text-sm font-medium text-gray-500 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-gray-200">
+                                                Family Member
+                                                <!-- Heroicon name: mini/arrow-long-right -->
+                                                <svg class="ml-3 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                    <path fill-rule="evenodd" d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z" clip-rule="evenodd"></path>
+                                                </svg>
+                                            </a>
+                                    </div>
+                                </nav>
+                    </div>
+            </div>
+                
+                <div class="docmap hidden 2xl:block flex-none w-64 pl-8 mr-8">
+                    <div class="fixed bg-white dark:bg-black flex flex-col overflow-y-auto pt-10 px-8 pb-6" style="height:calc(100vh - 50px);">
+                        <div>
+                            <h5 class="text-slate-900 font-semibold mb-4 text-sm leading-6 dark:text-slate-100">
+                                On This Page
+                            </h5>
+                            <ul class="text-slate-700 text-sm leading-6">
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#data-model'" data-id="data-model" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            Data Model
+                                        </span>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#cc4-data'" data-id="cc4-data" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            CC4 Data
+                                        </span>
+                                            <ul class="ml-4">
+                                                    <li data-id="child-data" class="text-gray-500 hover:text-gray-900">
+                                                        <span v-hash="'#child-data'" class="cursor-pointer flex text-sm transform transition-colors duration-200 py-2">
+                                                            <svg width="3" height="24" viewBox="0 -9 3 24" class="mr-2 overflow-visible"><path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                                                            Child Data
+                                                        </span>
+                                                    </li>
+                                                    <li data-id="parent-data" class="text-gray-500 hover:text-gray-900">
+                                                        <span v-hash="'#parent-data'" class="cursor-pointer flex text-sm transform transition-colors duration-200 py-2">
+                                                            <svg width="3" height="24" viewBox="0 -9 3 24" class="mr-2 overflow-visible"><path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                                                            Parent Data
+                                                        </span>
+                                                    </li>
+                                            </ul>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#customer-fields'" data-id="customer-fields" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            Customer Fields
+                                        </span>
+                                            <ul class="ml-4">
+                                                    <li data-id="ccsf" class="text-gray-500 hover:text-gray-900">
+                                                        <span v-hash="'#ccsf'" class="cursor-pointer flex text-sm transform transition-colors duration-200 py-2">
+                                                            <svg width="3" height="24" viewBox="0 -9 3 24" class="mr-2 overflow-visible"><path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                                                            CCSF
+                                                        </span>
+                                                    </li>
+                                            </ul>
+                                    </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+        </div>
+    </div>    
+</div>
+
+<script>
+//doc instructions
+if (document.querySelector('.hide-title')) {
+    const el = document.querySelector('#doc section h1') 
+    if (el) el.style.display='none'
+}
+</script>
+
+<script type="module">
+import { ref } from "vue"
+import { mount } from "app.mjs"
+
+
+    const App = {
+        setup() {
+            function nav(url) {
+                window.open(url)
+            }
+            return { nav }
+        }
+    }
+    
+const Sidebar = {
+    setup() {
+        const open = ref(true)
+        return { open }
+    }
+}
+
+mount('#doc', App)
+mount('#sidebar', Sidebar)
+</script>
+
+<script src="/lib/js/highlight.js"></script>
+<script>hljs.highlightAll()</script>
+<script src="/lib/js/lite-yt-embed.js"></script>
+<script src="/mjs/docs.mjs" type="module"></script>
+
+
+    </main>
+</div>
+
+<div class="text-center  dark:bg-black"> MCT Technology Inc. &copy; 2024 </div>
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>

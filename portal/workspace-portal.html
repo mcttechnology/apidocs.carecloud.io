@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="/img/logo.svg">
+    <title>Workspace Portal</title>
+    <script>
+    if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
+    if (location.search === "?light") localStorage.removeItem('color-scheme') 
+    const cls = document.querySelector('html').classList
+    if (localStorage.getItem('color-scheme') === 'dark')
+        cls.add('dark')
+    else
+        cls.remove('dark')
+    </script>
+    <link rel="stylesheet" href="/css/app.css">
+
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "/mjs/app.mjs",
+        "vue": "/lib/mjs/vue.min.mjs",
+        "@servicestack/client": "/lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "/lib/mjs/servicestack-vue.min.mjs"
+    }
+}
+</script>
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+<header id="header" class="top-0 fixed z-50 h-14 bg-white dark:bg-black opacity-90 w-full shadow">
+  <nav class="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-black">
+    <div class="mx-auto max-w-[100rem] pr-4 sm:pr-6 lg:pr-8">
+      <div class="flex h-16 justify-between">
+        <div class="flex">
+          <div class="flex flex-shrink-0 items-center">
+            <a class="mr-2 lg:mr-8 flex items-center" href="/">
+                <img class="w-8 h-8 mr-1 ml-2" src="/img/favicon.png" width="24" height="24"/>
+                <span class="hidden sm:block text-2xl font-semibold">CareCloud Docs</span>
+            </a>
+          </div>
+            <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-4 lg:space-x-8">
+                <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
+                        <a href="/portal" class="inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium border-indigo-500 text-gray-900">
+                            CarePortal
+                        </a>
+                        <a href="/cct" class="inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-200">
+                            CareControl
+                        </a>
+                        <a href="/ccn/coming_soon" class="inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-200">
+                            CareConnect
+                        </a>
+                        <a href="/cw/coming_soon" class="inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-200">
+                            CareWait
+                        </a>
+            </div>
+        </div>
+        <div class="hidden sm:ml-6 sm:flex sm:items-center">
+            <dark-mode-toggle class="ml-2 w-10"></dark-mode-toggle>
+        </div>
+        <div class="-mr-2 flex items-center sm:hidden">
+          <!-- Mobile menu button -->
+          <button type="button" v-on:click="open=!open" class="inline-flex items-center justify-center rounded-md bg-white dark:bg-black p-2 text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:ring-offset-black" aria-controls="mobile-menu" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <!-- Menu open: "hidden", Menu closed: "block" -->
+            <svg :class="['h-6 w-6', open ? 'hidden' : 'block']" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+            <!-- Menu open: "block", Menu closed: "hidden" -->
+            <svg :class="['h-6 w-6', open ? 'block' : 'hidden']" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile menu, show/hide based on menu state. -->
+    <div v-cloak v-if="open" class="sm:hidden">
+        <div class="space-y-1 pb-3 pt-2">
+            <!-- Current: "border-indigo-500 bg-indigo-50 text-indigo-700", Default: "border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800" -->
+                    <a href="/portal" class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium border-indigo-500 bg-indigo-50 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200">
+                        CarePortal
+                    </a>
+                    <a href="/cct" class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium border-transparent text-gray-600 dark:text-gray-300 hover:border-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-gray-800 dark:hover:text-gray-100">
+                        CareControl
+                    </a>
+                    <a href="/ccn/coming_soon" class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium border-transparent text-gray-600 dark:text-gray-300 hover:border-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-gray-800 dark:hover:text-gray-100">
+                        CareConnect
+                    </a>
+                    <a href="/cw/coming_soon" class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium border-transparent text-gray-600 dark:text-gray-300 hover:border-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-gray-800 dark:hover:text-gray-100">
+                        CareWait
+                    </a>
+        </div>
+    </div>
+  </nav>
+</header>
+
+<script type="module">
+import { ref } from "vue"
+import { mount } from "app.mjs"
+
+const Header = {
+    setup() {
+        const open = ref(false)
+        return { open }
+    }
+}
+mount('#header', Header)
+</script>
+
+
+<div class="min-h-screen">
+    <main role="main" class="pt-16 pb-3">
+        
+
+
+
+<style>
+.active {
+    color: #0ea5e9 !important;
+}
+</style>
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/typography.css">
+<link rel="stylesheet" href="/css/lite-yt-embed.css">
+
+<div class="w-full max-w-[100rem] mx-auto">
+    <div class="flex flex-wrap">
+        <div id="sidebar" class="z-40 inset-0 flex-none bg-white dark:bg-black lg:w-64 xl:w-80">
+            <button v-cloak v-on:click="open=true" :class="['text-gray-400 hover:text-gray-500 pt-4 pl-2 absolute transform transition-all duration-200', open ? 'opacity-0 translate-x-56' : 'opacity-100']" title="Open Sidebar">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H10m10 0l-4 4m4-4l-4-4M4 4v16"/></svg>
+            </button>
+            <div :class="['fixed bg-white dark:bg-black h-screen overflow-y-auto scrolling-touch overflow-hidden shadow lg:shadow-none transform transition-transform duration-200', open ? '' : 'translate-x-[-100%]']">
+                <nav class="sidebar lg:w-64 xl:w-80 px-1 pt-6 pb-16 overflow-y-auto font-medium text-sm lg:text-base sm:px-3 xl:px-5" aria-label="Sidebar">
+                    <close-button title="Close Sidebar" class="lg:hidden -mr-2" v-on:close="open=false"></close-button>
+                                <a href="/portal" class="block flex items-center whitespace-nowrap">
+<svg class='h-6 w-6 shrink-0 text-sky-500' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' aria-hidden='true'><path stroke-linecap='round' stroke-linejoin='round' d='M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25'></path></svg>                                    <span class="p-2 pl-3 font-display font-medium text-slate-900 dark:text-white">
+Overview                                    </span>
+                                </a>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                        </ul>
+                                <h2 class="font-display font-medium text-slate-900 dark:text-white whitespace-nowrap">
+                                    Getting Started
+                                </h2>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                                <li class="relative">
+                                    <a href="/portal/get-started" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Getting Started
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/uploading-data" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Uploading Data to CareCloud
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/downloading-data" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Downloading Data from CareCloud
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/workspace-portal" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full active font-semibold text-sky-500 before:bg-sky-500">
+                                        Workspace Portal
+                                    </a>
+                                </li>
+                        </ul>
+                                <h2 class="font-display font-medium text-slate-900 dark:text-white whitespace-nowrap">
+                                    Data Sync API
+                                </h2>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                                <li class="relative">
+                                    <a href="/portal/api-authentication" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Authentication
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/api-crud" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Data CRUD
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/api-query-data" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Query Data
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/api-import-data" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Import Data
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/api-import-file" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                         Importing File Through API
+                                    </a>
+                                </li>
+                        </ul>
+                                <a href="/portal/data-sync-file" class="block flex items-center whitespace-nowrap">
+                                    <span class="p-2 pl-3 font-display font-medium text-slate-900 dark:text-white">
+Data Sync File                                    </span>
+                                </a>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                                <li class="relative">
+                                    <a href="/portal/data-sync-file-upload" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Uploading Sync File
+                                    </a>
+                                </li>
+                        </ul>
+                                <a href="/portal/model/data-model" class="block flex items-center whitespace-nowrap">
+                                    <span class="p-2 pl-3 font-display font-medium text-slate-900 dark:text-white">
+Data Synchronization Model                                    </span>
+                                </a>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                        </ul>
+                                <a href="/portal/bp-best-proctices" class="block flex items-center whitespace-nowrap">
+                                    <span class="p-2 pl-3 font-display font-medium text-slate-900 dark:text-white">
+Best Practices                                    </span>
+                                </a>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                                <li class="relative">
+                                    <a href="/portal/bp-uploading-timesheet" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Uploading Timesheet and EOP
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/bp-retrieving-attendance-data" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Retrieving Attendance Data
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/bp-sns" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Receiving CareCloud Notifications with AWS SNS Integration
+                                    </a>
+                                </li>
+                        </ul>
+                                <a href="/portal/tbs-troubleshooting-and-support" class="block flex items-center whitespace-nowrap">
+                                    <span class="p-2 pl-3 font-display font-medium text-slate-900 dark:text-white">
+Troubleshooting and Support                                    </span>
+                                </a>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                                <li class="relative">
+                                    <a href="/portal/tbs-workspace-files" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Workspace Files
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/portal/tbs-status-refresh" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Status Refresh
+                                    </a>
+                                </li>
+                        </ul>
+                                <a href="/portal/api-postman" class="block flex items-center whitespace-nowrap">
+                                    <span class="p-2 pl-3 font-display font-medium text-slate-900 dark:text-white">
+API Documentation                                    </span>
+                                </a>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                        </ul>
+                </nav>
+            </div>
+        </div>
+        <div id="doc" class="mx-auto flex">
+            <div class="mt-8 mx-auto prose lg:prose-lg">
+                
+                    <section class="not-prose mb-16 md:mb-12">
+                        <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-50 sm:text-5xl md:text-6xl">
+                            Workspace Portal
+                        </h1>
+                    </section>
+
+                <div class="not-prose"></div>
+
+                <div class="content">
+                    <h2 id="overview">Overview<a class="header-anchor" href="javascript:;" onclick="location.hash='#overview'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The Workspace Portal serves as a comprehensive platform for customers to monitor and manage various aspects of their
+data
+synchronization processes. It provides a user-friendly interface where customers can check the status of data
+synchronization, observe file upload activities, and review essential configuration details. One of the critical
+features of the Portal is the ability to view and manage API keys, which are crucial for integrating external systems
+with the Portal's services. This access to real-time information and administrative controls ensures that customers have
+the necessary tools to maintain efficient and seamless data operations.</p>
+<p><img src="/img/portal/portal.png" alt="Workspace Portal" /></p>
+<h2 id="setting">Setting<a class="header-anchor" href="javascript:;" onclick="location.hash='#setting'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<h3 id="api-key">API Key<a class="header-anchor" href="javascript:;" onclick="location.hash='#api-key'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>To access the necessary API keys and IDs for data upload, users can navigate to the 'Settings' section within the
+Portal. Once there, select the 'Basic' option, where you will find the 'API Key' subsection. This area provides all the
+essential details required for API usage, including the API keys and IDs. These credentials are crucial for establishing
+a secure and effective connection between your external systems and the Portal's services, ensuring smooth data
+integration and management. It's important for users to keep these details secure and use them appropriately to maintain
+the integrity of their data synchronization processes.</p>
+<p><img src="/img/portal/portal_setting.png" alt="portal setting" /></p>
+<h3 id="users-and-user-groups">Users and User Groups<a class="header-anchor" href="javascript:;" onclick="location.hash='#users-and-user-groups'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The 'Users and User Groups' feature within the portal is designed to facilitate the addition and invitation of new users
+to access the portal. This feature is instrumental in setting up varying levels of access and permissions through
+different user groups. It allows for the customization of user experiences based on their specific roles and needs.</p>
+<p>Administrators can assign users to different groups, each with distinct access privileges to various menus and
+functionalities within the portal. This setup ensures a tailored and secure user experience, where access is granted
+based on the relevance and necessity of information for each role.</p>
+<p>In addition to group-based permissions, the portal also provides the flexibility to assign or modify permissions for
+individual users. This granular level of control ensures that each user has access to exactly what they need, nothing
+more and nothing less.</p>
+<p>At the top of the permission hierarchy is the 'Workspace Admin' role. Users with this designation have the highest level
+of access and control within the portal. They are empowered to manage and oversee the entire range of portal
+functionalities, ensuring smooth operation and effective management of all portal activities.</p>
+<p><img src="/img/portal/portal_user.png" alt="portal user" /></p>
+<h2 id="data">Data<a class="header-anchor" href="javascript:;" onclick="location.hash='#data'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The 'Data' section of the portal is a comprehensive hub for managing all entities involved in the upload and download
+processes. Users can engage in a full range of CRUD (Create, Read, Update, Delete) operations for any listed entity.
+This section is crucial for maintaining the integrity and accuracy of data flowing into and out of the CareCloud system.</p>
+<p>One of the key features of the 'Data' section is the ability to view logs of data updates. These logs provide users with
+a transparent and detailed view of all changes, uploads, and downloads, enabling them to track data movements and
+identify any issues promptly.</p>
+<p>For handling complex data objects, the portal offers direct access to manipulate the raw JSON data objects. This feature
+is particularly useful for advanced users who need to work closely with the data's structural details, ensuring precise
+and custom adjustments as needed.</p>
+<p>Overall, the 'Data' section serves as a vital tool for users to quickly verify the correctness of data uploads and
+downloads, ensuring smooth and efficient data management in the CareCloud ecosystem.</p>
+<p><img src="/img/portal/portal_data_edit.jpeg" alt="portal data" /></p>
+<h2 id="files">Files<a class="header-anchor" href="javascript:;" onclick="location.hash='#files'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The 'Files' section of the portal is dedicated to managing various files associated with a Workspace, encompassing both
+imported and generated files. This area becomes particularly useful when the import data process involves SFTP (Secure
+File Transfer Protocol). All files transferred through SFTP are conveniently displayed here, simplifying management and
+tracking.</p>
+<p>A key functionality in this section is the ability to download files. Users can effortlessly access any file they need,
+whether for review, backup, or further processing. Additionally, there's the option to re-import files. This feature is
+crucial for instances where the initial import might need adjustments or in scenarios where data needs to be reprocessed
+due to changes in requirements or corrections.</p>
+<p>Overall, the 'Files' section enhances the user experience by providing a centralized location for file management,
+ensuring efficient and effective handling of all file-related tasks within the CareCloud portal.</p>
+<p><img src="/img/portal/portal_files.png" alt="portal files" /></p>
+<h3 id="import-data">Import Data<a class="header-anchor" href="javascript:;" onclick="location.hash='#import-data'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The Import file functionality within the portal supports two distinct formats, catering to different data
+synchronization needs. The first format is the <a href="Data-Sync-File.md">Data Sync File</a> in a text format. This format is
+particularly beneficial
+for bulk data uploads or when dealing with large datasets, where a text-based file can be more manageable and
+straightforward to compile.</p>
+<p>The second format supported is the <a href="Import-Data.md">Data Sync API's</a> Json format. This format is ideal for more dynamic
+and programmable
+data interchange. It allows for greater flexibility and complexity in the data being imported, catering to scenarios
+where data structures are more intricate or require more detailed specification.</p>
+<p>Both formats offer users the ability to choose the most suitable method for their data import needs. Whether dealing
+with large volumes of data in a more static format or requiring the versatility and complexity offered by Json, the
+portal provides an accommodating environment for diverse data synchronization requirements.</p>
+<p><img src="portal_files_import.png" alt="portal files" /></p>
+<h2 id="reports">Reports<a class="header-anchor" href="javascript:;" onclick="location.hash='#reports'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<h3 id="workspace-tasks">Workspace Tasks<a class="header-anchor" href="javascript:;" onclick="location.hash='#workspace-tasks'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Report, Workspace Tasks, serves as a crucial tool for monitoring and troubleshooting the data import process. This
+feature records and displays a comprehensive log of all import jobs, providing detailed insights into each file import
+operation. The logs include key information such as the timestamp of the import, the status of the job (whether
+successful, failed, or pending), and any error messages or warnings generated during the process.</p>
+<p><img src="portal_tasks.png" alt="portal_tasks" /></p>
+
+                </div>
+
+                <div class="not-prose"></div>
+                
+
+                    <div class="not-prose my-20">
+                                <nav class="flex items-center justify-between border-t border-gray-200 dark:border-gray-700 px-4 sm:px-0">
+                                    <div class="-mt-px flex w-0 flex-1">
+                                            <a href="/portal/downloading-data" class="inline-flex items-center border-t-2 border-transparent pt-4 pr-1 text-sm font-medium text-gray-500 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-gray-200">
+                                                <!-- Heroicon name: mini/arrow-long-left -->
+                                                <svg class="mr-3 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                    <path fill-rule="evenodd" d="M18 10a.75.75 0 01-.75.75H4.66l2.1 1.95a.75.75 0 11-1.02 1.1l-3.5-3.25a.75.75 0 010-1.1l3.5-3.25a.75.75 0 111.02 1.1l-2.1 1.95h12.59A.75.75 0 0118 10z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                Downloading Data from CareCloud
+                                            </a>
+                                    </div>
+                                    <div class="hidden md:-mt-px md:flex"></div>
+                                    <div class="-mt-px flex w-0 flex-1 justify-end">
+                                            <a href="/portal/api-authentication" class="inline-flex items-center border-t-2 border-transparent pt-4 pl-1 text-sm font-medium text-gray-500 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-gray-200">
+                                                Authentication
+                                                <!-- Heroicon name: mini/arrow-long-right -->
+                                                <svg class="ml-3 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                    <path fill-rule="evenodd" d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z" clip-rule="evenodd"></path>
+                                                </svg>
+                                            </a>
+                                    </div>
+                                </nav>
+                    </div>
+            </div>
+                
+                <div class="docmap hidden 2xl:block flex-none w-64 pl-8 mr-8">
+                    <div class="fixed bg-white dark:bg-black flex flex-col overflow-y-auto pt-10 px-8 pb-6" style="height:calc(100vh - 50px);">
+                        <div>
+                            <h5 class="text-slate-900 font-semibold mb-4 text-sm leading-6 dark:text-slate-100">
+                                On This Page
+                            </h5>
+                            <ul class="text-slate-700 text-sm leading-6">
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#overview'" data-id="overview" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            Overview
+                                        </span>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#setting'" data-id="setting" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            Setting
+                                        </span>
+                                            <ul class="ml-4">
+                                                    <li data-id="api-key" class="text-gray-500 hover:text-gray-900">
+                                                        <span v-hash="'#api-key'" class="cursor-pointer flex text-sm transform transition-colors duration-200 py-2">
+                                                            <svg width="3" height="24" viewBox="0 -9 3 24" class="mr-2 overflow-visible"><path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                                                            API Key
+                                                        </span>
+                                                    </li>
+                                                    <li data-id="users-and-user-groups" class="text-gray-500 hover:text-gray-900">
+                                                        <span v-hash="'#users-and-user-groups'" class="cursor-pointer flex text-sm transform transition-colors duration-200 py-2">
+                                                            <svg width="3" height="24" viewBox="0 -9 3 24" class="mr-2 overflow-visible"><path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                                                            Users and User Groups
+                                                        </span>
+                                                    </li>
+                                            </ul>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#data'" data-id="data" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            Data
+                                        </span>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#files'" data-id="files" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            Files
+                                        </span>
+                                            <ul class="ml-4">
+                                                    <li data-id="import-data" class="text-gray-500 hover:text-gray-900">
+                                                        <span v-hash="'#import-data'" class="cursor-pointer flex text-sm transform transition-colors duration-200 py-2">
+                                                            <svg width="3" height="24" viewBox="0 -9 3 24" class="mr-2 overflow-visible"><path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                                                            Import Data
+                                                        </span>
+                                                    </li>
+                                            </ul>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#reports'" data-id="reports" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            Reports
+                                        </span>
+                                            <ul class="ml-4">
+                                                    <li data-id="workspace-tasks" class="text-gray-500 hover:text-gray-900">
+                                                        <span v-hash="'#workspace-tasks'" class="cursor-pointer flex text-sm transform transition-colors duration-200 py-2">
+                                                            <svg width="3" height="24" viewBox="0 -9 3 24" class="mr-2 overflow-visible"><path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                                                            Workspace Tasks
+                                                        </span>
+                                                    </li>
+                                            </ul>
+                                    </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+        </div>
+    </div>    
+</div>
+
+<script>
+//doc instructions
+if (document.querySelector('.hide-title')) {
+    const el = document.querySelector('#doc section h1') 
+    if (el) el.style.display='none'
+}
+</script>
+
+<script type="module">
+import { ref } from "vue"
+import { mount } from "app.mjs"
+
+
+    const App = {
+        setup() {
+            function nav(url) {
+                window.open(url)
+            }
+            return { nav }
+        }
+    }
+    
+const Sidebar = {
+    setup() {
+        const open = ref(true)
+        return { open }
+    }
+}
+
+mount('#doc', App)
+mount('#sidebar', Sidebar)
+</script>
+
+<script src="/lib/js/highlight.js"></script>
+<script>hljs.highlightAll()</script>
+<script src="/lib/js/lite-yt-embed.js"></script>
+<script src="/mjs/docs.mjs" type="module"></script>
+
+
+
+    </main>
+</div>
+
+<div class="text-center  dark:bg-black"> MCT Technology Inc. &copy; 2024 </div>
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>
