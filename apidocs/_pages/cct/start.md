@@ -34,8 +34,6 @@ CC4 is divided into two deployment methods: AWS deployment and local deployment.
 | FAM_Case          | Contains primary information about individual cases |
 | Fam_CaseExtension | Holds additional extended information for cases     |
 | FAM_CaseChild     | Stores data related to children in cases            |
-| FAM_CaseIncome    | Details the income information for cases            |
-| FAM_CaseNeed      | Records the needs identified for each case          |
 | FAM_CaseParent    | Contains information about parents in cases         |
 
 ### Provider
@@ -48,7 +46,6 @@ CC4 is divided into two deployment methods: AWS deployment and local deployment.
 | PRO_Address             | Contains address details for providers and related entities   |
 | PRO_Agreement           | Stores agreements made with or between providers              |
 | PRO_Garnishment         | Tracks garnishment orders against providers                   |
-| PRO_GarnishmentEntity   | Details entities involved in garnishment processes            |
 | PRO_Rate                | Contains rate information related to providers                |
 | PRO_Holiday             | Contains information about recognized holidays                |
 | PRO_License             | Stores licensing information for providers                    |
@@ -79,18 +76,14 @@ CC4 is divided into two deployment methods: AWS deployment and local deployment.
 
 ### Ledger
 
-| Table                | Description                                                 |
-|----------------------|-------------------------------------------------------------|
-| FIN_Export           | Manages the export of financial data and reports            |
-| FIN_ExportFile       | Tracks files generated during financial data export         |
-| fin_ExternalInvoice  | Stores invoices received from external entities             |
-| FIN_Ledger           | Main ledger containing comprehensive financial transactions |
-| FIN_SubLedger        | Subsidiary ledger tracking detailed financial transactions  |
-| FIN_SubLedgerItem    | Details individual items within a sub-ledger                |
-| FIN_Provider         | Stores financial information specific to providers          |
-| FIN_ProviderNegative | Tracks negative financial transactions for providers        |
-| FIN_RepaymentFamily  | Manages repayment transactions related to families          |
-
+| Table               | Description                                                 |
+|---------------------|-------------------------------------------------------------|
+| FIN_Export          | Manages the export of financial data and reports            |
+| Fin_ExternalInvoice | Stores invoices received from external entities             |
+| FIN_Ledger          | Main ledger containing comprehensive financial transactions |
+| FIN_SubLedger       | Subsidiary ledger tracking detailed financial transactions  |
+| FIN_SubLedgerItem   | Details individual items within a sub-ledger                |
+| FIN_Provider        | Stores financial information specific to providers          |
 
 ## Data Sources
 
