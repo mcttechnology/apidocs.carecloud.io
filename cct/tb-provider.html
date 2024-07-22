@@ -2095,6 +2095,127 @@ CareControl                                    </span>
 </tr>
 </tbody>
 </table>
+<h2 id="pro_registrationfee">PRO_RegistrationFee<a class="header-anchor" href="javascript:;" onclick="location.hash='#pro_registrationfee'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RegistrationFeeID</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>ProviderID</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to provider</td>
+</tr>
+<tr>
+<td>MinAge</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Minimum age</td>
+</tr>
+<tr>
+<td>MaxAge</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Maximum age</td>
+</tr>
+<tr>
+<td>RegistrationFee</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Registration fee</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>int</td>
+<td></td>
+<td>Status</td>
+</tr>
+<tr>
+<td>Comments</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Comments</td>
+</tr>
+<tr>
+<td>StartDate</td>
+<td>datetime</td>
+<td></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>EndDate</td>
+<td>datetime</td>
+<td></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>History</td>
+<td>int</td>
+<td></td>
+<td>History version</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>IsEffective</td>
+<td>bit</td>
+<td></td>
+<td>Is effective</td>
+</tr>
+<tr>
+<td>RegistrationFeeType</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Registration fee type</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+</tbody>
+</table>
 
                 </div>
 
@@ -2191,6 +2312,11 @@ CareControl                                    </span>
                                     <li class="group text-gray-800 hover:text-gray-900">
                                         <span v-hash="'#pro_accreditationstatus'" data-id="pro_accreditationstatus" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
                                             PRO_AccreditationStatus
+                                        </span>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#pro_registrationfee'" data-id="pro_registrationfee" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            PRO_RegistrationFee
                                         </span>
                                     </li>
                             </ul>

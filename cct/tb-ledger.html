@@ -1519,6 +1519,339 @@ CareControl                                    </span>
 </tr>
 </tbody>
 </table>
+<h2 id="pay_registrationfee">Pay_RegistrationFee<a class="header-anchor" href="javascript:;" onclick="location.hash='#pay_registrationfee'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>ProviderId</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to provider</td>
+</tr>
+<tr>
+<td>ChildId</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to child</td>
+</tr>
+<tr>
+<td>FamilyId</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to family</td>
+</tr>
+<tr>
+<td>Amount</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Registration fee amount</td>
+</tr>
+<tr>
+<td>Balance</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Balance amount</td>
+</tr>
+<tr>
+<td>StartDate</td>
+<td>datetime</td>
+<td></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>EndDate</td>
+<td>datetime</td>
+<td></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>RegistrationFeeType</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Registration fee type</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+</tbody>
+</table>
+<h2 id="pay_registrationfeepayment">Pay_RegistrationFeePayment<a class="header-anchor" href="javascript:;" onclick="location.hash='#pay_registrationfeepayment'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>RegistrationFeeId</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to registration fee</td>
+</tr>
+<tr>
+<td>ClaimId</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to claim</td>
+</tr>
+<tr>
+<td>ClaimCode</td>
+<td>int</td>
+<td></td>
+<td>Claim code</td>
+</tr>
+<tr>
+<td>ClaimDate</td>
+<td>datetime</td>
+<td></td>
+<td>Claim date</td>
+</tr>
+<tr>
+<td>Amount</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Payment amount</td>
+</tr>
+<tr>
+<td>Balance</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Balance amount</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>Comment</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Comment</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+<tr>
+<td>ExportId</td>
+<td>int</td>
+<td></td>
+<td>Export ID</td>
+</tr>
+<tr>
+<td>ProviderId</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to provider</td>
+</tr>
+<tr>
+<td>ChildId</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to child</td>
+</tr>
+<tr>
+<td>FamilyId</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to family</td>
+</tr>
+</tbody>
+</table>
+<h2 id="pro_garnishmentpayment">PRO_GarnishmentPayment<a class="header-anchor" href="javascript:;" onclick="location.hash='#pro_garnishmentpayment'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>ProviderId</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to provider</td>
+</tr>
+<tr>
+<td>GarnishmentId</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to garnishment</td>
+</tr>
+<tr>
+<td>ExportDate</td>
+<td>datetime</td>
+<td></td>
+<td>Export date</td>
+</tr>
+<tr>
+<td>ProcessingFee</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Processing fee</td>
+</tr>
+<tr>
+<td>Amount</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Amount</td>
+</tr>
+<tr>
+<td>Payment</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Payment</td>
+</tr>
+<tr>
+<td>Balance</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Balance</td>
+</tr>
+<tr>
+<td>CreateUserId</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserId</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+<tr>
+<td>ExportId</td>
+<td>int</td>
+<td></td>
+<td>Export ID</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>LedgerId</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to ledger</td>
+</tr>
+</tbody>
+</table>
 
                 </div>
 
@@ -1590,6 +1923,21 @@ CareControl                                    </span>
                                     <li class="group text-gray-800 hover:text-gray-900">
                                         <span v-hash="'#fin_externalinvoice'" data-id="fin_externalinvoice" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
                                             Fin_ExternalInvoice
+                                        </span>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#pay_registrationfee'" data-id="pay_registrationfee" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            Pay_RegistrationFee
+                                        </span>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#pay_registrationfeepayment'" data-id="pay_registrationfeepayment" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            Pay_RegistrationFeePayment
+                                        </span>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#pro_garnishmentpayment'" data-id="pro_garnishmentpayment" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            PRO_GarnishmentPayment
                                         </span>
                                     </li>
                             </ul>

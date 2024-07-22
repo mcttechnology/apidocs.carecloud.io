@@ -2870,6 +2870,212 @@ This documentation aims to provide an overview of how family entities are interc
 </tr>
 </tbody>
 </table>
+<h2 id="fam_enhancedreferral">FAM_EnhancedReferral<a class="header-anchor" href="javascript:;" onclick="location.hash='#fam_enhancedreferral'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>CaseId</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to case</td>
+</tr>
+<tr>
+<td>FamilyID</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to family</td>
+</tr>
+<tr>
+<td>ChildID</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to child</td>
+</tr>
+<tr>
+<td>ReferralDate</td>
+<td>datetime</td>
+<td></td>
+<td>Referral date</td>
+</tr>
+<tr>
+<td>Comment</td>
+<td>nvarchar(500)</td>
+<td></td>
+<td>Comment</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>int</td>
+<td></td>
+<td>Status</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserId</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserId</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>RequestDate</td>
+<td>datetime</td>
+<td></td>
+<td>Request date</td>
+</tr>
+<tr>
+<td>GearsUpdated</td>
+<td>bit</td>
+<td></td>
+<td>Gears updated (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>Source</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Source</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+<tr>
+<td>Meta</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Metadata</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fam_enhancedreferralprovider">FAM_EnhancedReferralProvider<a class="header-anchor" href="javascript:;" onclick="location.hash='#fam_enhancedreferralprovider'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>ReferralId</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to referral</td>
+</tr>
+<tr>
+<td>ProviderName</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Provider name</td>
+</tr>
+<tr>
+<td>Contact</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Contact name</td>
+</tr>
+<tr>
+<td>Phone</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>Phone number</td>
+</tr>
+<tr>
+<td>VacancyDate</td>
+<td>datetime</td>
+<td></td>
+<td>Vacancy date</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>int</td>
+<td></td>
+<td>Status</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserId</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserId</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+</tbody>
+</table>
 
                 </div>
 
@@ -2974,6 +3180,16 @@ This documentation aims to provide an overview of how family entities are interc
                                     <li class="group text-gray-800 hover:text-gray-900">
                                         <span v-hash="'#fam_noa'" data-id="fam_noa" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
                                             FAM_NOA
+                                        </span>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#fam_enhancedreferral'" data-id="fam_enhancedreferral" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            FAM_EnhancedReferral
+                                        </span>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#fam_enhancedreferralprovider'" data-id="fam_enhancedreferralprovider" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            FAM_EnhancedReferralProvider
                                         </span>
                                     </li>
                             </ul>
