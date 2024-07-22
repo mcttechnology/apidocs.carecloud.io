@@ -224,9 +224,10 @@ CareControl                                    </span>
                     <p><api-reference component="DataGrid<Model>"></api-reference></p>
 <h2 id="introduction">Introduction<a class="header-anchor" href="javascript:;" onclick="location.hash='#introduction'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>A comprehensive childcare subsidy management solution to help agencies of all sizes save time, stay compliant, and increase efficiency in managing family eligibility determination; child care enrollment; provider contracts; subsidy attendance; and payments.</p>
-<h2 id="fields">Fields<a class="header-anchor" href="javascript:;" onclick="location.hash='#fields'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<h2 id="cc4-standard">CC4 Standard<a class="header-anchor" href="javascript:;" onclick="location.hash='#cc4-standard'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p><dsgrid class="not-prose mb-4"></dsgrid></p>
-<h2 id="usages">Usages<a class="header-anchor" href="javascript:;" onclick="location.hash='#usages'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<h2 id="csi-customer-define">CSI - Customer Define<a class="header-anchor" href="javascript:;" onclick="location.hash='#csi-customer-define'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p><dsgrid :dataSource="csi_claim" class="not-prose mb-4" ></dsgrid></p>
 
                 </div>
 
@@ -264,13 +265,13 @@ CareControl                                    </span>
                                         </span>
                                     </li>
                                     <li class="group text-gray-800 hover:text-gray-900">
-                                        <span v-hash="'#fields'" data-id="fields" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
-                                            Fields
+                                        <span v-hash="'#cc4-standard'" data-id="cc4-standard" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            CC4 Standard
                                         </span>
                                     </li>
                                     <li class="group text-gray-800 hover:text-gray-900">
-                                        <span v-hash="'#usages'" data-id="usages" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
-                                            Usages
+                                        <span v-hash="'#csi-customer-define'" data-id="csi-customer-define" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            CSI - Customer Define
                                         </span>
                                     </li>
                             </ul>
