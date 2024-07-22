@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="/img/logo.svg">
-    <title>Provider</title>
+    <title>Case</title>
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
     if (location.search === "?light") localStorage.removeItem('color-scheme') 
@@ -156,7 +156,7 @@ CareControl                                    </span>
                                     </a>
                                 </li>
                                 <li class="relative">
-                                    <a href="/cct/tb-case" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                    <a href="/cct/tb-case" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full active font-semibold text-sky-500 before:bg-sky-500">
                                         Case
                                     </a>
                                 </li>
@@ -186,7 +186,7 @@ CareControl                                    </span>
                                     </a>
                                 </li>
                                 <li class="relative">
-                                    <a href="/cct/ds-provider" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full active font-semibold text-sky-500 before:bg-sky-500">
+                                    <a href="/cct/ds-provider" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
                                         Provider
                                     </a>
                                 </li>
@@ -214,7 +214,7 @@ CareControl                                    </span>
                 
                     <section class="not-prose mb-16 md:mb-12">
                         <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-50 sm:text-5xl md:text-6xl">
-                            Provider
+                            Case
                         </h1>
                     </section>
 
@@ -222,10 +222,19 @@ CareControl                                    </span>
 
                 <div class="content">
                     <h2 id="introduction">Introduction<a class="header-anchor" href="javascript:;" onclick="location.hash='#introduction'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>This data comes from View QueryCare. You can use View directly, and if you have access to the database, you can also access the data through the API.</p>
-<h2 id="fields">Fields<a class="header-anchor" href="javascript:;" onclick="location.hash='#fields'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p><dsgrid class="not-prose mb-4"></dsgrid></p>
-<h2 id="usages">Usages<a class="header-anchor" href="javascript:;" onclick="location.hash='#usages'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>This section introduces the structure of the 'family' table and its relationships within the database. It specifically focuses on the connections between family members, such as the relationship between parents and children. This documentation aims to provide an overview of how family entities are interconnected.</p>
+<h2 id="fam_case">FAM_Case<a class="header-anchor" href="javascript:;" onclick="location.hash='#fam_case'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Contains primary information about individual cases |</p>
+<h2 id="fam_caseextension">Fam_CaseExtension<a class="header-anchor" href="javascript:;" onclick="location.hash='#fam_caseextension'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Holds additional extended information for cases     |</p>
+<h2 id="fam_casechild">FAM_CaseChild<a class="header-anchor" href="javascript:;" onclick="location.hash='#fam_casechild'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Stores data related to children in cases            |</p>
+<h2 id="fam_caseincome">FAM_CaseIncome<a class="header-anchor" href="javascript:;" onclick="location.hash='#fam_caseincome'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Details the income information for cases            |</p>
+<h2 id="fam_caseneed">FAM_CaseNeed<a class="header-anchor" href="javascript:;" onclick="location.hash='#fam_caseneed'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Records the needs identified for each case          |</p>
+<h2 id="fam_caseparent">FAM_CaseParent<a class="header-anchor" href="javascript:;" onclick="location.hash='#fam_caseparent'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Contains information about parents in cases         |</p>
 
                 </div>
 
@@ -235,18 +244,18 @@ CareControl                                    </span>
                     <div class="not-prose my-20">
                                 <nav class="flex items-center justify-between border-t border-gray-200 dark:border-gray-700 px-4 sm:px-0">
                                     <div class="-mt-px flex w-0 flex-1">
-                                            <a href="/cct/ds-family" class="inline-flex items-center border-t-2 border-transparent pt-4 pr-1 text-sm font-medium text-gray-500 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-gray-200">
+                                            <a href="/cct/tb-provider" class="inline-flex items-center border-t-2 border-transparent pt-4 pr-1 text-sm font-medium text-gray-500 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-gray-200">
                                                 <!-- Heroicon name: mini/arrow-long-left -->
                                                 <svg class="mr-3 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                                     <path fill-rule="evenodd" d="M18 10a.75.75 0 01-.75.75H4.66l2.1 1.95a.75.75 0 11-1.02 1.1l-3.5-3.25a.75.75 0 010-1.1l3.5-3.25a.75.75 0 111.02 1.1l-2.1 1.95h12.59A.75.75 0 0118 10z" clip-rule="evenodd"></path>
                                                 </svg>
-                                                Family
+                                                Provider
                                             </a>
                                     </div>
                                     <div class="hidden md:-mt-px md:flex"></div>
                                     <div class="-mt-px flex w-0 flex-1 justify-end">
-                                            <a href="/cct/ds-case" class="inline-flex items-center border-t-2 border-transparent pt-4 pl-1 text-sm font-medium text-gray-500 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-gray-200">
-                                                Case
+                                            <a href="/cct/tb-care" class="inline-flex items-center border-t-2 border-transparent pt-4 pl-1 text-sm font-medium text-gray-500 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-gray-200">
+                                                Care
                                                 <!-- Heroicon name: mini/arrow-long-right -->
                                                 <svg class="ml-3 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                                     <path fill-rule="evenodd" d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z" clip-rule="evenodd"></path>
@@ -270,13 +279,33 @@ CareControl                                    </span>
                                         </span>
                                     </li>
                                     <li class="group text-gray-800 hover:text-gray-900">
-                                        <span v-hash="'#fields'" data-id="fields" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
-                                            Fields
+                                        <span v-hash="'#fam_case'" data-id="fam_case" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            FAM_Case
                                         </span>
                                     </li>
                                     <li class="group text-gray-800 hover:text-gray-900">
-                                        <span v-hash="'#usages'" data-id="usages" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
-                                            Usages
+                                        <span v-hash="'#fam_caseextension'" data-id="fam_caseextension" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            Fam_CaseExtension
+                                        </span>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#fam_casechild'" data-id="fam_casechild" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            FAM_CaseChild
+                                        </span>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#fam_caseincome'" data-id="fam_caseincome" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            FAM_CaseIncome
+                                        </span>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#fam_caseneed'" data-id="fam_caseneed" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            FAM_CaseNeed
+                                        </span>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#fam_caseparent'" data-id="fam_caseparent" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            FAM_CaseParent
                                         </span>
                                     </li>
                             </ul>
@@ -301,7 +330,14 @@ import { ref } from "vue"
 import { mount } from "app.mjs"
 
 
-        import App from "/pages/cct/ds-provider.mjs" 
+    const App = {
+        setup() {
+            function nav(url) {
+                window.open(url)
+            }
+            return { nav }
+        }
+    }
     
 const Sidebar = {
     setup() {

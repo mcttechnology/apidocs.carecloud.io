@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="/img/logo.svg">
-    <title>Family</title>
+    <title>Provider</title>
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
     if (location.search === "?light") localStorage.removeItem('color-scheme') 
@@ -155,13 +155,18 @@ Back                                    </span>
                                         Core Resources
                                     </a>
                                 </li>
+                                <li class="relative">
+                                    <a href="/portal/model/note" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Note
+                                    </a>
+                                </li>
                         </ul>
                                 <h2 class="font-display font-medium text-slate-900 dark:text-white whitespace-nowrap">
                                     Family
                                 </h2>
                         <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
                                 <li class="relative">
-                                    <a href="/portal/model/family" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full active font-semibold text-sky-500 before:bg-sky-500">
+                                    <a href="/portal/model/family-entity" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
                                         Family
                                     </a>
                                 </li>
@@ -196,13 +201,13 @@ Back                                    </span>
                                 </h2>
                         <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
                                 <li class="relative">
-                                    <a href="/portal/model/provider" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                    <a href="/portal/model/provider-entity" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full active font-semibold text-sky-500 before:bg-sky-500">
                                         Provider
                                     </a>
                                 </li>
                                 <li class="relative">
                                     <a href="/portal/model/provider-holiday" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
-                                        Provider Holider
+                                        Provider Holiday
                                     </a>
                                 </li>
                                 <li class="relative">
@@ -226,7 +231,7 @@ Back                                    </span>
                                 </h2>
                         <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
                                 <li class="relative">
-                                    <a href="/portal/model/claim" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                    <a href="/portal/model/claim-entity" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
                                         Claim
                                     </a>
                                 </li>
@@ -251,12 +256,6 @@ Back                                    </span>
                                     </a>
                                 </li>
                         </ul>
-                                <a href="/portal/model/note" class="block flex items-center whitespace-nowrap">
-                                    <span class="p-2 pl-3 font-display font-medium text-slate-900 dark:text-white">
-Note                                    </span>
-                                </a>
-                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
-                        </ul>
                 </nav>
             </div>
         </div>
@@ -265,7 +264,7 @@ Note                                    </span>
                 
                     <section class="not-prose mb-16 md:mb-12">
                         <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-50 sm:text-5xl md:text-6xl">
-                            Family
+                            Provider
                         </h1>
                     </section>
 
@@ -289,7 +288,7 @@ Note                                    </span>
 <td>string</td>
 <td>PK</td>
 <td>Y</td>
-<td>The Family Id from the third-party system will be used in the Cloud to determine whether to update an existing Family record or create a new one.</td>
+<td>The Provider Id from the third-party system will be used in the Cloud to determine whether to update an existing Family record or create a new one.</td>
 </tr>
 <tr>
 <td>name</td>
@@ -299,10 +298,52 @@ Note                                    </span>
 <td></td>
 </tr>
 <tr>
-<td>email</td>
+<td>legalName</td>
 <td>string</td>
 <td></td>
 <td></td>
+<td></td>
+</tr>
+<tr>
+<td>firstName</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>lastName</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>middleInitial</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dob</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>The date of birth, <strong>yyyyMMdd.</strong></td>
+</tr>
+<tr>
+<td>gender</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>such as <code>male</code>, <code>female</code>,</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td></td>
+<td>Y</td>
 <td></td>
 </tr>
 <tr>
@@ -323,15 +364,15 @@ Note                                    </span>
 <td>address</td>
 <td>object</td>
 <td></td>
-<td></td>
-<td><a href="core-resources#address">Address Model</a></td>
+<td>Y</td>
+<td><a href="Core-Resources.md#core-address">address</a></td>
 </tr>
 <tr>
 <td>mailAddress</td>
 <td>object</td>
 <td></td>
 <td></td>
-<td><a href="Core-Resources.md#core-address">Address Model</a></td>
+<td><a href="Core-Resources.md#core-address">address</a></td>
 </tr>
 <tr>
 <td>sameAddress</td>
@@ -341,45 +382,59 @@ Note                                    </span>
 <td></td>
 </tr>
 <tr>
-<td>singleParent</td>
+<td>ethnicity</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>The ethnicity of the family member is either  <code>hispanic-latino</code>, <code>no-hispanic-latino</code></td>
+</tr>
+<tr>
+<td>race</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>The race of the family member is either <code>caucasian</code>, <code>asian</code>, <code>american-indian</code>, <code>black</code>, <code>pacific-islander</code>, <code>other</code>,</td>
+</tr>
+<tr>
+<td>citizenInfo</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>providerType</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>The type of the provider is either <code>licensed-center</code>, <code>infant-center</code>, <code>school</code>,<code>family</code>,</td>
+</tr>
+<tr>
+<td>isExempt</td>
 <td>bool</td>
 <td></td>
 <td></td>
 <td></td>
-</tr>
-<tr>
-<td>familySize</td>
-<td>number</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>familyMonthlyIncome</td>
-<td>number</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>familyType</td>
-<td>string</td>
-<td></td>
-<td></td>
-<td>such as <code>biological</code>, <code>foster</code>, <code>guardianship</code>,</td>
 </tr>
 <tr>
 <td>status</td>
 <td>string</td>
 <td></td>
 <td></td>
-<td>The status of the family is either <code>new</code>, <code>pending</code>, <code>active</code>, <code>inactive</code>, <code>void</code>.</td>
+<td>The status of the provider is either <code>new</code>, <code>pending</code>, <code>active</code>, <code>inactive</code>, <code>void</code>,</td>
 </tr>
 <tr>
-<td>homeless</td>
-<td>bool</td>
+<td>ssn</td>
+<td>string</td>
 <td></td>
 <td></td>
+<td></td>
+</tr>
+<tr>
+<td>taxId</td>
+<td>string</td>
+<td></td>
+<td>Y</td>
 <td></td>
 </tr>
 <tr>
@@ -387,7 +442,28 @@ Note                                    </span>
 <td>string</td>
 <td></td>
 <td></td>
-<td>Supported code is either <code>en</code>: English <code>es</code>: Spanish <code>zh</code>: Chinese <a href="Core-Resources.md#core-language">Language</a></td>
+<td><a href="Core-Resources.md#core-language">language</a> Supported code is either <code>en</code>: English <code>es</code>: Spanish <code>zh</code>: Chinese.</td>
+</tr>
+<tr>
+<td>limitedEnglish</td>
+<td>bool</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>license</td>
+<td>list</td>
+<td></td>
+<td></td>
+<td>see <a href="#provider-license">license</a></td>
+</tr>
+<tr>
+<td>rate</td>
+<td>list</td>
+<td></td>
+<td></td>
+<td>see <a href="#provider-rate">rate</a></td>
 </tr>
 <tr>
 <td>comment</td>
@@ -401,21 +477,21 @@ Note                                    </span>
 <td>object</td>
 <td></td>
 <td></td>
-<td>Custom data objects can include additional Family attributes, with field definitions adhering to established guidelines. see default <a href="#cc4-data">cc4 data</a></td>
+<td>Custom data objects can include additional Provider attributes, with field definitions adhering to established guidelines.</td>
 </tr>
 <tr>
 <td>disabled</td>
 <td>bool</td>
 <td></td>
 <td>Y</td>
-<td>soft delete</td>
+<td></td>
 </tr>
 <tr>
 <td>tags</td>
 <td>array</td>
 <td></td>
 <td></td>
-<td>string array,</td>
+<td>string array</td>
 </tr>
 <tr>
 <td>category</td>
@@ -433,6 +509,170 @@ Note                                    </span>
 </tr>
 </tbody>
 </table>
+<h3 id="provider-license">Provider License<a class="header-anchor" href="javascript:;" onclick="location.hash='#provider-license'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>number</td>
+<td>string</td>
+<td></td>
+<td>The Provider license number</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>provider license name</td>
+</tr>
+<tr>
+<td>capacity</td>
+<td>number</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>startDate</td>
+<td>string</td>
+<td></td>
+<td>format <code>yyyyMMdd</code></td>
+</tr>
+<tr>
+<td>closeDate</td>
+<td>string</td>
+<td></td>
+<td>format <code>yyyyMMdd</code></td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td></td>
+<td><code>licensed</code>, <code>closed</code></td>
+</tr>
+<tr>
+<td>insuranceAffidavit</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>minAge</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>maxAge</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>comment</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="provider-rate">Provider Rate<a class="header-anchor" href="javascript:;" onclick="location.hash='#provider-rate'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>childCategory</td>
+<td>string</td>
+<td></td>
+<td>provider rate child category, such as <code>infant</code>,<code>2-5</code>, <code>6+</code></td>
+</tr>
+<tr>
+<td>rateCategory</td>
+<td>string</td>
+<td></td>
+<td>such as <code>full-time</code>, <code>part-time</code></td>
+</tr>
+<tr>
+<td>startDate</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>endDate</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>hourly</td>
+<td>number</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>daily</td>
+<td>number</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>weekly</td>
+<td>number</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>monthly</td>
+<td>number</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td></td>
+<td><code>new</code>, <code>pending</code>, <code>active</code>, <code>inactive</code>, <code>void</code></td>
+</tr>
+<tr>
+<td>comment</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h2 id="cc4-data">CC4 Data<a class="header-anchor" href="javascript:;" onclick="location.hash='#cc4-data'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <table>
 <thead>
@@ -444,22 +684,27 @@ Note                                    </span>
 </thead>
 <tbody>
 <tr>
-<td>firstName</td>
+<td>vendorNO</td>
 <td>string</td>
 <td></td>
 </tr>
 <tr>
-<td>lastName</td>
+<td>driversLicense</td>
 <td>string</td>
 <td></td>
 </tr>
 <tr>
-<td>middleInitial</td>
+<td>pvCountyID</td>
 <td>string</td>
 <td></td>
 </tr>
 <tr>
-<td>countyFamilyId</td>
+<td>ftHours</td>
+<td>number</td>
+<td></td>
+</tr>
+<tr>
+<td>payAbsence</td>
 <td>string</td>
 <td></td>
 </tr>
@@ -474,12 +719,62 @@ Note                                    </span>
 <td></td>
 </tr>
 <tr>
-<td>cashAidStatus</td>
+<td>cell</td>
 <td>string</td>
 <td></td>
 </tr>
 <tr>
-<td>cashAidTermDate</td>
+<td>communicationMethod</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>fax</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>providerApp</td>
+<td>bool</td>
+<td></td>
+</tr>
+<tr>
+<td>portalAccount</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>PaymentMethod</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>taxLegalFirstName</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>taxLegalMI</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>taxLegalLastName</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>transitionFlag</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>rcvMsg</td>
+<td>bool</td>
+<td></td>
+</tr>
+<tr>
+<td>rmrProviderType</td>
 <td>string</td>
 <td></td>
 </tr>
@@ -490,6 +785,81 @@ Note                                    </span>
 </tr>
 </tbody>
 </table>
+<h2 id="example">Example<a class="header-anchor" href="javascript:;" onclick="location.hash='#example'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<pre><code class="language-json">{
+  &quot;entityId&quot;: &quot;prov123&quot;,
+  &quot;name&quot;: &quot;Provider Name&quot;,
+  &quot;legalName&quot;: &quot;Legal Provider Name&quot;,
+  &quot;firstName&quot;: &quot;John&quot;,
+  &quot;lastName&quot;: &quot;Doe&quot;,
+  &quot;middleInitial&quot;: &quot;A&quot;,
+  &quot;dob&quot;: &quot;19800101&quot;,
+  &quot;gender&quot;: &quot;male&quot;,
+  &quot;email&quot;: &quot;provider@example.com&quot;,
+  &quot;phone&quot;: &quot;123-456-7890&quot;,
+  &quot;phone2&quot;: &quot;098-765-4321&quot;,
+  &quot;address&quot;: {
+    &quot;zip&quot;: &quot;12345&quot;,
+    &quot;state&quot;: &quot;CA&quot;,
+    &quot;city&quot;: &quot;Some City&quot;,
+    &quot;address1&quot;: &quot;123 Main St&quot;,
+    &quot;address2&quot;: &quot;Apt 4&quot;,
+    &quot;county&quot;: &quot;Some County&quot;,
+    &quot;fullZipCode&quot;: &quot;12345-6789&quot;,
+    &quot;longitude&quot;: -120.00,
+    &quot;latitude&quot;: 37.00,
+    &quot;fips&quot;: &quot;06075&quot;
+  },
+  &quot;mailAddress&quot;: {
+    &quot;zip&quot;: &quot;12345&quot;,
+    &quot;state&quot;: &quot;CA&quot;,
+    &quot;city&quot;: &quot;Other City&quot;,
+    &quot;address1&quot;: &quot;456 Another St&quot;,
+    &quot;address2&quot;: &quot;&quot;,
+    &quot;county&quot;: &quot;Other County&quot;,
+    &quot;fullZipCode&quot;: &quot;12345-6789&quot;,
+    &quot;longitude&quot;: -121.00,
+    &quot;latitude&quot;: 36.00
+  },
+  &quot;sameAddress&quot;: false,
+  &quot;ethnicity&quot;: &quot;Ethnicity&quot;,
+  &quot;race&quot;: &quot;Race&quot;,
+  &quot;citizenInfo&quot;: &quot;Citizen Info&quot;,
+  &quot;providerType&quot;: &quot;family&quot;,
+  &quot;isExempt&quot;: false,
+  &quot;status&quot;: &quot;active&quot;,
+  &quot;ssn&quot;: &quot;123-45-6789&quot;,
+  &quot;taxId&quot;: &quot;98-7654321&quot;,
+  &quot;language&quot;: &quot;en&quot;,
+  &quot;limitedEnglish&quot;: false,
+  &quot;comment&quot;: &quot;Provider comment&quot;,
+  &quot;data&quot;: {
+    &quot;externalId&quot;: 1025,
+    &quot;venderNO&quot;: &quot;1025&quot;,
+    &quot;driversLicense&quot;: &quot;&quot;,
+    &quot;reportLanguage&quot;: 1,
+    &quot;pvCountyID&quot;: &quot;&quot;,
+    &quot;ftHours&quot;: 0,
+    &quot;payAbsence&quot;: &quot;3&quot;,
+    &quot;prohibit&quot;: false,
+    &quot;prohibitReason&quot;: &quot;&quot;,
+    &quot;cell&quot;: &quot;(415) 599-9928&quot;,
+    &quot;communicationMethod&quot;: &quot;&quot;,
+    &quot;fax&quot;: &quot;&quot;,
+    &quot;providerApp&quot;: false,
+    &quot;PaymentMethod&quot;: &quot;Check&quot;,
+    &quot;taxLegalFirstName&quot;: &quot;&quot;,
+    &quot;taxLegalMI&quot;: &quot;&quot;,
+    &quot;transitionFlag&quot;: false,
+    &quot;rcvMsg&quot;: false,
+    &quot;rmrProviderType&quot;: &quot;Licensed Center&quot;
+  },
+  &quot;disabled&quot;: false,
+  &quot;tags&quot;: [&quot;tag1&quot;, &quot;tag2&quot;],
+  &quot;category&quot;: &quot;Category A&quot;
+}
+
+</code></pre>
 
                 </div>
 
@@ -499,18 +869,18 @@ Note                                    </span>
                     <div class="not-prose my-20">
                                 <nav class="flex items-center justify-between border-t border-gray-200 dark:border-gray-700 px-4 sm:px-0">
                                     <div class="-mt-px flex w-0 flex-1">
-                                            <a href="/portal/model/core-resources" class="inline-flex items-center border-t-2 border-transparent pt-4 pr-1 text-sm font-medium text-gray-500 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-gray-200">
+                                            <a href="/portal/model/family-invoice" class="inline-flex items-center border-t-2 border-transparent pt-4 pr-1 text-sm font-medium text-gray-500 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-gray-200">
                                                 <!-- Heroicon name: mini/arrow-long-left -->
                                                 <svg class="mr-3 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                                     <path fill-rule="evenodd" d="M18 10a.75.75 0 01-.75.75H4.66l2.1 1.95a.75.75 0 11-1.02 1.1l-3.5-3.25a.75.75 0 010-1.1l3.5-3.25a.75.75 0 111.02 1.1l-2.1 1.95h12.59A.75.75 0 0118 10z" clip-rule="evenodd"></path>
                                                 </svg>
-                                                Core Resources
+                                                Family Invoice
                                             </a>
                                     </div>
                                     <div class="hidden md:-mt-px md:flex"></div>
                                     <div class="-mt-px flex w-0 flex-1 justify-end">
-                                            <a href="/portal/model/family-member" class="inline-flex items-center border-t-2 border-transparent pt-4 pl-1 text-sm font-medium text-gray-500 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-gray-200">
-                                                Family Member
+                                            <a href="/portal/model/provider-holiday" class="inline-flex items-center border-t-2 border-transparent pt-4 pl-1 text-sm font-medium text-gray-500 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-gray-200">
+                                                Provider Holiday
                                                 <!-- Heroicon name: mini/arrow-long-right -->
                                                 <svg class="ml-3 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                                     <path fill-rule="evenodd" d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z" clip-rule="evenodd"></path>
@@ -532,10 +902,29 @@ Note                                    </span>
                                         <span v-hash="'#data-model'" data-id="data-model" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
                                             Data Model
                                         </span>
+                                            <ul class="ml-4">
+                                                    <li data-id="provider-license" class="text-gray-500 hover:text-gray-900">
+                                                        <span v-hash="'#provider-license'" class="cursor-pointer flex text-sm transform transition-colors duration-200 py-2">
+                                                            <svg width="3" height="24" viewBox="0 -9 3 24" class="mr-2 overflow-visible"><path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                                                            Provider License
+                                                        </span>
+                                                    </li>
+                                                    <li data-id="provider-rate" class="text-gray-500 hover:text-gray-900">
+                                                        <span v-hash="'#provider-rate'" class="cursor-pointer flex text-sm transform transition-colors duration-200 py-2">
+                                                            <svg width="3" height="24" viewBox="0 -9 3 24" class="mr-2 overflow-visible"><path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                                                            Provider Rate
+                                                        </span>
+                                                    </li>
+                                            </ul>
                                     </li>
                                     <li class="group text-gray-800 hover:text-gray-900">
                                         <span v-hash="'#cc4-data'" data-id="cc4-data" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
                                             CC4 Data
+                                        </span>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#example'" data-id="example" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            Example
                                         </span>
                                     </li>
                             </ul>

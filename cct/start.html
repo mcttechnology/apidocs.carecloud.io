@@ -137,34 +137,49 @@ mount('#header', Header)
                     <close-button title="Close Sidebar" class="lg:hidden -mr-2" v-on:close="open=false"></close-button>
                                 <a href="/cct" class="block flex items-center whitespace-nowrap">
 <svg class='h-6 w-6 shrink-0 text-sky-500' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' aria-hidden='true'><path stroke-linecap='round' stroke-linejoin='round' d='M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25'></path></svg>                                    <span class="p-2 pl-3 font-display font-medium text-slate-900 dark:text-white">
-Overview                                    </span>
+CareControl                                    </span>
                                 </a>
                         <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                        </ul>
+                                <h2 class="font-display font-medium text-slate-900 dark:text-white whitespace-nowrap">
+                                    Table
+                                </h2>
+                        <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
+                                <li class="relative">
+                                    <a href="/cct/tb-family" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Family
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/cct/tb-provider" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Provider
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/cct/tb-case" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Case
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/cct/tb-care" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Care
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/cct/tb-claim" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Claim
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/cct/tb-ledger" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Ledger
+                                    </a>
+                                </li>
                         </ul>
                                 <h2 class="font-display font-medium text-slate-900 dark:text-white whitespace-nowrap">
                                     Data Sources
                                 </h2>
                         <ul role="list" class="mb-6 mt-2 ml-3 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
-                                <li class="relative">
-                                    <a href="/cct/ds-claim" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
-                                        Claim
-                                    </a>
-                                </li>
-                                <li class="relative">
-                                    <a href="/cct/ds-care" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
-                                        Care
-                                    </a>
-                                </li>
-                                <li class="relative">
-                                    <a href="/cct/ds-case" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
-                                        Case
-                                    </a>
-                                </li>
-                                <li class="relative">
-                                    <a href="/cct/ds-child" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
-                                        Children
-                                    </a>
-                                </li>
                                 <li class="relative">
                                     <a href="/cct/ds-family" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
                                         Family
@@ -173,6 +188,21 @@ Overview                                    </span>
                                 <li class="relative">
                                     <a href="/cct/ds-provider" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
                                         Provider
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/cct/ds-case" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Case
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/cct/ds-care" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Care
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a href="/cct/ds-claim" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                        Claim
                                     </a>
                                 </li>
                         </ul>
@@ -193,7 +223,334 @@ Overview                                    </span>
                 <div class="content">
                     <h2 id="introduction">Introduction<a class="header-anchor" href="javascript:;" onclick="location.hash='#introduction'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>CC4 is divided into two deployment methods: AWS deployment and local deployment. For users with local deployment, they can directly access the data for data analysis and processing. For users with AWS deployment, data can be accessed through APIs.</p>
-<h2 id="structure">Structure<a class="header-anchor" href="javascript:;" onclick="location.hash='#structure'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<h2 id="tables">Tables<a class="header-anchor" href="javascript:;" onclick="location.hash='#tables'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<h3 id="family">Family<a class="header-anchor" href="javascript:;" onclick="location.hash='#family'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FAM_Family</td>
+<td>General family information</td>
+</tr>
+<tr>
+<td>Fam_FamilyExtension</td>
+<td>Extended family information</td>
+</tr>
+<tr>
+<td>FAM_Child</td>
+<td>Child details and information</td>
+</tr>
+<tr>
+<td>Fam_ChildExtension</td>
+<td>Extended information for children</td>
+</tr>
+<tr>
+<td>FAM_Parent</td>
+<td>Parent information</td>
+</tr>
+<tr>
+<td>Fam_ParentExtension</td>
+<td>Extended parent information</td>
+</tr>
+<tr>
+<td>FAM_FamilyFee</td>
+<td>Information on fees associated with family services</td>
+</tr>
+<tr>
+<td>FAM_MemberIncome</td>
+<td>Income details for family members</td>
+</tr>
+<tr>
+<td>FAM_MemberIncomeDetail</td>
+<td>Detailed income information for family members</td>
+</tr>
+<tr>
+<td>FAM_MemberNeeds</td>
+<td>Needs assessment for family members</td>
+</tr>
+<tr>
+<td>FAM_MemberSchedule</td>
+<td>Schedules for family members</td>
+</tr>
+<tr>
+<td>FAM_NeedSummary</td>
+<td>Summary of family needs</td>
+</tr>
+<tr>
+<td>FAM_NeedSummarySchedule</td>
+<td>Scheduling for needs assessment</td>
+</tr>
+<tr>
+<td>FAM_NOA</td>
+<td>Notice of Action documents</td>
+</tr>
+</tbody>
+</table>
+<h3 id="case">Case<a class="header-anchor" href="javascript:;" onclick="location.hash='#case'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FAM_Case</td>
+<td>Contains primary information about individual cases</td>
+</tr>
+<tr>
+<td>Fam_CaseExtension</td>
+<td>Holds additional extended information for cases</td>
+</tr>
+<tr>
+<td>FAM_CaseChild</td>
+<td>Stores data related to children in cases</td>
+</tr>
+<tr>
+<td>FAM_CaseIncome</td>
+<td>Details the income information for cases</td>
+</tr>
+<tr>
+<td>FAM_CaseNeed</td>
+<td>Records the needs identified for each case</td>
+</tr>
+<tr>
+<td>FAM_CaseParent</td>
+<td>Contains information about parents in cases</td>
+</tr>
+</tbody>
+</table>
+<h3 id="provider">Provider<a class="header-anchor" href="javascript:;" onclick="location.hash='#provider'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PRO_Provider</td>
+<td>Main table for provider information</td>
+</tr>
+<tr>
+<td>PRO_ProviderExtension</td>
+<td>Holds extended information for providers</td>
+</tr>
+<tr>
+<td>PRO_Contact</td>
+<td>Holds contact information for providers</td>
+</tr>
+<tr>
+<td>PRO_Address</td>
+<td>Contains address details for providers and related entities</td>
+</tr>
+<tr>
+<td>PRO_Agreement</td>
+<td>Stores agreements made with or between providers</td>
+</tr>
+<tr>
+<td>PRO_Garnishment</td>
+<td>Tracks garnishment orders against providers</td>
+</tr>
+<tr>
+<td>PRO_GarnishmentEntity</td>
+<td>Details entities involved in garnishment processes</td>
+</tr>
+<tr>
+<td>PRO_Rate</td>
+<td>Contains rate information related to providers</td>
+</tr>
+<tr>
+<td>PRO_Holiday</td>
+<td>Contains information about recognized holidays</td>
+</tr>
+<tr>
+<td>PRO_License</td>
+<td>Stores licensing information for providers</td>
+</tr>
+<tr>
+<td>PRO_QRIS</td>
+<td>Manages Quality Rating and Improvement System (QRIS) data</td>
+</tr>
+<tr>
+<td>PRO_AccreditationStatus</td>
+<td>Tracks the accreditation status of providers</td>
+</tr>
+</tbody>
+</table>
+<h3 id="care">Care<a class="header-anchor" href="javascript:;" onclick="location.hash='#care'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PAY_Care</td>
+<td>Manages care payments and transactions</td>
+</tr>
+<tr>
+<td>PAY_CareCalendar</td>
+<td>Tracks care-related events and payment schedules</td>
+</tr>
+<tr>
+<td>Pay_CareClaim</td>
+<td>Handles claims for care services rendered</td>
+</tr>
+<tr>
+<td>Pay_CareRMC</td>
+<td>Manages records for care-related risk management cases</td>
+</tr>
+</tbody>
+</table>
+<h3 id="claim">Claim<a class="header-anchor" href="javascript:;" onclick="location.hash='#claim'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PAY_Claim</td>
+<td>Manages individual claims for payments</td>
+</tr>
+<tr>
+<td>Pay_ClaimExtension</td>
+<td>Holds information on extensions granted for claim submissions</td>
+</tr>
+<tr>
+<td>Pay_ClaimAmount</td>
+<td>Tracks the amount associated with each claim</td>
+</tr>
+<tr>
+<td>Pay_ClaimELS</td>
+<td>Manages Early Learning Scholarship (ELS) claims</td>
+</tr>
+<tr>
+<td>PAY_ClaimWeek</td>
+<td>Organizes claims by the week they are submitted</td>
+</tr>
+<tr>
+<td>Pay_FFAssignment</td>
+<td>Manages assignments for Family Friend and Neighbor (FFN) care</td>
+</tr>
+<tr>
+<td>PAY_ScheduleDaily</td>
+<td>Manages daily scheduling for payments or services</td>
+</tr>
+<tr>
+<td>PAY_ScheduledDate</td>
+<td>Tracks specific dates scheduled for payments or services</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ledger">Ledger<a class="header-anchor" href="javascript:;" onclick="location.hash='#ledger'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FIN_Export</td>
+<td>Manages the export of financial data and reports</td>
+</tr>
+<tr>
+<td>FIN_ExportFile</td>
+<td>Tracks files generated during financial data export</td>
+</tr>
+<tr>
+<td>fin_ExternalInvoice</td>
+<td>Stores invoices received from external entities</td>
+</tr>
+<tr>
+<td>FIN_Ledger</td>
+<td>Main ledger containing comprehensive financial transactions</td>
+</tr>
+<tr>
+<td>FIN_SubLedger</td>
+<td>Subsidiary ledger tracking detailed financial transactions</td>
+</tr>
+<tr>
+<td>FIN_SubLedgerItem</td>
+<td>Details individual items within a sub-ledger</td>
+</tr>
+<tr>
+<td>FIN_Provider</td>
+<td>Stores financial information specific to providers</td>
+</tr>
+<tr>
+<td>FIN_ProviderNegative</td>
+<td>Tracks negative financial transactions for providers</td>
+</tr>
+<tr>
+<td>FIN_RepaymentFamily</td>
+<td>Manages repayment transactions related to families</td>
+</tr>
+</tbody>
+</table>
+<h2 id="data-sources">Data Sources<a class="header-anchor" href="javascript:;" onclick="location.hash='#data-sources'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Name</th>
+<th>View Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>QueryFamilyView</td>
+<td><a href="/cct/ds-family">Family</a></td>
+<td>View_FamilyUDF</td>
+<td></td>
+</tr>
+<tr>
+<td>QueryChildren</td>
+<td><a href="/cct/ds-child">Child</a></td>
+<td>View_ChildUDF</td>
+<td></td>
+</tr>
+<tr>
+<td>QueryProvider</td>
+<td><a href="/cct/ds-provider">Provider</a></td>
+<td>View_ProviderUDF</td>
+<td></td>
+</tr>
+<tr>
+<td>QueryCaseWithFamilyFee</td>
+<td><a href="/cct/ds-case">Case</a></td>
+<td>View_CaseUDF</td>
+<td></td>
+</tr>
+<tr>
+<td>QueryCare</td>
+<td><a href="/cct/ds-care">Care</a></td>
+<td>View_CareUDF</td>
+<td></td>
+</tr>
+<tr>
+<td>ClaimComboQuery</td>
+<td><a href="/cct/ds-claim">Claim</a></td>
+<td>View_ClaimUDF</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 
                 </div>
 
@@ -217,8 +574,51 @@ Overview                                    </span>
                                         </span>
                                     </li>
                                     <li class="group text-gray-800 hover:text-gray-900">
-                                        <span v-hash="'#structure'" data-id="structure" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
-                                            Structure
+                                        <span v-hash="'#tables'" data-id="tables" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            Tables
+                                        </span>
+                                            <ul class="ml-4">
+                                                    <li data-id="family" class="text-gray-500 hover:text-gray-900">
+                                                        <span v-hash="'#family'" class="cursor-pointer flex text-sm transform transition-colors duration-200 py-2">
+                                                            <svg width="3" height="24" viewBox="0 -9 3 24" class="mr-2 overflow-visible"><path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                                                            Family
+                                                        </span>
+                                                    </li>
+                                                    <li data-id="case" class="text-gray-500 hover:text-gray-900">
+                                                        <span v-hash="'#case'" class="cursor-pointer flex text-sm transform transition-colors duration-200 py-2">
+                                                            <svg width="3" height="24" viewBox="0 -9 3 24" class="mr-2 overflow-visible"><path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                                                            Case
+                                                        </span>
+                                                    </li>
+                                                    <li data-id="provider" class="text-gray-500 hover:text-gray-900">
+                                                        <span v-hash="'#provider'" class="cursor-pointer flex text-sm transform transition-colors duration-200 py-2">
+                                                            <svg width="3" height="24" viewBox="0 -9 3 24" class="mr-2 overflow-visible"><path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                                                            Provider
+                                                        </span>
+                                                    </li>
+                                                    <li data-id="care" class="text-gray-500 hover:text-gray-900">
+                                                        <span v-hash="'#care'" class="cursor-pointer flex text-sm transform transition-colors duration-200 py-2">
+                                                            <svg width="3" height="24" viewBox="0 -9 3 24" class="mr-2 overflow-visible"><path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                                                            Care
+                                                        </span>
+                                                    </li>
+                                                    <li data-id="claim" class="text-gray-500 hover:text-gray-900">
+                                                        <span v-hash="'#claim'" class="cursor-pointer flex text-sm transform transition-colors duration-200 py-2">
+                                                            <svg width="3" height="24" viewBox="0 -9 3 24" class="mr-2 overflow-visible"><path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                                                            Claim
+                                                        </span>
+                                                    </li>
+                                                    <li data-id="ledger" class="text-gray-500 hover:text-gray-900">
+                                                        <span v-hash="'#ledger'" class="cursor-pointer flex text-sm transform transition-colors duration-200 py-2">
+                                                            <svg width="3" height="24" viewBox="0 -9 3 24" class="mr-2 overflow-visible"><path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                                                            Ledger
+                                                        </span>
+                                                    </li>
+                                            </ul>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#data-sources'" data-id="data-sources" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            Data Sources
                                         </span>
                                     </li>
                             </ul>

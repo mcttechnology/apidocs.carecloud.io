@@ -7,15 +7,22 @@ export async function fetchDS(file) {
 }
 
 export const dsgrid = {
-    template:`<DataGrid :items="ds" class="max-w-screen-md" :tableStyle="['fullWidth','stripedRows','uppercaseHeadings']"
-              selected-columns="code,name,description,type"
-               >
-        <template #description="{ Description }">
-          <p :style="{ width: '200px', wordWrap: 'break-word', whiteSpace: 'normal' }"> {{ Description }}</p> 
-        </template>
-    </DataGrid>`,
-    setup() {
-        const ds = inject('ds')
-        return { ds }
+    props: {
+        dataSource: {
+            type: Array,
+            required: false
+        }
+    },
+    template: `
+        <DataGrid :items="resolvedDataSource" class="max-w-screen-md" :tableStyle="['fullWidth','stripedRows','uppercaseHeadings']"
+                  selected-columns="code,name,description,type">
+            <template #description="{ Description }">
+                <p :style="{ width: '200px', wordWrap: 'break-word', whiteSpace: 'normal' }"> {{ Description }}</p> 
+            </template>
+        </DataGrid>`,
+    setup(props) {
+        const injectedDs = inject('ds');
+        const resolvedDataSource =  props.dataSource || injectedDs;
+        return { resolvedDataSource };
     }
 }

@@ -6,12 +6,14 @@ export default {
     },
     setup() {
         const ds = ref([])
+        const children = ref([])
         // const client = useClient()
         provide('ds', ds)
-
+        provide('children', children)
         onMounted(async () => {
             ds.value = await fetchDS('ds_QueryFamilyView.json');
+            children.value = await fetchDS('ds_QueryChildren.json');
         })
-        return {  ds }
+        return {  ds, children }
     }
 }

@@ -151,7 +151,7 @@ CareControl                                    </span>
                                     </a>
                                 </li>
                                 <li class="relative">
-                                    <a href="/cct/tb-provider" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
+                                    <a href="/cct/tb-provider" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full active font-semibold text-sky-500 before:bg-sky-500">
                                         Provider
                                     </a>
                                 </li>
@@ -186,7 +186,7 @@ CareControl                                    </span>
                                     </a>
                                 </li>
                                 <li class="relative">
-                                    <a href="/cct/ds-provider" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full active font-semibold text-sky-500 before:bg-sky-500">
+                                    <a href="/cct/ds-provider" class="block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300">
                                         Provider
                                     </a>
                                 </li>
@@ -222,10 +222,31 @@ CareControl                                    </span>
 
                 <div class="content">
                     <h2 id="introduction">Introduction<a class="header-anchor" href="javascript:;" onclick="location.hash='#introduction'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>This data comes from View QueryCare. You can use View directly, and if you have access to the database, you can also access the data through the API.</p>
-<h2 id="fields">Fields<a class="header-anchor" href="javascript:;" onclick="location.hash='#fields'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p><dsgrid class="not-prose mb-4"></dsgrid></p>
-<h2 id="usages">Usages<a class="header-anchor" href="javascript:;" onclick="location.hash='#usages'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>This section introduces the structure of the 'provider' table and its relationships within the database. It specifically focuses on the connections between family members, such as the relationship between parents and children. This documentation aims to provide an overview of how family entities are interconnected.</p>
+<h2 id="pro_provider">PRO_Provider<a class="header-anchor" href="javascript:;" onclick="location.hash='#pro_provider'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Main table for provider information                           |</p>
+<h2 id="pro_providerextension">PRO_ProviderExtension<a class="header-anchor" href="javascript:;" onclick="location.hash='#pro_providerextension'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Holds extended information for providers                      |</p>
+<h2 id="pro_contact">PRO_Contact<a class="header-anchor" href="javascript:;" onclick="location.hash='#pro_contact'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Holds contact information for providers                       |</p>
+<h2 id="pro_address">PRO_Address<a class="header-anchor" href="javascript:;" onclick="location.hash='#pro_address'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Contains address details for providers and related entities   |</p>
+<h2 id="pro_agreement">PRO_Agreement<a class="header-anchor" href="javascript:;" onclick="location.hash='#pro_agreement'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Stores agreements made with or between providers              |</p>
+<h2 id="pro_garnishment">PRO_Garnishment<a class="header-anchor" href="javascript:;" onclick="location.hash='#pro_garnishment'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Tracks garnishment orders against providers                   |</p>
+<h2 id="pro_garnishmententity">PRO_GarnishmentEntity<a class="header-anchor" href="javascript:;" onclick="location.hash='#pro_garnishmententity'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Details entities involved in garnishment processes            |</p>
+<h2 id="pro_rate">PRO_Rate<a class="header-anchor" href="javascript:;" onclick="location.hash='#pro_rate'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Contains rate information related to providers                |</p>
+<h2 id="pro_holiday">PRO_Holiday<a class="header-anchor" href="javascript:;" onclick="location.hash='#pro_holiday'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Contains information about recognized holidays                |</p>
+<h2 id="pro_license">PRO_License<a class="header-anchor" href="javascript:;" onclick="location.hash='#pro_license'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Stores licensing information for providers                    |</p>
+<h2 id="pro_qris">PRO_QRIS<a class="header-anchor" href="javascript:;" onclick="location.hash='#pro_qris'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Manages Quality Rating and Improvement System (QRIS) data     |</p>
+<h2 id="pro_accreditationstatus">PRO_AccreditationStatus<a class="header-anchor" href="javascript:;" onclick="location.hash='#pro_accreditationstatus'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Tracks the accreditation status of providers                  |</p>
 
                 </div>
 
@@ -235,7 +256,7 @@ CareControl                                    </span>
                     <div class="not-prose my-20">
                                 <nav class="flex items-center justify-between border-t border-gray-200 dark:border-gray-700 px-4 sm:px-0">
                                     <div class="-mt-px flex w-0 flex-1">
-                                            <a href="/cct/ds-family" class="inline-flex items-center border-t-2 border-transparent pt-4 pr-1 text-sm font-medium text-gray-500 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-gray-200">
+                                            <a href="/cct/tb-family" class="inline-flex items-center border-t-2 border-transparent pt-4 pr-1 text-sm font-medium text-gray-500 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-gray-200">
                                                 <!-- Heroicon name: mini/arrow-long-left -->
                                                 <svg class="mr-3 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                                     <path fill-rule="evenodd" d="M18 10a.75.75 0 01-.75.75H4.66l2.1 1.95a.75.75 0 11-1.02 1.1l-3.5-3.25a.75.75 0 010-1.1l3.5-3.25a.75.75 0 111.02 1.1l-2.1 1.95h12.59A.75.75 0 0118 10z" clip-rule="evenodd"></path>
@@ -245,7 +266,7 @@ CareControl                                    </span>
                                     </div>
                                     <div class="hidden md:-mt-px md:flex"></div>
                                     <div class="-mt-px flex w-0 flex-1 justify-end">
-                                            <a href="/cct/ds-case" class="inline-flex items-center border-t-2 border-transparent pt-4 pl-1 text-sm font-medium text-gray-500 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-gray-200">
+                                            <a href="/cct/tb-case" class="inline-flex items-center border-t-2 border-transparent pt-4 pl-1 text-sm font-medium text-gray-500 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-gray-200">
                                                 Case
                                                 <!-- Heroicon name: mini/arrow-long-right -->
                                                 <svg class="ml-3 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -270,13 +291,63 @@ CareControl                                    </span>
                                         </span>
                                     </li>
                                     <li class="group text-gray-800 hover:text-gray-900">
-                                        <span v-hash="'#fields'" data-id="fields" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
-                                            Fields
+                                        <span v-hash="'#pro_provider'" data-id="pro_provider" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            PRO_Provider
                                         </span>
                                     </li>
                                     <li class="group text-gray-800 hover:text-gray-900">
-                                        <span v-hash="'#usages'" data-id="usages" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
-                                            Usages
+                                        <span v-hash="'#pro_providerextension'" data-id="pro_providerextension" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            PRO_ProviderExtension
+                                        </span>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#pro_contact'" data-id="pro_contact" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            PRO_Contact
+                                        </span>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#pro_address'" data-id="pro_address" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            PRO_Address
+                                        </span>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#pro_agreement'" data-id="pro_agreement" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            PRO_Agreement
+                                        </span>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#pro_garnishment'" data-id="pro_garnishment" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            PRO_Garnishment
+                                        </span>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#pro_garnishmententity'" data-id="pro_garnishmententity" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            PRO_GarnishmentEntity
+                                        </span>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#pro_rate'" data-id="pro_rate" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            PRO_Rate
+                                        </span>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#pro_holiday'" data-id="pro_holiday" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            PRO_Holiday
+                                        </span>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#pro_license'" data-id="pro_license" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            PRO_License
+                                        </span>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#pro_qris'" data-id="pro_qris" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            PRO_QRIS
+                                        </span>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#pro_accreditationstatus'" data-id="pro_accreditationstatus" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            PRO_AccreditationStatus
                                         </span>
                                     </li>
                             </ul>
@@ -301,7 +372,14 @@ import { ref } from "vue"
 import { mount } from "app.mjs"
 
 
-        import App from "/pages/cct/ds-provider.mjs" 
+    const App = {
+        setup() {
+            function nav(url) {
+                window.open(url)
+            }
+            return { nav }
+        }
+    }
     
 const Sidebar = {
     setup() {
