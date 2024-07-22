@@ -1,7 +1,10 @@
 [
   {
     "text": "Introduction",
-    "link": "/",
+    "link": "/"
+  },
+  {
+    "text": "Get Started",
     "children": [
       {
         "text": "CarePortal",
