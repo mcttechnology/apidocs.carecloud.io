@@ -224,17 +224,676 @@ CareControl                                    </span>
                     <h2 id="introduction">Introduction<a class="header-anchor" href="javascript:;" onclick="location.hash='#introduction'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>This section introduces the structure of the 'family' table and its relationships within the database. It specifically focuses on the connections between family members, such as the relationship between parents and children. This documentation aims to provide an overview of how family entities are interconnected.</p>
 <h2 id="fam_case">FAM_Case<a class="header-anchor" href="javascript:;" onclick="location.hash='#fam_case'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Contains primary information about individual cases |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CaseID</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>FamilyID</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to family</td>
+</tr>
+<tr>
+<td>CaseNo</td>
+<td>nvarchar(30)</td>
+<td>IX</td>
+<td>Case number</td>
+</tr>
+<tr>
+<td>ContractID</td>
+<td>int</td>
+<td>IX</td>
+<td>Contract ID</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>Name</td>
+</tr>
+<tr>
+<td>RequestDate</td>
+<td>datetime</td>
+<td></td>
+<td>Request date</td>
+</tr>
+<tr>
+<td>SignDate</td>
+<td>datetime</td>
+<td></td>
+<td>Sign date</td>
+</tr>
+<tr>
+<td>CertifyDate</td>
+<td>datetime</td>
+<td></td>
+<td>Certify date</td>
+</tr>
+<tr>
+<td>AuthorizationDate</td>
+<td>datetime</td>
+<td></td>
+<td>Authorization date</td>
+</tr>
+<tr>
+<td>RecertifyDate</td>
+<td>datetime</td>
+<td></td>
+<td>Recertify date</td>
+</tr>
+<tr>
+<td>TerminateDate</td>
+<td>datetime</td>
+<td></td>
+<td>Terminate date</td>
+</tr>
+<tr>
+<td>ValidStatus</td>
+<td>int</td>
+<td></td>
+<td>Valid status</td>
+</tr>
+<tr>
+<td>Source</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Source</td>
+</tr>
+<tr>
+<td>OtherSource</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Other source</td>
+</tr>
+<tr>
+<td>EligibilityType</td>
+<td>int</td>
+<td></td>
+<td>Eligibility type</td>
+</tr>
+<tr>
+<td>Need</td>
+<td>int</td>
+<td></td>
+<td>Need</td>
+</tr>
+<tr>
+<td>OtherNeed</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Other need</td>
+</tr>
+<tr>
+<td>IsGroupEnrollment</td>
+<td>bit</td>
+<td></td>
+<td>Is group enrollment (Y/N)</td>
+</tr>
+<tr>
+<td>GroupenrollmentDate</td>
+<td>datetime</td>
+<td></td>
+<td>Group enrollment date</td>
+</tr>
+<tr>
+<td>CaseManager</td>
+<td>int</td>
+<td></td>
+<td>Case manager</td>
+</tr>
+<tr>
+<td>OwnerId</td>
+<td>int</td>
+<td></td>
+<td>Owner ID</td>
+</tr>
+<tr>
+<td>OrgID</td>
+<td>int</td>
+<td></td>
+<td>Organization ID</td>
+</tr>
+<tr>
+<td>Weight</td>
+<td>decimal(8, 3)</td>
+<td></td>
+<td>Weight</td>
+</tr>
+<tr>
+<td>CompanionType</td>
+<td>int</td>
+<td></td>
+<td>Companion type</td>
+</tr>
+<tr>
+<td>FamilySize</td>
+<td>int</td>
+<td></td>
+<td>Family size</td>
+</tr>
+<tr>
+<td>FamilyMonthIncome</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Family monthly income</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>int</td>
+<td></td>
+<td>Status</td>
+</tr>
+<tr>
+<td>CurrentHistory</td>
+<td>int</td>
+<td></td>
+<td>Current history</td>
+</tr>
+<tr>
+<td>StartDate</td>
+<td>datetime</td>
+<td></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>EndDate</td>
+<td>datetime</td>
+<td></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>IsEffective</td>
+<td>bit</td>
+<td></td>
+<td>Is effective (Y/N)</td>
+</tr>
+<tr>
+<td>MCCRRequestDate</td>
+<td>datetime</td>
+<td></td>
+<td>MCCR request date</td>
+</tr>
+<tr>
+<td>MCCRUserCode</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>MCCR user code</td>
+</tr>
+<tr>
+<td>MCCRUserName</td>
+<td>nvarchar(500)</td>
+<td></td>
+<td>MCCR user name</td>
+</tr>
+<tr>
+<td>MCCRStatus</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>MCCR status</td>
+</tr>
+<tr>
+<td>DPSSDistrictOffice</td>
+<td>nvarchar(500)</td>
+<td></td>
+<td>DPSS district office</td>
+</tr>
+<tr>
+<td>DPSSRegionalOffice</td>
+<td>nvarchar(500)</td>
+<td></td>
+<td>DPSS regional office</td>
+</tr>
+<tr>
+<td>CPS</td>
+<td>nvarchar(200)</td>
+<td></td>
+<td>CPS</td>
+</tr>
+<tr>
+<td>FeeWaiver</td>
+<td>bit</td>
+<td></td>
+<td>Fee waiver (Y/N)</td>
+</tr>
+<tr>
+<td>FeeWaiverStartDate</td>
+<td>datetime</td>
+<td></td>
+<td>Fee waiver start date</td>
+</tr>
+<tr>
+<td>FeeWaiverEndDate</td>
+<td>datetime</td>
+<td></td>
+<td>Fee waiver end date</td>
+</tr>
+<tr>
+<td>CreateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>FamilyType</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Family type</td>
+</tr>
+<tr>
+<td>NOANeedType</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>NOA need type</td>
+</tr>
+<tr>
+<td>NOAEligibilityType</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>NOA eligibility type</td>
+</tr>
+<tr>
+<td>CD9600NeedType</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>CD9600 need type</td>
+</tr>
+<tr>
+<td>CD9600EligibilityType</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>CD9600 eligibility type</td>
+</tr>
+<tr>
+<td>CalWorkActivity</td>
+<td>nvarchar(256)</td>
+<td></td>
+<td>CalWork activity</td>
+</tr>
+<tr>
+<td>CD9600IncomeSource</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>CD9600 income source</td>
+</tr>
+<tr>
+<td>CD9600NeedType2</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>CD9600 need type 2</td>
+</tr>
+<tr>
+<td>RetroRequested</td>
+<td>nvarchar(500)</td>
+<td></td>
+<td>Retro requested</td>
+</tr>
+<tr>
+<td>ReceiveDate</td>
+<td>datetime</td>
+<td></td>
+<td>Receive date</td>
+</tr>
+<tr>
+<td>DenyReason</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Deny reason</td>
+</tr>
+<tr>
+<td>CountyNumber</td>
+<td>nvarchar(80)</td>
+<td></td>
+<td>County number</td>
+</tr>
+<tr>
+<td>CashAid</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Cash aid</td>
+</tr>
+<tr>
+<td>TermDate</td>
+<td>datetime</td>
+<td></td>
+<td>Termination date</td>
+</tr>
+<tr>
+<td>InitialSubsidy</td>
+<td>datetime</td>
+<td></td>
+<td>Initial subsidy date</td>
+</tr>
+<tr>
+<td>TrustlinePending</td>
+<td>bit</td>
+<td></td>
+<td>Trustline pending (Y/N)</td>
+</tr>
+<tr>
+<td>FirstDateOfSubsidizedService</td>
+<td>datetime</td>
+<td></td>
+<td>First date of subsidized service</td>
+</tr>
+<tr>
+<td>Stage1StarDate</td>
+<td>datetime</td>
+<td></td>
+<td>Stage 1 start date</td>
+</tr>
+<tr>
+<td>Stage1EndDate</td>
+<td>datetime</td>
+<td></td>
+<td>Stage 1 end date</td>
+</tr>
+<tr>
+<td>Stage2StarDate</td>
+<td>datetime</td>
+<td></td>
+<td>Stage 2 start date</td>
+</tr>
+<tr>
+<td>Stage2EndDate</td>
+<td>datetime</td>
+<td></td>
+<td>Stage 2 end date</td>
+</tr>
+<tr>
+<td>Stage3StarDate</td>
+<td>datetime</td>
+<td></td>
+<td>Stage 3 start date</td>
+</tr>
+<tr>
+<td>Stage3EndDate</td>
+<td>datetime</td>
+<td></td>
+<td>Stage 3 end date</td>
+</tr>
+<tr>
+<td>CAPPStartDate</td>
+<td>datetime</td>
+<td></td>
+<td>CAPP start date</td>
+</tr>
+<tr>
+<td>CAPPEndDate</td>
+<td>datetime</td>
+<td></td>
+<td>CAPP end date</td>
+</tr>
+<tr>
+<td>DivisionNo</td>
+<td>nvarchar(10)</td>
+<td></td>
+<td>Division number</td>
+</tr>
+<tr>
+<td>CountyID</td>
+<td>int</td>
+<td></td>
+<td>County ID</td>
+</tr>
+<tr>
+<td>CW115Type</td>
+<td>nvarchar(20)</td>
+<td></td>
+<td>CW115 type</td>
+</tr>
+<tr>
+<td>ReasonInSTG1</td>
+<td>nvarchar(20)</td>
+<td></td>
+<td>Reason in stage 1</td>
+</tr>
+<tr>
+<td>ContractType</td>
+<td>int</td>
+<td></td>
+<td>Contract type</td>
+</tr>
+<tr>
+<td>Eligibility</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Eligibility</td>
+</tr>
+<tr>
+<td>Cd9600SignDate</td>
+<td>datetime</td>
+<td></td>
+<td>CD9600 sign date</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>ActionReason</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Action reason</td>
+</tr>
+<tr>
+<td>ActionComment</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Action comment</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+<tr>
+<td>ActionDate</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Action date</td>
+</tr>
+<tr>
+<td>ContractCode</td>
+<td>nvarchar(100)</td>
+<td>IX</td>
+<td>Contract code</td>
+</tr>
+<tr>
+<td>ReportCountyCode</td>
+<td>nvarchar(100)</td>
+<td>IX</td>
+<td>Report county code</td>
+</tr>
+</tbody>
+</table>
 <h2 id="fam_caseextension">Fam_CaseExtension<a class="header-anchor" href="javascript:;" onclick="location.hash='#fam_caseextension'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Holds additional extended information for cases     |</p>
+<p>Case extension information, for custom extensions.</p>
 <h2 id="fam_casechild">FAM_CaseChild<a class="header-anchor" href="javascript:;" onclick="location.hash='#fam_casechild'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Stores data related to children in cases            |</p>
-<h2 id="fam_caseincome">FAM_CaseIncome<a class="header-anchor" href="javascript:;" onclick="location.hash='#fam_caseincome'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Details the income information for cases            |</p>
-<h2 id="fam_caseneed">FAM_CaseNeed<a class="header-anchor" href="javascript:;" onclick="location.hash='#fam_caseneed'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Records the needs identified for each case          |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>CaseId</td>
+<td>int</td>
+<td>IK</td>
+<td>Foreign key to case</td>
+</tr>
+<tr>
+<td>ChildId</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to child</td>
+</tr>
+<tr>
+<td>CID</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Child identifier</td>
+</tr>
+<tr>
+<td>CreateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>IsTerminated</td>
+<td>bit</td>
+<td></td>
+<td>Is terminated (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>int default 1</td>
+<td></td>
+<td>Status (default 1)</td>
+</tr>
+<tr>
+<td>TerminateDate</td>
+<td>datetime</td>
+<td></td>
+<td>Termination date</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+</tbody>
+</table>
 <h2 id="fam_caseparent">FAM_CaseParent<a class="header-anchor" href="javascript:;" onclick="location.hash='#fam_caseparent'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Contains information about parents in cases         |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>CaseId</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to case</td>
+</tr>
+<tr>
+<td>ParentId</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to parent</td>
+</tr>
+<tr>
+<td>PID</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Parent identifier</td>
+</tr>
+<tr>
+<td>CreateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+</tbody>
+</table>
 
                 </div>
 
@@ -291,16 +950,6 @@ CareControl                                    </span>
                                     <li class="group text-gray-800 hover:text-gray-900">
                                         <span v-hash="'#fam_casechild'" data-id="fam_casechild" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
                                             FAM_CaseChild
-                                        </span>
-                                    </li>
-                                    <li class="group text-gray-800 hover:text-gray-900">
-                                        <span v-hash="'#fam_caseincome'" data-id="fam_caseincome" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
-                                            FAM_CaseIncome
-                                        </span>
-                                    </li>
-                                    <li class="group text-gray-800 hover:text-gray-900">
-                                        <span v-hash="'#fam_caseneed'" data-id="fam_caseneed" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
-                                            FAM_CaseNeed
                                         </span>
                                     </li>
                                     <li class="group text-gray-800 hover:text-gray-900">

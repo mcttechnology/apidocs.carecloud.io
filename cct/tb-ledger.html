@@ -224,23 +224,1301 @@ CareControl                                    </span>
                     <h2 id="introduction">Introduction<a class="header-anchor" href="javascript:;" onclick="location.hash='#introduction'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>This section introduces the structure of the 'ledger' table and its relationships within the database. It specifically focuses on the connections between family members, such as the relationship between parents and children. This documentation aims to provide an overview of how family entities are interconnected.</p>
 <h2 id="fin_export">FIN_Export<a class="header-anchor" href="javascript:;" onclick="location.hash='#fin_export'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Manages the export of financial data and reports            |</p>
-<h2 id="fin_exportfile">FIN_ExportFile<a class="header-anchor" href="javascript:;" onclick="location.hash='#fin_exportfile'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Tracks files generated during financial data export         |</p>
-<h2 id="fin_externalinvoice">fin_ExternalInvoice<a class="header-anchor" href="javascript:;" onclick="location.hash='#fin_externalinvoice'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Stores invoices received from external entities             |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>PayDate</td>
+<td>datetime</td>
+<td></td>
+<td>Payment date</td>
+</tr>
+<tr>
+<td>UserId</td>
+<td>int</td>
+<td></td>
+<td>User ID</td>
+</tr>
+<tr>
+<td>LedgerCount</td>
+<td>int</td>
+<td></td>
+<td>Ledger count</td>
+</tr>
+<tr>
+<td>ProviderCount</td>
+<td>int</td>
+<td></td>
+<td>Provider count</td>
+</tr>
+<tr>
+<td>ClaimCount</td>
+<td>int</td>
+<td></td>
+<td>Claim count</td>
+</tr>
+<tr>
+<td>TotalAmount</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Total amount</td>
+</tr>
+<tr>
+<td>CareAmount</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Care amount</td>
+</tr>
+<tr>
+<td>GarnishmentAmount</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Garnishment amount</td>
+</tr>
+<tr>
+<td>AdjustmentAmount</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Adjustment amount</td>
+</tr>
+<tr>
+<td>Memo</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Memo</td>
+</tr>
+<tr>
+<td>Programe</td>
+<td>int</td>
+<td></td>
+<td>Program (0: CDE, 1: Stage 1)</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>int</td>
+<td></td>
+<td>Status</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserId</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserId</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>FundingSource</td>
+<td>nvarchar(1024)</td>
+<td></td>
+<td>Funding source</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+<tr>
+<td>ExportDate</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Export date</td>
+</tr>
+<tr>
+<td>ExportParam</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Export parameters</td>
+</tr>
+<tr>
+<td>Entities</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Entities</td>
+</tr>
+<tr>
+<td>FamilyFeeAmount</td>
+<td>decimal(38, 6)</td>
+<td></td>
+<td>Family fee amount</td>
+</tr>
+<tr>
+<td>RegisterFeeAmount</td>
+<td>decimal(38, 6)</td>
+<td></td>
+<td>Register fee amount</td>
+</tr>
+<tr>
+<td>ProviderAmountZeroCount</td>
+<td>int</td>
+<td></td>
+<td>Provider amount zero count</td>
+</tr>
+<tr>
+<td>Meta</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Metadata</td>
+</tr>
+<tr>
+<td>Steps</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Steps</td>
+</tr>
+<tr>
+<td>SummaryAmount</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Summary amount</td>
+</tr>
+<tr>
+<td>ExportVersion</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Export version</td>
+</tr>
+</tbody>
+</table>
 <h2 id="fin_ledger">FIN_Ledger<a class="header-anchor" href="javascript:;" onclick="location.hash='#fin_ledger'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Main ledger containing comprehensive financial transactions |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LegerId</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>ProviderID</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to provider</td>
+</tr>
+<tr>
+<td>LedgerCode</td>
+<td>nvarchar(100)</td>
+<td>IX</td>
+<td>Ledger code</td>
+</tr>
+<tr>
+<td>CustomerName</td>
+<td>nvarchar(200)</td>
+<td></td>
+<td>Customer name</td>
+</tr>
+<tr>
+<td>CustomerCode</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Customer code</td>
+</tr>
+<tr>
+<td>CreateDate</td>
+<td>datetime</td>
+<td></td>
+<td>Create date</td>
+</tr>
+<tr>
+<td>PayMethod</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Payment method</td>
+</tr>
+<tr>
+<td>Amount</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Amount</td>
+</tr>
+<tr>
+<td>Memo</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Memo</td>
+</tr>
+<tr>
+<td>PayDate</td>
+<td>datetime</td>
+<td>IX</td>
+<td>Payment date</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>int</td>
+<td></td>
+<td>Status</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserId</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserId</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>CustomerType</td>
+<td>int</td>
+<td></td>
+<td>Customer type</td>
+</tr>
+<tr>
+<td>ContractID</td>
+<td>int</td>
+<td></td>
+<td>Contract ID</td>
+</tr>
+<tr>
+<td>ExportId</td>
+<td>int</td>
+<td>IX</td>
+<td>Export ID</td>
+</tr>
+<tr>
+<td>EdocId</td>
+<td>int</td>
+<td></td>
+<td>Edoc ID</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+<tr>
+<td>FamilyFeeAmount</td>
+<td>decimal(38, 6)</td>
+<td></td>
+<td>Family fee amount</td>
+</tr>
+<tr>
+<td>RegisterFeeAmount</td>
+<td>decimal(38, 6)</td>
+<td></td>
+<td>Register fee amount</td>
+</tr>
+<tr>
+<td>AdjustmentAmount</td>
+<td>decimal(38, 6)</td>
+<td></td>
+<td>Adjustment amount</td>
+</tr>
+<tr>
+<td>ClaimZeroCount</td>
+<td>int</td>
+<td></td>
+<td>Claim zero count</td>
+</tr>
+<tr>
+<td>Meta</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Metadata</td>
+</tr>
+<tr>
+<td>PaymentAmount</td>
+<td>decimal(38, 6)</td>
+<td></td>
+<td>Payment amount</td>
+</tr>
+<tr>
+<td>ExportDate</td>
+<td>datetimeoffset</td>
+<td>IX</td>
+<td>Export date</td>
+</tr>
+<tr>
+<td>SummaryAmount</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Summary amount</td>
+</tr>
+<tr>
+<td>ProviderName</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Provider name</td>
+</tr>
+<tr>
+<td>ContractCode</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Contract code</td>
+</tr>
+</tbody>
+</table>
 <h2 id="fin_subledger">FIN_SubLedger<a class="header-anchor" href="javascript:;" onclick="location.hash='#fin_subledger'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Subsidiary ledger tracking detailed financial transactions  |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SubLedgerId</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>LegerID</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to ledger</td>
+</tr>
+<tr>
+<td>ExportId</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to export</td>
+</tr>
+<tr>
+<td>Type</td>
+<td>int</td>
+<td>IX</td>
+<td>Type (0: Claim, 1: Adjustment, 2: Garnishment)</td>
+</tr>
+<tr>
+<td>ClaimId</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to claim</td>
+</tr>
+<tr>
+<td>ChildID</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to child</td>
+</tr>
+<tr>
+<td>ProviderID</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to provider</td>
+</tr>
+<tr>
+<td>CaseID</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to case</td>
+</tr>
+<tr>
+<td>ClaimCode</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Claim code</td>
+</tr>
+<tr>
+<td>ClaimStartDate</td>
+<td>datetime</td>
+<td></td>
+<td>Claim start date</td>
+</tr>
+<tr>
+<td>ClaimEndDate</td>
+<td>datetime</td>
+<td></td>
+<td>Claim end date</td>
+</tr>
+<tr>
+<td>Title</td>
+<td>nvarchar(200)</td>
+<td></td>
+<td>Title</td>
+</tr>
+<tr>
+<td>Price</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Price</td>
+</tr>
+<tr>
+<td>Quantity</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Quantity</td>
+</tr>
+<tr>
+<td>Amount</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Amount</td>
+</tr>
+<tr>
+<td>Memo</td>
+<td>nvarchar(200)</td>
+<td></td>
+<td>Memo</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>int</td>
+<td></td>
+<td>Status</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserId</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserId</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>ContractID</td>
+<td>int</td>
+<td></td>
+<td>Contract ID</td>
+</tr>
+<tr>
+<td>IsPay2Parent</td>
+<td>bit</td>
+<td></td>
+<td>Is pay to parent (Y/N)</td>
+</tr>
+<tr>
+<td>FamilyFee</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Family fee</td>
+</tr>
+<tr>
+<td>PVTotalAmount</td>
+<td>decimal(18, 4)</td>
+<td>IX</td>
+<td>PV total amount</td>
+</tr>
+<tr>
+<td>Familyid</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to family</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+<tr>
+<td>ContractCode</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Contract code</td>
+</tr>
+<tr>
+<td>FamilyName</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Family name</td>
+</tr>
+<tr>
+<td>ChildName</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Child name</td>
+</tr>
+<tr>
+<td>ContractName</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Contract name</td>
+</tr>
+<tr>
+<td>ProviderName</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Provider name</td>
+</tr>
+<tr>
+<td>TypeName</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Type name</td>
+</tr>
+<tr>
+<td>Meta</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Metadata</td>
+</tr>
+<tr>
+<td>Source</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Source</td>
+</tr>
+<tr>
+<td>ExportDate</td>
+<td>datetimeoffset</td>
+<td>IX</td>
+<td>Export date</td>
+</tr>
+<tr>
+<td>ItemCode</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Item code</td>
+</tr>
+<tr>
+<td>RegistrationFee</td>
+<td>decimal(38, 6)</td>
+<td></td>
+<td>Registration fee</td>
+</tr>
+<tr>
+<td>ClaimExternalId</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Claim external ID</td>
+</tr>
+<tr>
+<td>FamilyExternalId</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Family external ID</td>
+</tr>
+<tr>
+<td>ChildExternalId</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Child external ID</td>
+</tr>
+<tr>
+<td>ProviderExternalId</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Provider external ID</td>
+</tr>
+<tr>
+<td>ExportExternalId</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Export external ID</td>
+</tr>
+<tr>
+<td>ClaimContractID</td>
+<td>int</td>
+<td></td>
+<td>Claim contract ID</td>
+</tr>
+<tr>
+<td>ClaimContractCode</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Claim contract code</td>
+</tr>
+<tr>
+<td>ClaimContractName</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Claim contract name</td>
+</tr>
+<tr>
+<td>OtherAmount</td>
+<td>decimal(38, 6)</td>
+<td></td>
+<td>Other amount</td>
+</tr>
+<tr>
+<td>PayDate</td>
+<td>datetime</td>
+<td>IX</td>
+<td>Payment date</td>
+</tr>
+</tbody>
+</table>
 <h2 id="fin_subledgeritem">FIN_SubLedgerItem<a class="header-anchor" href="javascript:;" onclick="location.hash='#fin_subledgeritem'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Details individual items within a sub-ledger                |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>ExportId</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to export</td>
+</tr>
+<tr>
+<td>Source</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Source</td>
+</tr>
+<tr>
+<td>ClaimId</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Claim ID</td>
+</tr>
+<tr>
+<td>StartDate</td>
+<td>datetime</td>
+<td></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>EndDate</td>
+<td>datetime</td>
+<td></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>ActualAgeGroup</td>
+<td>int</td>
+<td></td>
+<td>Actual age group</td>
+</tr>
+<tr>
+<td>ActualRateType</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Actual rate type</td>
+</tr>
+<tr>
+<td>ActualRate</td>
+<td>decimal(38, 6)</td>
+<td></td>
+<td>Actual rate</td>
+</tr>
+<tr>
+<td>ActualQty</td>
+<td>decimal(38, 6)</td>
+<td></td>
+<td>Actual quantity</td>
+</tr>
+<tr>
+<td>ActualAmount</td>
+<td>decimal(38, 6)</td>
+<td></td>
+<td>Actual amount</td>
+</tr>
+<tr>
+<td>EwFactor</td>
+<td>decimal(38, 6)</td>
+<td></td>
+<td>EW factor</td>
+</tr>
+<tr>
+<td>Discount</td>
+<td>decimal(38, 6)</td>
+<td></td>
+<td>Discount</td>
+</tr>
+<tr>
+<td>AgeGroupDisplay</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Age group display</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserId</td>
+<td>bigint</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateUserId</td>
+<td>bigint</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>bigint</td>
+<td></td>
+<td>Version</td>
+</tr>
+</tbody>
+</table>
 <h2 id="fin_provider">FIN_Provider<a class="header-anchor" href="javascript:;" onclick="location.hash='#fin_provider'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Stores financial information specific to providers          |</p>
-<h2 id="fin_providernegative">FIN_ProviderNegative<a class="header-anchor" href="javascript:;" onclick="location.hash='#fin_providernegative'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Tracks negative financial transactions for providers        |</p>
-<h2 id="fin_repaymentfamily">FIN_RepaymentFamily<a class="header-anchor" href="javascript:;" onclick="location.hash='#fin_repaymentfamily'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Manages repayment transactions related to families          |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ProviderID</td>
+<td>int</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>LastExportDate</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Last export date</td>
+</tr>
+<tr>
+<td>EffectiveDate</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Effective date</td>
+</tr>
+<tr>
+<td>ProviderNO</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>Provider number</td>
+</tr>
+<tr>
+<td>VenderNO</td>
+<td>nvarchar(500)</td>
+<td></td>
+<td>Vendor number</td>
+</tr>
+<tr>
+<td>ProviderName</td>
+<td>nvarchar(1000)</td>
+<td></td>
+<td>Provider name</td>
+</tr>
+<tr>
+<td>ProviderCategory</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Provider category (DICT PC Individual;Corporation)</td>
+</tr>
+<tr>
+<td>ProviderType</td>
+<td>int</td>
+<td></td>
+<td>Provider type</td>
+</tr>
+<tr>
+<td>FirstName</td>
+<td>nvarchar(500)</td>
+<td></td>
+<td>First name</td>
+</tr>
+<tr>
+<td>LastName</td>
+<td>nvarchar(500)</td>
+<td></td>
+<td>Last name</td>
+</tr>
+<tr>
+<td>MiddleInitial</td>
+<td>nvarchar(10)</td>
+<td></td>
+<td>Middle initial</td>
+</tr>
+<tr>
+<td>MailZip</td>
+<td>nvarchar(10)</td>
+<td></td>
+<td>Mailing zip code</td>
+</tr>
+<tr>
+<td>MailAddress</td>
+<td>nvarchar(300)</td>
+<td></td>
+<td>Mailing address</td>
+</tr>
+<tr>
+<td>MailUnit</td>
+<td>nvarchar(300)</td>
+<td></td>
+<td>Mailing unit</td>
+</tr>
+<tr>
+<td>MailCity</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>Mailing city</td>
+</tr>
+<tr>
+<td>MailCounty</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>Mailing county</td>
+</tr>
+<tr>
+<td>MailState</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>Mailing state</td>
+</tr>
+<tr>
+<td>MailCityID</td>
+<td>int</td>
+<td></td>
+<td>Mailing city ID</td>
+</tr>
+<tr>
+<td>MailCountyID</td>
+<td>int</td>
+<td></td>
+<td>Mailing county ID</td>
+</tr>
+<tr>
+<td>MailStateID</td>
+<td>int</td>
+<td></td>
+<td>Mailing state ID</td>
+</tr>
+<tr>
+<td>EMailAddress</td>
+<td>nvarchar(80)</td>
+<td></td>
+<td>Email address</td>
+</tr>
+<tr>
+<td>Phone1</td>
+<td>nvarchar(35)</td>
+<td></td>
+<td>Primary phone</td>
+</tr>
+<tr>
+<td>Phone2</td>
+<td>nvarchar(35)</td>
+<td></td>
+<td>Secondary phone</td>
+</tr>
+<tr>
+<td>Cell</td>
+<td>nvarchar(35)</td>
+<td></td>
+<td>Cell phone</td>
+</tr>
+<tr>
+<td>Fax</td>
+<td>nvarchar(20)</td>
+<td></td>
+<td>Fax</td>
+</tr>
+<tr>
+<td>SSN</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Social Security Number</td>
+</tr>
+<tr>
+<td>TaxID</td>
+<td>nvarchar(20)</td>
+<td></td>
+<td>Tax ID</td>
+</tr>
+<tr>
+<td>OtherIDType</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Other ID type (DICT PE :0:Driver Lic)</td>
+</tr>
+<tr>
+<td>OtherID</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Other ID</td>
+</tr>
+<tr>
+<td>TaxLegalFirstName</td>
+<td>nvarchar(50)</td>
+<td></td>
+<td>Tax legal first name</td>
+</tr>
+<tr>
+<td>TaxLegalMI</td>
+<td>nvarchar(50)</td>
+<td></td>
+<td>Tax legal middle initial</td>
+</tr>
+<tr>
+<td>TaxLegalName</td>
+<td>nvarchar(300)</td>
+<td></td>
+<td>Tax legal name</td>
+</tr>
+<tr>
+<td>TrustLineStatus</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Trust line status</td>
+</tr>
+<tr>
+<td>PaymentMethod</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Payment method (DICT PL: 0: Check, 1: Debit Card, 2: Direct Deposit)</td>
+</tr>
+<tr>
+<td>ProviderManager</td>
+<td>int</td>
+<td></td>
+<td>Provider manager</td>
+</tr>
+<tr>
+<td>History</td>
+<td>int</td>
+<td></td>
+<td>History (version)</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>IRSExportDate</td>
+<td>datetime</td>
+<td></td>
+<td>IRS export date</td>
+</tr>
+<tr>
+<td>LastProviderCategory</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Last provider category</td>
+</tr>
+<tr>
+<td>AddressChangeDate</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Address change date</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fin_externalinvoice">Fin_ExternalInvoice<a class="header-anchor" href="javascript:;" onclick="location.hash='#fin_externalinvoice'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ExternalInvoiceId</td>
+<td>char(36)</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>TransId</td>
+<td>char(36)</td>
+<td>IX</td>
+<td>Transaction ID</td>
+</tr>
+<tr>
+<td>SequenceNo</td>
+<td>bigint</td>
+<td></td>
+<td>Sequence number</td>
+</tr>
+<tr>
+<td>PaymentEntityId</td>
+<td>int</td>
+<td>IX</td>
+<td>Payment entity ID</td>
+</tr>
+<tr>
+<td>CollectionAccountId</td>
+<td>char(36)</td>
+<td></td>
+<td>Collection account ID</td>
+</tr>
+<tr>
+<td>PostDate</td>
+<td>varchar(8)</td>
+<td>IX</td>
+<td>Post date</td>
+</tr>
+<tr>
+<td>DueDate</td>
+<td>varchar(8)</td>
+<td></td>
+<td>Due date</td>
+</tr>
+<tr>
+<td>PeriodStart</td>
+<td>varchar(8)</td>
+<td></td>
+<td>Period start</td>
+</tr>
+<tr>
+<td>PeriodEnd</td>
+<td>varchar(8)</td>
+<td></td>
+<td>Period end</td>
+</tr>
+<tr>
+<td>ParentId</td>
+<td>int</td>
+<td></td>
+<td>Parent ID</td>
+</tr>
+<tr>
+<td>InvoiceComment</td>
+<td>varchar(1024)</td>
+<td></td>
+<td>Invoice comment</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>int default '0'</td>
+<td></td>
+<td>Status</td>
+</tr>
+<tr>
+<td>BatchNo</td>
+<td>int</td>
+<td>IX</td>
+<td>Batch number</td>
+</tr>
+<tr>
+<td>PaidOutOfBand</td>
+<td>bit</td>
+<td></td>
+<td>Paid out of band</td>
+</tr>
+<tr>
+<td>Amount</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Amount</td>
+</tr>
+<tr>
+<td>OnlinePay</td>
+<td>bit</td>
+<td></td>
+<td>Online payment</td>
+</tr>
+<tr>
+<td>ToEmail</td>
+<td>varchar(300)</td>
+<td></td>
+<td>To email</td>
+</tr>
+<tr>
+<td>CollectionAccountCode</td>
+<td>varchar(300)</td>
+<td></td>
+<td>Collection account code</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserId</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpdateUserId</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td>IX</td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td>IX</td>
+<td>Record update time</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int default '1'</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>PortalInvoiceIdentityId</td>
+<td>varchar(500)</td>
+<td>IX</td>
+<td>Portal invoice identity ID</td>
+</tr>
+<tr>
+<td>PaymentReceiptNo</td>
+<td>varchar(500)</td>
+<td>IX</td>
+<td>Payment receipt number</td>
+</tr>
+<tr>
+<td>LastPullFromPortalTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Last pull from portal time</td>
+</tr>
+<tr>
+<td>LastSyncToPortalTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Last sync to portal time</td>
+</tr>
+</tbody>
+</table>
 
                 </div>
 
@@ -290,16 +1568,6 @@ CareControl                                    </span>
                                         </span>
                                     </li>
                                     <li class="group text-gray-800 hover:text-gray-900">
-                                        <span v-hash="'#fin_exportfile'" data-id="fin_exportfile" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
-                                            FIN_ExportFile
-                                        </span>
-                                    </li>
-                                    <li class="group text-gray-800 hover:text-gray-900">
-                                        <span v-hash="'#fin_externalinvoice'" data-id="fin_externalinvoice" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
-                                            fin_ExternalInvoice
-                                        </span>
-                                    </li>
-                                    <li class="group text-gray-800 hover:text-gray-900">
                                         <span v-hash="'#fin_ledger'" data-id="fin_ledger" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
                                             FIN_Ledger
                                         </span>
@@ -320,13 +1588,8 @@ CareControl                                    </span>
                                         </span>
                                     </li>
                                     <li class="group text-gray-800 hover:text-gray-900">
-                                        <span v-hash="'#fin_providernegative'" data-id="fin_providernegative" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
-                                            FIN_ProviderNegative
-                                        </span>
-                                    </li>
-                                    <li class="group text-gray-800 hover:text-gray-900">
-                                        <span v-hash="'#fin_repaymentfamily'" data-id="fin_repaymentfamily" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
-                                            FIN_RepaymentFamily
+                                        <span v-hash="'#fin_externalinvoice'" data-id="fin_externalinvoice" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            Fin_ExternalInvoice
                                         </span>
                                     </li>
                             </ul>

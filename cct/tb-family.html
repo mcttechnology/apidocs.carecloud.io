@@ -226,7 +226,6 @@ CareControl                                    </span>
 It specifically focuses on the connections between family members, such as the relationship between parents and children.
 This documentation aims to provide an overview of how family entities are interconnected.</p>
 <h2 id="fam_family">FAM_Family<a class="header-anchor" href="javascript:;" onclick="location.hash='#fam_family'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>General family information</p>
 <table>
 <thead>
 <tr>
@@ -240,477 +239,476 @@ This documentation aims to provide an overview of how family entities are interc
 <tr>
 <td>FamilyID</td>
 <td>int identity</td>
-<td>PK_FAM_FAMILY</td>
-<td>PK, identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
 </tr>
 <tr>
 <td>DisplayAsName</td>
 <td>nvarchar(60)</td>
 <td></td>
-<td></td>
+<td>Display as name</td>
 </tr>
 <tr>
 <td>CaseNo</td>
 <td>nvarchar(30)</td>
 <td></td>
-<td></td>
+<td>Case number</td>
 </tr>
 <tr>
 <td>CountyNumber</td>
 <td>nvarchar(80)</td>
 <td></td>
-<td></td>
+<td>County number</td>
 </tr>
 <tr>
 <td>CountyScreen</td>
 <td>nvarchar(32)</td>
 <td></td>
-<td>DICT FG: 1:IPCA 2:MCAP 4:MAOC 8:MSTC 16:ICAC 32:ICAS 64:IPRC</td>
+<td>County screen</td>
 </tr>
 <tr>
 <td>Stage1StarDate</td>
 <td>datetime</td>
 <td></td>
-<td></td>
+<td>Stage 1 start date</td>
 </tr>
 <tr>
 <td>Stage1EndDate</td>
 <td>datetime</td>
 <td></td>
-<td></td>
+<td>Stage 1 end date</td>
 </tr>
 <tr>
 <td>Stage2StarDate</td>
 <td>datetime</td>
 <td></td>
-<td></td>
+<td>Stage 2 start date</td>
 </tr>
 <tr>
 <td>Stage2EndDate</td>
 <td>datetime</td>
 <td></td>
-<td></td>
+<td>Stage 2 end date</td>
 </tr>
 <tr>
 <td>Stage3StarDate</td>
 <td>datetime</td>
 <td></td>
-<td></td>
+<td>Stage 3 start date</td>
 </tr>
 <tr>
 <td>Stage3EndDate</td>
 <td>datetime</td>
 <td></td>
-<td></td>
+<td>Stage 3 end date</td>
 </tr>
 <tr>
 <td>LastName</td>
 <td>nvarchar(30)</td>
 <td></td>
-<td></td>
+<td>Last name</td>
 </tr>
 <tr>
 <td>FirstName</td>
 <td>nvarchar(30)</td>
 <td></td>
-<td></td>
+<td>First name</td>
 </tr>
 <tr>
 <td>MiddleInitial</td>
 <td>nvarchar(10)</td>
 <td></td>
-<td></td>
+<td>Middle initial</td>
 </tr>
 <tr>
 <td>FamilyType</td>
 <td>nvarchar(32)</td>
 <td></td>
-<td>Dict FA 0:Natural 1: Comparing</td>
+<td>Family type (Natural, Comparing)</td>
 </tr>
 <tr>
 <td>ParentSize</td>
 <td>nvarchar(32)</td>
 <td></td>
-<td>Dict FB 1= Single Parent 2= Parent Family</td>
+<td>Parent size (Single Parent, Parent Family)</td>
 </tr>
 <tr>
 <td>FamilySize</td>
 <td>int</td>
 <td></td>
-<td></td>
+<td>Family size</td>
 </tr>
 <tr>
 <td>FamilyMonthIncome</td>
 <td>decimal(18, 2)</td>
 <td></td>
-<td></td>
+<td>Family monthly income</td>
 </tr>
 <tr>
 <td>FamilyFeeHourly</td>
 <td>decimal(18, 2)</td>
 <td></td>
-<td></td>
+<td>Family fee per hour</td>
 </tr>
 <tr>
 <td>FamilyFeeFT</td>
 <td>decimal(18, 2)</td>
 <td></td>
-<td></td>
+<td>Family fee full time</td>
 </tr>
 <tr>
 <td>FamilyFeePT</td>
 <td>decimal(18, 2)</td>
 <td></td>
-<td></td>
+<td>Family fee part time</td>
 </tr>
 <tr>
 <td>PublicSSNumber</td>
 <td>bit</td>
 <td></td>
-<td>Y/ N</td>
+<td>Is SSN public (Y/N)</td>
 </tr>
 <tr>
 <td>Zip</td>
 <td>nvarchar(10)</td>
 <td></td>
-<td></td>
+<td>Zip code</td>
 </tr>
 <tr>
 <td>Address</td>
 <td>nvarchar(300)</td>
 <td></td>
-<td></td>
+<td>Address</td>
 </tr>
 <tr>
 <td>Unit</td>
 <td>nvarchar(300)</td>
 <td></td>
-<td></td>
+<td>Unit number</td>
 </tr>
 <tr>
 <td>City</td>
 <td>nvarchar(30)</td>
 <td></td>
-<td></td>
+<td>City name</td>
 </tr>
 <tr>
 <td>County</td>
 <td>nvarchar(50)</td>
 <td></td>
-<td></td>
+<td>County name</td>
 </tr>
 <tr>
 <td>State</td>
 <td>nvarchar(30)</td>
 <td></td>
-<td></td>
+<td>State name</td>
 </tr>
 <tr>
 <td>CityID</td>
 <td>int</td>
 <td></td>
-<td></td>
+<td>City ID</td>
 </tr>
 <tr>
 <td>CountyID</td>
 <td>int</td>
 <td></td>
-<td></td>
+<td>County ID</td>
 </tr>
 <tr>
 <td>StateID</td>
 <td>int</td>
 <td></td>
-<td></td>
+<td>State ID</td>
 </tr>
 <tr>
 <td>SameAddress</td>
 <td>bit</td>
 <td></td>
-<td>0 No 1 Yes</td>
+<td>Same address flag (Y/N)</td>
 </tr>
 <tr>
 <td>MailZip</td>
 <td>nvarchar(10)</td>
 <td></td>
-<td></td>
+<td>Mailing zip code</td>
 </tr>
 <tr>
 <td>MailAddress</td>
 <td>nvarchar(300)</td>
 <td></td>
-<td></td>
+<td>Mailing address</td>
 </tr>
 <tr>
 <td>MailUnit</td>
 <td>nvarchar(300)</td>
 <td></td>
-<td></td>
+<td>Mailing unit number</td>
 </tr>
 <tr>
 <td>MailCity</td>
 <td>nvarchar(30)</td>
 <td></td>
-<td></td>
+<td>Mailing city name</td>
 </tr>
 <tr>
 <td>MailCounty</td>
 <td>nvarchar(50)</td>
 <td></td>
-<td></td>
+<td>Mailing county name</td>
 </tr>
 <tr>
 <td>MailState</td>
 <td>nvarchar(30)</td>
 <td></td>
-<td></td>
+<td>Mailing state name</td>
 </tr>
 <tr>
 <td>MailCityID</td>
 <td>int</td>
 <td></td>
-<td></td>
+<td>Mailing city ID</td>
 </tr>
 <tr>
 <td>MailCountyID</td>
 <td>int</td>
 <td></td>
-<td></td>
+<td>Mailing county ID</td>
 </tr>
 <tr>
 <td>MailStateID</td>
 <td>int</td>
 <td></td>
-<td></td>
+<td>Mailing state ID</td>
 </tr>
 <tr>
 <td>EMailAddress</td>
 <td>nvarchar(80)</td>
 <td></td>
-<td></td>
+<td>Email address</td>
 </tr>
 <tr>
 <td>HomePhone</td>
 <td>nvarchar(35)</td>
 <td></td>
-<td></td>
+<td>Home phone number</td>
 </tr>
 <tr>
 <td>WorkPhone</td>
 <td>nvarchar(35)</td>
 <td></td>
-<td></td>
+<td>Work phone number</td>
 </tr>
 <tr>
 <td>WorkPhoeType</td>
 <td>nvarchar(32)</td>
 <td></td>
-<td>Dict FC - Ext - Direct</td>
+<td>Work phone type (Ext, Direct)</td>
 </tr>
 <tr>
 <td>Cell</td>
 <td>nvarchar(35)</td>
 <td></td>
-<td></td>
+<td>Cell phone number</td>
 </tr>
 <tr>
 <td>RcvMsg</td>
 <td>bit</td>
 <td></td>
-<td></td>
+<td>Receive messages (Y/N)</td>
 </tr>
 <tr>
 <td>Languange</td>
 <td>int</td>
 <td></td>
-<td>Langurage Code 1= English(default) 2= Spanish</td>
+<td>Language code (1: English, 2: Spanish)</td>
 </tr>
 <tr>
 <td>Contract</td>
 <td>int</td>
 <td></td>
-<td>ContractID Stage 2; APP</td>
+<td>Contract ID (Stage 2; APP)</td>
 </tr>
 <tr>
 <td>CashAid</td>
 <td>nvarchar(32)</td>
 <td></td>
-<td>DICT FH 0 = Never 1 =Currently Receiving Cash Aid 2 = Termed from Cash Aid</td>
+<td>Cash aid status (Never, Currently Receiving, Termed from Cash Aid)</td>
 </tr>
 <tr>
 <td>TermDate</td>
 <td>datetime</td>
 <td></td>
-<td></td>
+<td>Termination date</td>
 </tr>
 <tr>
 <td>CalWorkActivity</td>
 <td>nvarchar(100)</td>
 <td></td>
-<td></td>
+<td>CalWork activity</td>
 </tr>
 <tr>
 <td>Prohibit</td>
 <td>bit</td>
 <td></td>
-<td>0 No 1 Yes</td>
+<td>Prohibit (0 No, 1 Yes)</td>
 </tr>
 <tr>
 <td>ProhibitReson</td>
 <td>nvarchar(32)</td>
 <td></td>
-<td>DICT F6</td>
+<td>Prohibit reason</td>
 </tr>
 <tr>
 <td>BestCallNum</td>
 <td>nvarchar(100)</td>
 <td></td>
-<td>DICT FE</td>
+<td>Best call number</td>
 </tr>
 <tr>
 <td>BestCallTime</td>
 <td>nvarchar(100)</td>
 <td></td>
-<td>DICT FD</td>
+<td>Best call time</td>
 </tr>
 <tr>
 <td>CompanionType</td>
 <td>int</td>
 <td></td>
-<td>0:Normal 1:Companion 2 HasCompanion</td>
+<td>Companion type (0: Normal, 1: Companion, 2: HasCompanion)</td>
 </tr>
 <tr>
 <td>CompanionFamilyID</td>
 <td>int</td>
 <td></td>
-<td></td>
+<td>Companion family ID</td>
 </tr>
 <tr>
 <td>Status</td>
 <td>int</td>
 <td></td>
-<td></td>
+<td>Status</td>
 </tr>
 <tr>
 <td>Comment</td>
 <td>nvarchar(max)</td>
 <td></td>
-<td></td>
+<td>Comment</td>
 </tr>
 <tr>
 <td>CaseManager</td>
 <td>int</td>
 <td></td>
-<td></td>
+<td>Case manager</td>
 </tr>
 <tr>
 <td>OwnerId</td>
 <td>int</td>
 <td></td>
-<td></td>
+<td>Owner ID</td>
 </tr>
 <tr>
 <td>StartDate</td>
 <td>datetime</td>
 <td></td>
-<td></td>
+<td>Start date</td>
 </tr>
 <tr>
 <td>EndDate</td>
 <td>datetime</td>
 <td></td>
-<td></td>
+<td>End date</td>
 </tr>
 <tr>
 <td>History</td>
 <td>int</td>
 <td></td>
-<td>History Version</td>
+<td>History version</td>
 </tr>
 <tr>
 <td>Disable</td>
 <td>int</td>
-<td>D_dbo_FAM_Family_1</td>
-<td>0 No 1 Yes</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
 </tr>
 <tr>
 <td>CreateUserId</td>
 <td>int</td>
 <td></td>
-<td></td>
+<td>ID of the user who created</td>
 </tr>
 <tr>
 <td>UpateUserId</td>
 <td>int</td>
 <td></td>
-<td></td>
+<td>ID of the user who updated</td>
 </tr>
 <tr>
 <td>Version</td>
 <td>int</td>
 <td></td>
-<td></td>
+<td>Version</td>
 </tr>
 <tr>
 <td>CPS</td>
 <td>nvarchar(32)</td>
 <td></td>
-<td></td>
+<td>CPS</td>
 </tr>
 <tr>
 <td>FeeWaiver</td>
 <td>bit</td>
 <td></td>
-<td></td>
+<td>Fee waiver (Y/N)</td>
 </tr>
 <tr>
 <td>FeeWaiverStartDate</td>
 <td>datetime</td>
 <td></td>
-<td></td>
+<td>Fee waiver start date</td>
 </tr>
 <tr>
 <td>FeeWaiverEndDate</td>
 <td>datetime</td>
 <td></td>
-<td></td>
+<td>Fee waiver end date</td>
 </tr>
 <tr>
 <td>CAPPStartDate</td>
 <td>datetime</td>
 <td></td>
-<td></td>
+<td>CAPP start date</td>
 </tr>
 <tr>
 <td>CAPPEndDate</td>
 <td>datetime</td>
 <td></td>
-<td></td>
+<td>CAPP end date</td>
 </tr>
 <tr>
 <td>Homeless</td>
 <td>int</td>
 <td></td>
-<td></td>
+<td>Homeless</td>
 </tr>
 <tr>
 <td>CreateTime</td>
 <td>datetimeoffset</td>
 <td></td>
-<td></td>
+<td>Record creation time</td>
 </tr>
 <tr>
 <td>UpdateTime</td>
 <td>datetimeoffset</td>
 <td></td>
-<td></td>
+<td>Record update time</td>
 </tr>
 </tbody>
 </table>
 <h2 id="fam_familyextension">Fam_FamilyExtension<a class="header-anchor" href="javascript:;" onclick="location.hash='#fam_familyextension'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>Extended family information, mainly for future custom extensions.</p>
 <h2 id="fam_child">FAM_Child<a class="header-anchor" href="javascript:;" onclick="location.hash='#fam_child'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Child details and information</p>
 <table>
 <thead>
 <tr>
@@ -718,341 +716,2160 @@ This documentation aims to provide an overview of how family entities are interc
 <th>Type</th>
 <th>Index</th>
 <th>Description</th>
-<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>ChildID</td>
 <td>int identity</td>
-<td>PK_FAM_CHILD</td>
-<td>PK, identity</td>
-<td></td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
 </tr>
 <tr>
 <td>FamilyID</td>
 <td>int</td>
-<td>_dta_index_FAM_Child_c_52_914818321__K2, fam_child_familyid_index</td>
-<td></td>
-<td></td>
+<td>CL, IX</td>
+<td>Foreign key to family</td>
 </tr>
 <tr>
 <td>LastName</td>
 <td>nvarchar(100)</td>
-<td>_dta_index_FAM_Child_11_914818321__K1_3_4_5</td>
 <td></td>
-<td></td>
+<td>Last name</td>
 </tr>
 <tr>
 <td>FirstName</td>
 <td>nvarchar(100)</td>
-<td>_dta_index_FAM_Child_11_914818321__K1_3_4_5</td>
 <td></td>
-<td></td>
+<td>First name</td>
 </tr>
 <tr>
 <td>MiddleInitial</td>
 <td>nvarchar(10)</td>
-<td>_dta_index_FAM_Child_11_914818321__K1_3_4_5</td>
 <td></td>
-<td></td>
+<td>Middle initial</td>
 </tr>
 <tr>
 <td>DateOfBirth</td>
 <td>datetime</td>
 <td></td>
-<td></td>
-<td></td>
+<td>Date of birth</td>
 </tr>
 <tr>
 <td>Gender</td>
 <td>nvarchar(32)</td>
 <td></td>
-<td>DICT O F;M</td>
-<td></td>
+<td>Gender</td>
 </tr>
 <tr>
 <td>Grade</td>
 <td>decimal(18, 2)</td>
 <td></td>
-<td></td>
-<td></td>
+<td>Grade</td>
 </tr>
 <tr>
 <td>SSNumber</td>
 <td>nvarchar(30)</td>
 <td></td>
-<td></td>
-<td></td>
+<td>Social Security Number</td>
 </tr>
 <tr>
 <td>PublicSSNumber</td>
 <td>bit</td>
 <td></td>
-<td>Y/ N</td>
-<td></td>
+<td>Is SSN public (Y/N)</td>
 </tr>
 <tr>
 <td>Language</td>
 <td>int</td>
 <td></td>
-<td>LanguageID</td>
-<td></td>
+<td>Language ID</td>
 </tr>
 <tr>
 <td>LimitedEnglish</td>
 <td>bit</td>
 <td></td>
-<td>Y/ N</td>
-<td></td>
+<td>Limited English proficiency (Y/N)</td>
 </tr>
 <tr>
 <td>Ethnicity</td>
 <td>int</td>
 <td></td>
-<td>EthnicityID</td>
-<td></td>
+<td>Ethnicity ID</td>
 </tr>
 <tr>
 <td>Race</td>
 <td>int</td>
 <td></td>
-<td>RaceID</td>
-<td></td>
+<td>Race ID</td>
 </tr>
 <tr>
 <td>CitizenInfo</td>
 <td>nvarchar(20)</td>
 <td></td>
-<td>CitizenInfoID</td>
-<td></td>
+<td>Citizen info ID</td>
 </tr>
 <tr>
 <td>Zip</td>
 <td>nvarchar(10)</td>
 <td></td>
-<td></td>
-<td></td>
+<td>Zip code</td>
 </tr>
 <tr>
 <td>Address</td>
 <td>nvarchar(300)</td>
 <td></td>
-<td></td>
-<td></td>
+<td>Address</td>
 </tr>
 <tr>
 <td>Unit</td>
 <td>nvarchar(300)</td>
 <td></td>
-<td></td>
-<td></td>
+<td>Unit number</td>
 </tr>
 <tr>
 <td>City</td>
 <td>nvarchar(30)</td>
 <td></td>
-<td></td>
-<td></td>
+<td>City name</td>
 </tr>
 <tr>
 <td>CityID</td>
 <td>int</td>
 <td></td>
-<td></td>
-<td></td>
+<td>City ID</td>
 </tr>
 <tr>
 <td>County</td>
 <td>nvarchar(30)</td>
 <td></td>
-<td></td>
-<td></td>
+<td>County name</td>
 </tr>
 <tr>
 <td>CountyID</td>
 <td>int</td>
 <td></td>
-<td></td>
-<td></td>
+<td>County ID</td>
 </tr>
 <tr>
 <td>State</td>
 <td>nvarchar(30)</td>
 <td></td>
-<td></td>
-<td></td>
+<td>State name</td>
 </tr>
 <tr>
 <td>StateID</td>
 <td>int</td>
 <td></td>
-<td></td>
-<td></td>
+<td>State ID</td>
 </tr>
 <tr>
 <td>Relationship</td>
 <td>int</td>
 <td></td>
-<td>RelationshipID</td>
-<td></td>
+<td>Relationship ID</td>
 </tr>
 <tr>
 <td>IncludeInSize</td>
 <td>bit</td>
 <td></td>
-<td>Y/ N</td>
-<td></td>
+<td>Include in size (Y/N)</td>
 </tr>
 <tr>
 <td>AdjustFactor</td>
 <td>decimal(18, 2)</td>
 <td></td>
-<td></td>
-<td></td>
+<td>Adjust factor</td>
 </tr>
 <tr>
 <td>MinorParent</td>
 <td>bit</td>
 <td></td>
-<td></td>
-<td></td>
+<td>Minor parent (Y/N)</td>
 </tr>
 <tr>
 <td>IEPLastMeeting</td>
 <td>datetime</td>
 <td></td>
-<td></td>
-<td></td>
+<td>Last IEP meeting date</td>
 </tr>
 <tr>
 <td>IEPNextMeeting</td>
 <td>datetime</td>
 <td></td>
-<td></td>
-<td></td>
+<td>Next IEP meeting date</td>
 </tr>
 <tr>
 <td>Status</td>
 <td>int</td>
 <td></td>
-<td></td>
-<td></td>
+<td>Status</td>
 </tr>
 <tr>
 <td>Comments</td>
 <td>nvarchar(max)</td>
 <td></td>
-<td></td>
-<td></td>
+<td>Comments</td>
 </tr>
 <tr>
 <td>StartDate</td>
 <td>datetime</td>
 <td></td>
-<td></td>
-<td></td>
+<td>Start date</td>
 </tr>
 <tr>
 <td>EndDate</td>
 <td>datetime</td>
 <td></td>
-<td></td>
-<td></td>
+<td>End date</td>
 </tr>
 <tr>
 <td>History</td>
 <td>int</td>
 <td></td>
-<td>History Version</td>
-<td></td>
+<td>History version</td>
 </tr>
 <tr>
 <td>Disable</td>
 <td>bit</td>
-<td></td>
-<td>0 No 1 Yes</td>
-<td></td>
+<td>IX</td>
+<td>Disabled status (0 No, 1 Yes)</td>
 </tr>
 <tr>
 <td>CreateUserId</td>
 <td>int</td>
 <td></td>
-<td></td>
-<td></td>
+<td>ID of the user who created</td>
 </tr>
 <tr>
 <td>UpateUserId</td>
 <td>int</td>
 <td></td>
-<td></td>
-<td></td>
+<td>ID of the user who updated</td>
 </tr>
 <tr>
 <td>Version</td>
 <td>int</td>
 <td></td>
-<td></td>
-<td></td>
+<td>Version</td>
 </tr>
 <tr>
 <td>IsProtectiveService</td>
 <td>bit</td>
 <td></td>
-<td></td>
-<td></td>
+<td>Is protective service (Y/N)</td>
 </tr>
 <tr>
 <td>CID</td>
 <td>nvarchar(100)</td>
 <td></td>
-<td></td>
-<td></td>
+<td>Child identifier</td>
 </tr>
 <tr>
 <td>MultipleRace</td>
 <td>varchar(100)</td>
 <td></td>
-<td></td>
-<td></td>
+<td>Multiple race</td>
 </tr>
 <tr>
 <td>CreateTime</td>
 <td>datetimeoffset</td>
 <td></td>
-<td></td>
-<td></td>
+<td>Record creation time</td>
 </tr>
 <tr>
 <td>UpdateTime</td>
 <td>datetimeoffset</td>
 <td></td>
-<td></td>
-<td></td>
+<td>Record update time</td>
 </tr>
 </tbody>
 </table>
 <h2 id="fam_childextension">Fam_ChildExtension<a class="header-anchor" href="javascript:;" onclick="location.hash='#fam_childextension'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>Extended child information, mainly for future custom extensions.</p>
 <h2 id="fam_parent">FAM_Parent<a class="header-anchor" href="javascript:;" onclick="location.hash='#fam_parent'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Parent information</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ParentID</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>FamilyID</td>
+<td>int</td>
+<td>IX, CL</td>
+<td>Foreign key to family</td>
+</tr>
+<tr>
+<td>LastName</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>Last name of the parent</td>
+</tr>
+<tr>
+<td>FirstName</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>First name of the parent</td>
+</tr>
+<tr>
+<td>MiddleInitial</td>
+<td>nvarchar(10)</td>
+<td></td>
+<td>Middle initial of the parent</td>
+</tr>
+<tr>
+<td>DateOfBirth</td>
+<td>datetime</td>
+<td></td>
+<td>Date of birth</td>
+</tr>
+<tr>
+<td>Gender</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Gender of the parent</td>
+</tr>
+<tr>
+<td>SSNumber</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>Social Security Number</td>
+</tr>
+<tr>
+<td>PublicSSNumber</td>
+<td>bit</td>
+<td></td>
+<td>Is SSN public (Y/N)</td>
+</tr>
+<tr>
+<td>Language</td>
+<td>int</td>
+<td></td>
+<td>Language ID</td>
+</tr>
+<tr>
+<td>LimitedEnglish</td>
+<td>bit</td>
+<td></td>
+<td>Limited English proficiency (Y/N)</td>
+</tr>
+<tr>
+<td>Ethnicity</td>
+<td>int</td>
+<td></td>
+<td>Ethnicity ID</td>
+</tr>
+<tr>
+<td>Race</td>
+<td>int</td>
+<td></td>
+<td>Race ID</td>
+</tr>
+<tr>
+<td>CitizenInfo</td>
+<td>int</td>
+<td></td>
+<td>Citizen Information ID</td>
+</tr>
+<tr>
+<td>Zip</td>
+<td>nvarchar(10)</td>
+<td></td>
+<td>Zip code</td>
+</tr>
+<tr>
+<td>Address</td>
+<td>nvarchar(300)</td>
+<td></td>
+<td>Home address</td>
+</tr>
+<tr>
+<td>Unit</td>
+<td>nvarchar(300)</td>
+<td></td>
+<td>Unit number</td>
+</tr>
+<tr>
+<td>City</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>City name</td>
+</tr>
+<tr>
+<td>CityID</td>
+<td>int</td>
+<td></td>
+<td>City ID</td>
+</tr>
+<tr>
+<td>County</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>County name</td>
+</tr>
+<tr>
+<td>CountyID</td>
+<td>int</td>
+<td></td>
+<td>County ID</td>
+</tr>
+<tr>
+<td>State</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>State name</td>
+</tr>
+<tr>
+<td>StateID</td>
+<td>int</td>
+<td></td>
+<td>State ID</td>
+</tr>
+<tr>
+<td>HomePhone</td>
+<td>nvarchar(35)</td>
+<td></td>
+<td>Home phone number</td>
+</tr>
+<tr>
+<td>WorkPhone</td>
+<td>nvarchar(35)</td>
+<td></td>
+<td>Work phone number</td>
+</tr>
+<tr>
+<td>WorkPhoneType</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Work phone type</td>
+</tr>
+<tr>
+<td>Cell</td>
+<td>nvarchar(35)</td>
+<td></td>
+<td>Cell phone number</td>
+</tr>
+<tr>
+<td>RcvMsg</td>
+<td>bit</td>
+<td></td>
+<td>Receive messages (Y/N)</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>nvarchar(50)</td>
+<td></td>
+<td>Email address</td>
+</tr>
+<tr>
+<td>Relationship</td>
+<td>int</td>
+<td></td>
+<td>Relationship ID</td>
+</tr>
+<tr>
+<td>MaritalStatus</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Marital status</td>
+</tr>
+<tr>
+<td>Responsibility</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Responsibility description</td>
+</tr>
+<tr>
+<td>IncludeInSize</td>
+<td>bit</td>
+<td></td>
+<td>Include in family size (Y/N)</td>
+</tr>
+<tr>
+<td>MonthlyIncome</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Monthly income</td>
+</tr>
+<tr>
+<td>TrainingStartDate</td>
+<td>datetime</td>
+<td></td>
+<td>Training start date</td>
+</tr>
+<tr>
+<td>TrainingEndDate</td>
+<td>datetime</td>
+<td></td>
+<td>Training end date</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>int</td>
+<td></td>
+<td>Status</td>
+</tr>
+<tr>
+<td>Comments</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Comments</td>
+</tr>
+<tr>
+<td>StartDate</td>
+<td>datetime</td>
+<td></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>EndDate</td>
+<td>datetime</td>
+<td></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>History</td>
+<td>int</td>
+<td></td>
+<td>History version</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>int</td>
+<td></td>
+<td>Disabled status</td>
+</tr>
+<tr>
+<td>CreateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpdateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>BestCallNum</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Best call number</td>
+</tr>
+<tr>
+<td>BestCallTime</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Best call time</td>
+</tr>
+<tr>
+<td>PID</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Parent ID</td>
+</tr>
+<tr>
+<td>CommunicationMethod</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Preferred communication method</td>
+</tr>
+<tr>
+<td>MultipleRace</td>
+<td>varchar(100)</td>
+<td></td>
+<td>Multiple races description</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+</tbody>
+</table>
 <h2 id="fam_parentextension">Fam_ParentExtension<a class="header-anchor" href="javascript:;" onclick="location.hash='#fam_parentextension'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>Extended parent information, mainly for future custom extensions.</p>
 <h2 id="fam_familyfee">FAM_FamilyFee<a class="header-anchor" href="javascript:;" onclick="location.hash='#fam_familyfee'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Information on fees associated with family services |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>FamilyId</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to family</td>
+</tr>
+<tr>
+<td>StartDate</td>
+<td>datetime</td>
+<td></td>
+<td>Start date of the fee period</td>
+</tr>
+<tr>
+<td>EndDate</td>
+<td>datetime</td>
+<td></td>
+<td>End date of the fee period</td>
+</tr>
+<tr>
+<td>IsEffective</td>
+<td>bit</td>
+<td>IX</td>
+<td>Whether the fee is effective (Y/N)</td>
+</tr>
+<tr>
+<td>FamilySize</td>
+<td>int</td>
+<td></td>
+<td>Size of the family</td>
+</tr>
+<tr>
+<td>MonthlyIncome</td>
+<td>decimal(18, 3)</td>
+<td></td>
+<td>Monthly income of the family</td>
+</tr>
+<tr>
+<td>HourlyFee</td>
+<td>decimal(18, 3)</td>
+<td></td>
+<td>Hourly fee</td>
+</tr>
+<tr>
+<td>FullTimeDailyFee</td>
+<td>decimal(18, 3)</td>
+<td></td>
+<td>Full-time daily fee</td>
+</tr>
+<tr>
+<td>PartTimeDailyFee</td>
+<td>decimal(18, 3)</td>
+<td></td>
+<td>Part-time daily fee</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>int</td>
+<td></td>
+<td>Status</td>
+</tr>
+<tr>
+<td>Comment</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Comments</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>CaseId</td>
+<td>int</td>
+<td>IX, _dta</td>
+<td>Case ID</td>
+</tr>
+<tr>
+<td>IncomeSource</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Source of income</td>
+</tr>
+<tr>
+<td>SendMode</td>
+<td>int default 0</td>
+<td></td>
+<td>Mode of sending</td>
+</tr>
+<tr>
+<td>UserDefined</td>
+<td>bit</td>
+<td></td>
+<td>User-defined flag</td>
+</tr>
+<tr>
+<td>SMIMode</td>
+<td>int</td>
+<td></td>
+<td>SMI mode</td>
+</tr>
+<tr>
+<td>CeilingMonthlyIncome</td>
+<td>decimal(38, 6)</td>
+<td></td>
+<td>Ceiling monthly income, default 0</td>
+</tr>
+<tr>
+<td>Eligible</td>
+<td>bit default 0</td>
+<td></td>
+<td>Eligibility flag</td>
+</tr>
+<tr>
+<td>CalculateExpression</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Expression for calculation</td>
+</tr>
+<tr>
+<td>ContractId</td>
+<td>int default 0</td>
+<td></td>
+<td>Contract ID</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+</tbody>
+</table>
 <h2 id="fam_memberincome">FAM_MemberIncome<a class="header-anchor" href="javascript:;" onclick="location.hash='#fam_memberincome'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Income details for family members</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IncomeID</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>FamilyID</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to family</td>
+</tr>
+<tr>
+<td>ParentID</td>
+<td>int</td>
+<td>CL, IX</td>
+<td>Foreign key to parent</td>
+</tr>
+<tr>
+<td>ChildID</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to child</td>
+</tr>
+<tr>
+<td>IncomeType</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Type of income</td>
+</tr>
+<tr>
+<td>IncomeSource</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Source of income</td>
+</tr>
+<tr>
+<td>PayType</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Type of pay</td>
+</tr>
+<tr>
+<td>PayScheduleType</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Pay schedule type</td>
+</tr>
+<tr>
+<td>RateType</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Rate type</td>
+</tr>
+<tr>
+<td>Rate</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Rate of pay</td>
+</tr>
+<tr>
+<td>PayRateNumber</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Number of pay rates</td>
+</tr>
+<tr>
+<td>Fluctuate</td>
+<td>bit</td>
+<td></td>
+<td>Fluctuate (Y/N)</td>
+</tr>
+<tr>
+<td>YTD</td>
+<td>bit</td>
+<td></td>
+<td>Year to date (Y/N)</td>
+</tr>
+<tr>
+<td>YTDNum</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Year to date number</td>
+</tr>
+<tr>
+<td>YTDStartDate</td>
+<td>datetime</td>
+<td></td>
+<td>Year to date start date</td>
+</tr>
+<tr>
+<td>YTDEndDate</td>
+<td>datetime</td>
+<td></td>
+<td>Year to date end date</td>
+</tr>
+<tr>
+<td>MonthlyIncome</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Monthly income</td>
+</tr>
+<tr>
+<td>TenMonthFormula</td>
+<td>bit</td>
+<td></td>
+<td>Ten month formula (Y/N)</td>
+</tr>
+<tr>
+<td>Total</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Total income</td>
+</tr>
+<tr>
+<td>BizExp</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Business expenses</td>
+</tr>
+<tr>
+<td>Month</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Month</td>
+</tr>
+<tr>
+<td>StartDate</td>
+<td>datetime</td>
+<td></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>EndDate</td>
+<td>datetime</td>
+<td></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>int</td>
+<td></td>
+<td>Status</td>
+</tr>
+<tr>
+<td>Comment</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Comments</td>
+</tr>
+<tr>
+<td>History</td>
+<td>int</td>
+<td></td>
+<td>History version</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>int</td>
+<td></td>
+<td>Disabled status</td>
+</tr>
+<tr>
+<td>CreateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>EDocID</td>
+<td>nvarchar(50)</td>
+<td></td>
+<td>Electronic document ID</td>
+</tr>
+<tr>
+<td>IsEffective</td>
+<td>bit</td>
+<td></td>
+<td>Effective status (Y/N)</td>
+</tr>
+<tr>
+<td>NeedID</td>
+<td>int</td>
+<td></td>
+<td>Need ID</td>
+</tr>
+<tr>
+<td>CalculateExpression</td>
+<td>nvarchar(300)</td>
+<td></td>
+<td>Expression for calculation</td>
+</tr>
+<tr>
+<td>Amount</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Amount</td>
+</tr>
+<tr>
+<td>Frequency</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Frequency</td>
+</tr>
+<tr>
+<td>IsWages</td>
+<td>bit</td>
+<td></td>
+<td>Is wages (Y/N)</td>
+</tr>
+<tr>
+<td>Days</td>
+<td>int</td>
+<td></td>
+<td>Number of days</td>
+</tr>
+<tr>
+<td>Hours</td>
+<td>int</td>
+<td></td>
+<td>Number of hours</td>
+</tr>
+<tr>
+<td>ManualAdjust</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Manual adjustment</td>
+</tr>
+<tr>
+<td>PayTypeDetailId</td>
+<td>int</td>
+<td></td>
+<td>Pay type detail ID</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+</tbody>
+</table>
 <h2 id="fam_memberincomedetail">FAM_MemberIncomeDetail<a class="header-anchor" href="javascript:;" onclick="location.hash='#fam_memberincomedetail'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Detailed income information for family members      |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IncomeDetailID</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>IncomeID</td>
+<td>int</td>
+<td>CL, IX</td>
+<td>Foreign key to income</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Name</td>
+</tr>
+<tr>
+<td>Income</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Income amount</td>
+</tr>
+<tr>
+<td>PayDate</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Pay date</td>
+</tr>
+<tr>
+<td>Comment</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Comments</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>int</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>Hours</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Number of hours</td>
+</tr>
+<tr>
+<td>PayeeNo</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Payee number</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+</tbody>
+</table>
 <h2 id="fam_memberneeds">FAM_MemberNeeds<a class="header-anchor" href="javascript:;" onclick="location.hash='#fam_memberneeds'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Needs assessment for family members                 |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NeedID</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>FamilyID</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to family</td>
+</tr>
+<tr>
+<td>ParentID</td>
+<td>int</td>
+<td>CL, IX</td>
+<td>Foreign key to parent</td>
+</tr>
+<tr>
+<td>IncomeID</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to income</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Employer/School Name</td>
+</tr>
+<tr>
+<td>Type</td>
+<td>int</td>
+<td></td>
+<td>Need type</td>
+</tr>
+<tr>
+<td>IsVariable</td>
+<td>bit</td>
+<td></td>
+<td>Is variable (Y/N)</td>
+</tr>
+<tr>
+<td>IsOnlineClass</td>
+<td>bit</td>
+<td></td>
+<td>Is online class (Y/N)</td>
+</tr>
+<tr>
+<td>Address</td>
+<td>nvarchar(300)</td>
+<td></td>
+<td>Address</td>
+</tr>
+<tr>
+<td>Unit</td>
+<td>nvarchar(300)</td>
+<td></td>
+<td>Unit number</td>
+</tr>
+<tr>
+<td>Zip</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>Zip code</td>
+</tr>
+<tr>
+<td>City</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>City name</td>
+</tr>
+<tr>
+<td>CityID</td>
+<td>int</td>
+<td></td>
+<td>City ID</td>
+</tr>
+<tr>
+<td>County</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>County name</td>
+</tr>
+<tr>
+<td>CountyID</td>
+<td>int</td>
+<td></td>
+<td>County ID</td>
+</tr>
+<tr>
+<td>State</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>State name</td>
+</tr>
+<tr>
+<td>StateID</td>
+<td>int</td>
+<td></td>
+<td>State ID</td>
+</tr>
+<tr>
+<td>CompanyAddress</td>
+<td>nvarchar(200)</td>
+<td></td>
+<td>Company address</td>
+</tr>
+<tr>
+<td>CompanyUnit</td>
+<td>nvarchar(300)</td>
+<td></td>
+<td>Company unit number</td>
+</tr>
+<tr>
+<td>CompanyZip</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>Company zip code</td>
+</tr>
+<tr>
+<td>CompanyCity</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>Company city name</td>
+</tr>
+<tr>
+<td>CompanyCityID</td>
+<td>int</td>
+<td></td>
+<td>Company city ID</td>
+</tr>
+<tr>
+<td>CompanyCounty</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>Company county name</td>
+</tr>
+<tr>
+<td>CompanyCountyID</td>
+<td>int</td>
+<td></td>
+<td>Company county ID</td>
+</tr>
+<tr>
+<td>ContactTitle</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Contact title</td>
+</tr>
+<tr>
+<td>ContactName</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Contact name</td>
+</tr>
+<tr>
+<td>ContactPhone</td>
+<td>nvarchar(35)</td>
+<td></td>
+<td>Contact phone number</td>
+</tr>
+<tr>
+<td>ContactPhoeType</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Contact phone type</td>
+</tr>
+<tr>
+<td>ContactEmail</td>
+<td>nvarchar(50)</td>
+<td></td>
+<td>Contact email</td>
+</tr>
+<tr>
+<td>ContactFax</td>
+<td>nvarchar(35)</td>
+<td></td>
+<td>Contact fax</td>
+</tr>
+<tr>
+<td>TravelTimeBefore</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Travel time before</td>
+</tr>
+<tr>
+<td>TraverTimeAfter</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Travel time after</td>
+</tr>
+<tr>
+<td>NonPaidLunchTime</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Non-paid lunch time</td>
+</tr>
+<tr>
+<td>UseDays</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Number of use days</td>
+</tr>
+<tr>
+<td>Units</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Units for training need</td>
+</tr>
+<tr>
+<td>CompleteVariable</td>
+<td>bit</td>
+<td></td>
+<td>Complete variable (Y/N)</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>int</td>
+<td></td>
+<td>Status</td>
+</tr>
+<tr>
+<td>EDocID</td>
+<td>nvarchar(50)</td>
+<td></td>
+<td>Electronic document ID</td>
+</tr>
+<tr>
+<td>Comment</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Comments</td>
+</tr>
+<tr>
+<td>StartDate</td>
+<td>datetime</td>
+<td></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>EndDate</td>
+<td>datetime</td>
+<td></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>TrainingGrade</td>
+<td>int</td>
+<td></td>
+<td>Training grade for training need</td>
+</tr>
+<tr>
+<td>History</td>
+<td>int</td>
+<td></td>
+<td>History version</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>SameAddress</td>
+<td>bit</td>
+<td></td>
+<td>Same address flag (Y/N)</td>
+</tr>
+<tr>
+<td>IsEffective</td>
+<td>bit</td>
+<td></td>
+<td>Effective status (Y/N)</td>
+</tr>
+<tr>
+<td>Patient</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Patient</td>
+</tr>
+<tr>
+<td>Title</td>
+<td>nvarchar(200)</td>
+<td></td>
+<td>Title</td>
+</tr>
+<tr>
+<td>CalWorkActivity</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Work activity calculation</td>
+</tr>
+<tr>
+<td>DateOfHire</td>
+<td>datetime</td>
+<td></td>
+<td>Date of hire</td>
+</tr>
+<tr>
+<td>Meta</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Metadata</td>
+</tr>
+<tr>
+<td>Schedule</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Schedule</td>
+</tr>
+<tr>
+<td>MaxHoursPerWeek</td>
+<td>decimal(38, 6)</td>
+<td></td>
+<td>Maximum hours per week</td>
+</tr>
+<tr>
+<td>MaxDaysPerWeek</td>
+<td>decimal(38, 6)</td>
+<td></td>
+<td>Maximum days per week</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+</tbody>
+</table>
 <h2 id="fam_memberschedule">FAM_MemberSchedule<a class="header-anchor" href="javascript:;" onclick="location.hash='#fam_memberschedule'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Schedules for family members                        |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ScheduleID</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>NeedID</td>
+<td>int</td>
+<td>CL, IX</td>
+<td>Foreign key to need</td>
+</tr>
+<tr>
+<td>NeedScheduleType</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Schedule type (0:NormalTime, 1:SleepTime/Study time, 2:Summary)</td>
+</tr>
+<tr>
+<td>MaxHoursPerWeek</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Maximum hours per week</td>
+</tr>
+<tr>
+<td>MaxDaysPerWeek</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Maximum days per week</td>
+</tr>
+<tr>
+<td>MaxHoursPerDay</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Maximum hours per day</td>
+</tr>
+<tr>
+<td>MonIn</td>
+<td>datetime</td>
+<td></td>
+<td>Monday in time</td>
+</tr>
+<tr>
+<td>MonOut</td>
+<td>datetime</td>
+<td></td>
+<td>Monday out time</td>
+</tr>
+<tr>
+<td>TueIn</td>
+<td>datetime</td>
+<td></td>
+<td>Tuesday in time</td>
+</tr>
+<tr>
+<td>TueOut</td>
+<td>datetime</td>
+<td></td>
+<td>Tuesday out time</td>
+</tr>
+<tr>
+<td>WedIn</td>
+<td>datetime</td>
+<td></td>
+<td>Wednesday in time</td>
+</tr>
+<tr>
+<td>WedOut</td>
+<td>datetime</td>
+<td></td>
+<td>Wednesday out time</td>
+</tr>
+<tr>
+<td>ThuIn</td>
+<td>datetime</td>
+<td></td>
+<td>Thursday in time</td>
+</tr>
+<tr>
+<td>ThuOut</td>
+<td>datetime</td>
+<td></td>
+<td>Thursday out time</td>
+</tr>
+<tr>
+<td>FriIn</td>
+<td>datetime</td>
+<td></td>
+<td>Friday in time</td>
+</tr>
+<tr>
+<td>FriOut</td>
+<td>datetime</td>
+<td></td>
+<td>Friday out time</td>
+</tr>
+<tr>
+<td>SatIn</td>
+<td>datetime</td>
+<td></td>
+<td>Saturday in time</td>
+</tr>
+<tr>
+<td>SatOut</td>
+<td>datetime</td>
+<td></td>
+<td>Saturday out time</td>
+</tr>
+<tr>
+<td>SunIn</td>
+<td>datetime</td>
+<td></td>
+<td>Sunday in time</td>
+</tr>
+<tr>
+<td>SunOut</td>
+<td>datetime</td>
+<td></td>
+<td>Sunday out time</td>
+</tr>
+<tr>
+<td>Comment</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Comments</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>IsManual</td>
+<td>bit</td>
+<td></td>
+<td>Is manual (Y/N)</td>
+</tr>
+<tr>
+<td>IsVariable</td>
+<td>bit default 0</td>
+<td></td>
+<td>Is variable (Y/N)</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+</tbody>
+</table>
 <h2 id="fam_needsummary">FAM_NeedSummary<a class="header-anchor" href="javascript:;" onclick="location.hash='#fam_needsummary'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Summary of family needs                             |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>FamilyId</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to family</td>
+</tr>
+<tr>
+<td>CaseId</td>
+<td>int</td>
+<td></td>
+<td>Case ID</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Description</td>
+</tr>
+<tr>
+<td>Meta</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Metadata</td>
+</tr>
+<tr>
+<td>IsVariable</td>
+<td>bit</td>
+<td></td>
+<td>Is variable (Y/N)</td>
+</tr>
+<tr>
+<td>StartDate</td>
+<td>datetime</td>
+<td></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>EndDate</td>
+<td>datetime</td>
+<td></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (Y/N)</td>
+</tr>
+<tr>
+<td>CreateUserId</td>
+<td>bigint</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpdateUserId</td>
+<td>bigint</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>bigint</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>Schedule</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Schedule</td>
+</tr>
+<tr>
+<td>MaxHoursPerWeek</td>
+<td>decimal(38, 6)</td>
+<td></td>
+<td>Maximum hours per week</td>
+</tr>
+<tr>
+<td>MaxDaysPerWeek</td>
+<td>decimal(38, 6)</td>
+<td></td>
+<td>Maximum days per week</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+</tbody>
+</table>
 <h2 id="fam_needsummaryschedule">FAM_NeedSummarySchedule<a class="header-anchor" href="javascript:;" onclick="location.hash='#fam_needsummaryschedule'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Scheduling for needs assessment                     |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ScheduleID</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>NeedSummaryId</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to need summary</td>
+</tr>
+<tr>
+<td>NeedScheduleType</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Schedule type</td>
+</tr>
+<tr>
+<td>MaxHoursPerWeek</td>
+<td>decimal(38, 6)</td>
+<td></td>
+<td>Maximum hours per week</td>
+</tr>
+<tr>
+<td>MaxDaysPerWeek</td>
+<td>decimal(38, 6)</td>
+<td></td>
+<td>Maximum days per week</td>
+</tr>
+<tr>
+<td>MaxHoursPerDay</td>
+<td>decimal(38, 6)</td>
+<td></td>
+<td>Maximum hours per day</td>
+</tr>
+<tr>
+<td>MonIn</td>
+<td>datetime</td>
+<td></td>
+<td>Monday in time</td>
+</tr>
+<tr>
+<td>MonOut</td>
+<td>datetime</td>
+<td></td>
+<td>Monday out time</td>
+</tr>
+<tr>
+<td>TueIn</td>
+<td>datetime</td>
+<td></td>
+<td>Tuesday in time</td>
+</tr>
+<tr>
+<td>TueOut</td>
+<td>datetime</td>
+<td></td>
+<td>Tuesday out time</td>
+</tr>
+<tr>
+<td>WedIn</td>
+<td>datetime</td>
+<td></td>
+<td>Wednesday in time</td>
+</tr>
+<tr>
+<td>WedOut</td>
+<td>datetime</td>
+<td></td>
+<td>Wednesday out time</td>
+</tr>
+<tr>
+<td>ThuIn</td>
+<td>datetime</td>
+<td></td>
+<td>Thursday in time</td>
+</tr>
+<tr>
+<td>ThuOut</td>
+<td>datetime</td>
+<td></td>
+<td>Thursday out time</td>
+</tr>
+<tr>
+<td>FriIn</td>
+<td>datetime</td>
+<td></td>
+<td>Friday in time</td>
+</tr>
+<tr>
+<td>FriOut</td>
+<td>datetime</td>
+<td></td>
+<td>Friday out time</td>
+</tr>
+<tr>
+<td>SatIn</td>
+<td>datetime</td>
+<td></td>
+<td>Saturday in time</td>
+</tr>
+<tr>
+<td>SatOut</td>
+<td>datetime</td>
+<td></td>
+<td>Saturday out time</td>
+</tr>
+<tr>
+<td>SunIn</td>
+<td>datetime</td>
+<td></td>
+<td>Sunday in time</td>
+</tr>
+<tr>
+<td>SunOut</td>
+<td>datetime</td>
+<td></td>
+<td>Sunday out time</td>
+</tr>
+<tr>
+<td>Comment</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Comments</td>
+</tr>
+<tr>
+<td>IsManual</td>
+<td>bit</td>
+<td></td>
+<td>Is manual (Y/N)</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (Y/N)</td>
+</tr>
+<tr>
+<td>CreateUserId</td>
+<td>bigint</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserId</td>
+<td>bigint</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>bigint</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>IsVariable</td>
+<td>bit default 0</td>
+<td></td>
+<td>Is variable (Y/N)</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+</tbody>
+</table>
 <h2 id="fam_noa">FAM_NOA<a class="header-anchor" href="javascript:;" onclick="location.hash='#fam_noa'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NOAID</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>FamilyID</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to family</td>
+</tr>
+<tr>
+<td>DocumentID</td>
+<td>int</td>
+<td></td>
+<td>Document ID</td>
+</tr>
+<tr>
+<td>Action</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Action taken (1: Services Approved, 2: Services Denied, 3: Change in Service, 4: Termination of Service, 5: Termination of Service for Delinquent Fees)</td>
+</tr>
+<tr>
+<td>ReasonCode</td>
+<td>nvarchar(300)</td>
+<td></td>
+<td>Reason code</td>
+</tr>
+<tr>
+<td>Reason</td>
+<td>nvarchar(1024)</td>
+<td></td>
+<td>Reason</td>
+</tr>
+<tr>
+<td>Distribution</td>
+<td>int</td>
+<td></td>
+<td>Distribution method (0: GivenToParent, 1: MailedFirstClass, 2: MailedOther)</td>
+</tr>
+<tr>
+<td>MailOtherTxt</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Other mail text</td>
+</tr>
+<tr>
+<td>Eligiblity</td>
+<td>int</td>
+<td></td>
+<td>NOA Eligibility</td>
+</tr>
+<tr>
+<td>NeedType</td>
+<td>int</td>
+<td></td>
+<td>NOA NeedType</td>
+</tr>
+<tr>
+<td>IssueDate</td>
+<td>datetime</td>
+<td></td>
+<td>Issue date</td>
+</tr>
+<tr>
+<td>EffectiveDate</td>
+<td>datetime</td>
+<td></td>
+<td>Effective date</td>
+</tr>
+<tr>
+<td>AppealDate</td>
+<td>datetime</td>
+<td></td>
+<td>Appeal date</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>int</td>
+<td></td>
+<td>Status (0: Issued, 1: OnAppeal, 2: Rescinded, 3: Void)</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserId</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserId</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>CaseId</td>
+<td>int</td>
+<td>IX</td>
+<td>Case ID</td>
+</tr>
+<tr>
+<td>CareID</td>
+<td>nvarchar(1024)</td>
+<td></td>
+<td>Care ID</td>
+</tr>
+<tr>
+<td>CertOnly</td>
+<td>bit</td>
+<td></td>
+<td>Certification only flag</td>
+</tr>
+<tr>
+<td>BatchCode</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Batch code</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+</tbody>
+</table>
 
                 </div>
 

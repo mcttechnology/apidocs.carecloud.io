@@ -224,13 +224,711 @@ CareControl                                    </span>
                     <h2 id="introduction">Introduction<a class="header-anchor" href="javascript:;" onclick="location.hash='#introduction'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>This section introduces the structure of the 'care' table and its relationships within the database. It specifically focuses on the connections between family members, such as the relationship between parents and children. This documentation aims to provide an overview of how family entities are interconnected.</p>
 <h2 id="pay_care">PAY_Care<a class="header-anchor" href="javascript:;" onclick="location.hash='#pay_care'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Manages care payments and transactions                 |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CareID</td>
+<td>int identity</td>
+<td>PK, CL</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>CaseID</td>
+<td>int</td>
+<td>IX</td>
+<td>Case ID</td>
+</tr>
+<tr>
+<td>ChildID</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to child</td>
+</tr>
+<tr>
+<td>FamilyID</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to family</td>
+</tr>
+<tr>
+<td>ChildDOB</td>
+<td>datetime</td>
+<td></td>
+<td>Child date of birth</td>
+</tr>
+<tr>
+<td>FamilyIncome</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Family income</td>
+</tr>
+<tr>
+<td>FamilySize</td>
+<td>int</td>
+<td></td>
+<td>Family size</td>
+</tr>
+<tr>
+<td>FamilyFeeHourly</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Family fee per hour</td>
+</tr>
+<tr>
+<td>FamilyFeeFT</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Family fee full time</td>
+</tr>
+<tr>
+<td>FamilyFeePT</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Family fee part time</td>
+</tr>
+<tr>
+<td>CareType</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Type of care (Interim Provider, Licensed Center-Based, etc.)</td>
+</tr>
+<tr>
+<td>RmrProviderType</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>RMR provider type</td>
+</tr>
+<tr>
+<td>ProviderID</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to provider</td>
+</tr>
+<tr>
+<td>ProviderCountyID</td>
+<td>int</td>
+<td></td>
+<td>Provider county ID</td>
+</tr>
+<tr>
+<td>ProviderFTP</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Full time plus</td>
+</tr>
+<tr>
+<td>StartDate</td>
+<td>datetime</td>
+<td>IX, CL</td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>EndDate</td>
+<td>datetime</td>
+<td>IX</td>
+<td>End date</td>
+</tr>
+<tr>
+<td>Contract</td>
+<td>int</td>
+<td></td>
+<td>Contract</td>
+</tr>
+<tr>
+<td>HasFamilyFee</td>
+<td>bit</td>
+<td></td>
+<td>Has family fee (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>IsPay2Parent</td>
+<td>bit</td>
+<td></td>
+<td>Is pay to parent (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>IsVariable</td>
+<td>bit</td>
+<td></td>
+<td>Is variable (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>IsLicensed</td>
+<td>bit</td>
+<td></td>
+<td>Is licensed (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>Comments</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Comments</td>
+</tr>
+<tr>
+<td>MaxHoursPerWeek</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Maximum hours per week</td>
+</tr>
+<tr>
+<td>MaxDaysPerWeek</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Maximum days per week</td>
+</tr>
+<tr>
+<td>MaxHoursPerDay</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Maximum hours per day</td>
+</tr>
+<tr>
+<td>VMaxHoursPerWeek</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Variable maximum hours per week</td>
+</tr>
+<tr>
+<td>VMaxDaysPerWeek</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Variable maximum days per week</td>
+</tr>
+<tr>
+<td>VMaxHoursPerDay</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Variable maximum hours per day</td>
+</tr>
+<tr>
+<td>FTMAC</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Full-time monthly allowable cost</td>
+</tr>
+<tr>
+<td>PTMAC</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Part-time monthly allowable cost</td>
+</tr>
+<tr>
+<td>IsBackup</td>
+<td>bit</td>
+<td></td>
+<td>Is backup care (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>RelativeID</td>
+<td>nvarchar(60)</td>
+<td></td>
+<td>Relative care ID if backup</td>
+</tr>
+<tr>
+<td>IsInHome</td>
+<td>bit</td>
+<td></td>
+<td>Is in-home care (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>SpecialNeedFactor</td>
+<td>decimal(18, 5)</td>
+<td></td>
+<td>Special need factor</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>int</td>
+<td></td>
+<td>Status</td>
+</tr>
+<tr>
+<td>Comment</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Comment</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td>IX</td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>IsCombo</td>
+<td>bit</td>
+<td></td>
+<td>Is combo care (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>UserDefined</td>
+<td>int</td>
+<td></td>
+<td>User-defined field</td>
+</tr>
+<tr>
+<td>OldEndDate</td>
+<td>datetime</td>
+<td></td>
+<td>Old end date</td>
+</tr>
+<tr>
+<td>Grade</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Grade</td>
+</tr>
+<tr>
+<td>UseSchoolRate</td>
+<td>bit</td>
+<td></td>
+<td>Use school rate (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>AgreementId</td>
+<td>int</td>
+<td></td>
+<td>Agreement ID</td>
+</tr>
+<tr>
+<td>TrackID</td>
+<td>int</td>
+<td></td>
+<td>Track ID</td>
+</tr>
+<tr>
+<td>CareVersion</td>
+<td>int default 0</td>
+<td></td>
+<td>Care version</td>
+</tr>
+<tr>
+<td>UDFRMC</td>
+<td>int default 0</td>
+<td></td>
+<td>User-defined field related to care</td>
+</tr>
+<tr>
+<td>PatternedVariable</td>
+<td>bit</td>
+<td></td>
+<td>Patterned variable care (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+<tr>
+<td>ContractCode</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Contract code</td>
+</tr>
+</tbody>
+</table>
 <h2 id="pay_carecalendar">PAY_CareCalendar<a class="header-anchor" href="javascript:;" onclick="location.hash='#pay_carecalendar'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Tracks care-related events and payment schedules       |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CareCalendarID</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>CareID</td>
+<td>int</td>
+<td>IX, CL</td>
+<td>Foreign key to care</td>
+</tr>
+<tr>
+<td>DayAttendanceType</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Attendance type (School day, vacation day)</td>
+</tr>
+<tr>
+<td>MonIn</td>
+<td>datetime</td>
+<td></td>
+<td>Monday in time</td>
+</tr>
+<tr>
+<td>MonOut</td>
+<td>datetime</td>
+<td></td>
+<td>Monday out time</td>
+</tr>
+<tr>
+<td>TueIn</td>
+<td>datetime</td>
+<td></td>
+<td>Tuesday in time</td>
+</tr>
+<tr>
+<td>TueOut</td>
+<td>datetime</td>
+<td></td>
+<td>Tuesday out time</td>
+</tr>
+<tr>
+<td>WedIn</td>
+<td>datetime</td>
+<td></td>
+<td>Wednesday in time</td>
+</tr>
+<tr>
+<td>WedOut</td>
+<td>datetime</td>
+<td></td>
+<td>Wednesday out time</td>
+</tr>
+<tr>
+<td>ThuIn</td>
+<td>datetime</td>
+<td></td>
+<td>Thursday in time</td>
+</tr>
+<tr>
+<td>ThuOut</td>
+<td>datetime</td>
+<td></td>
+<td>Thursday out time</td>
+</tr>
+<tr>
+<td>FriIn</td>
+<td>datetime</td>
+<td></td>
+<td>Friday in time</td>
+</tr>
+<tr>
+<td>FriOut</td>
+<td>datetime</td>
+<td></td>
+<td>Friday out time</td>
+</tr>
+<tr>
+<td>SatIn</td>
+<td>datetime</td>
+<td></td>
+<td>Saturday in time</td>
+</tr>
+<tr>
+<td>SatOut</td>
+<td>datetime</td>
+<td></td>
+<td>Saturday out time</td>
+</tr>
+<tr>
+<td>SunIn</td>
+<td>datetime</td>
+<td></td>
+<td>Sunday in time</td>
+</tr>
+<tr>
+<td>SunOut</td>
+<td>datetime</td>
+<td></td>
+<td>Sunday out time</td>
+</tr>
+<tr>
+<td>MonNH</td>
+<td>decimal(18, 8)</td>
+<td></td>
+<td>Monday normal hours</td>
+</tr>
+<tr>
+<td>MonAH</td>
+<td>decimal(18, 8)</td>
+<td></td>
+<td>Monday additional hours</td>
+</tr>
+<tr>
+<td>TueNH</td>
+<td>decimal(18, 8)</td>
+<td></td>
+<td>Tuesday normal hours</td>
+</tr>
+<tr>
+<td>TueAH</td>
+<td>decimal(18, 8)</td>
+<td></td>
+<td>Tuesday additional hours</td>
+</tr>
+<tr>
+<td>WedNH</td>
+<td>decimal(18, 8)</td>
+<td></td>
+<td>Wednesday normal hours</td>
+</tr>
+<tr>
+<td>WedAH</td>
+<td>decimal(18, 8)</td>
+<td></td>
+<td>Wednesday additional hours</td>
+</tr>
+<tr>
+<td>ThuNH</td>
+<td>decimal(18, 8)</td>
+<td></td>
+<td>Thursday normal hours</td>
+</tr>
+<tr>
+<td>ThuAH</td>
+<td>decimal(18, 8)</td>
+<td></td>
+<td>Thursday additional hours</td>
+</tr>
+<tr>
+<td>FriNH</td>
+<td>decimal(18, 8)</td>
+<td></td>
+<td>Friday normal hours</td>
+</tr>
+<tr>
+<td>FriAH</td>
+<td>decimal(18, 8)</td>
+<td></td>
+<td>Friday additional hours</td>
+</tr>
+<tr>
+<td>SatNH</td>
+<td>decimal(18, 8)</td>
+<td></td>
+<td>Saturday normal hours</td>
+</tr>
+<tr>
+<td>SatAH</td>
+<td>decimal(18, 8)</td>
+<td></td>
+<td>Saturday additional hours</td>
+</tr>
+<tr>
+<td>SunNH</td>
+<td>decimal(18, 8)</td>
+<td></td>
+<td>Sunday normal hours</td>
+</tr>
+<tr>
+<td>SunAH</td>
+<td>decimal(18, 8)</td>
+<td></td>
+<td>Sunday additional hours</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+</tbody>
+</table>
 <h2 id="pay_careclaim">Pay_CareClaim<a class="header-anchor" href="javascript:;" onclick="location.hash='#pay_careclaim'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Handles claims for care services rendered              |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>CareID</td>
+<td>nvarchar(64)</td>
+<td>IX</td>
+<td>Foreign key to care</td>
+</tr>
+<tr>
+<td>ClaimID</td>
+<td>int</td>
+<td>IX</td>
+<td>Claim ID</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpdateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+</tbody>
+</table>
 <h2 id="pay_carermc">Pay_CareRMC<a class="header-anchor" href="javascript:;" onclick="location.hash='#pay_carermc'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Manages records for care-related risk management cases |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>CareID</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to care</td>
+</tr>
+<tr>
+<td>StartDate</td>
+<td>datetime</td>
+<td></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>AgeGroupID</td>
+<td>int</td>
+<td></td>
+<td>Age group ID</td>
+</tr>
+<tr>
+<td>ProviderRate</td>
+<td>varchar(32)</td>
+<td></td>
+<td>Provider rate</td>
+</tr>
+<tr>
+<td>FT</td>
+<td>varchar(32)</td>
+<td></td>
+<td>Full-time</td>
+</tr>
+<tr>
+<td>PT</td>
+<td>varchar(32)</td>
+<td></td>
+<td>Part-time</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpdateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>EndDate</td>
+<td>datetime</td>
+<td></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+</tbody>
+</table>
 
                 </div>
 

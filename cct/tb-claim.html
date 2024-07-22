@@ -224,21 +224,1490 @@ CareControl                                    </span>
                     <h2 id="introduction">Introduction<a class="header-anchor" href="javascript:;" onclick="location.hash='#introduction'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>This section introduces the structure of the 'claim' table and its relationships within the database. It specifically focuses on the connections between family members, such as the relationship between parents and children. This documentation aims to provide an overview of how family entities are interconnected.</p>
 <h2 id="pay_claim">PAY_Claim<a class="header-anchor" href="javascript:;" onclick="location.hash='#pay_claim'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Manages individual claims for payments                        |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ActualAmount</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Actual amount</td>
+</tr>
+<tr>
+<td>ActualFamilyFee</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Actual family fee</td>
+</tr>
+<tr>
+<td>AdjustmentAmount</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Adjustment amount</td>
+</tr>
+<tr>
+<td>AdjustmentComment</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Adjustment comment</td>
+</tr>
+<tr>
+<td>AdjustmentReason</td>
+<td>varchar(max)</td>
+<td></td>
+<td>Adjustment reason</td>
+</tr>
+<tr>
+<td>AdjustmentSeq</td>
+<td>int</td>
+<td></td>
+<td>Adjustment sequence</td>
+</tr>
+<tr>
+<td>Amount</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Amount</td>
+</tr>
+<tr>
+<td>CalculateUser</td>
+<td>int</td>
+<td></td>
+<td>User who calculated</td>
+</tr>
+<tr>
+<td>CaseID</td>
+<td>int</td>
+<td></td>
+<td>Case ID</td>
+</tr>
+<tr>
+<td>CheckUser</td>
+<td>int</td>
+<td></td>
+<td>User who checked</td>
+</tr>
+<tr>
+<td>ChildID</td>
+<td>int</td>
+<td>IX</td>
+<td>Child ID</td>
+</tr>
+<tr>
+<td>ClaimCode</td>
+<td>nvarchar(100)</td>
+<td>IX</td>
+<td>Claim code (yyyymmdd+ID(5))</td>
+</tr>
+<tr>
+<td>ClaimID</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>Comment</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Comment</td>
+</tr>
+<tr>
+<td>ContractID</td>
+<td>int</td>
+<td>IX</td>
+<td>Contract ID</td>
+</tr>
+<tr>
+<td>CreateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td>IX</td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>EndDate</td>
+<td>datetime</td>
+<td>IX</td>
+<td>End date</td>
+</tr>
+<tr>
+<td>FamilyFee</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Family fee</td>
+</tr>
+<tr>
+<td>FamilyID</td>
+<td>int</td>
+<td></td>
+<td>Family ID</td>
+</tr>
+<tr>
+<td>FFCollected</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Family fee collected</td>
+</tr>
+<tr>
+<td>FFOverPayment</td>
+<td>bit</td>
+<td></td>
+<td>Family fee overpayment</td>
+</tr>
+<tr>
+<td>FFPlan</td>
+<td>bit</td>
+<td></td>
+<td>Family fee plan</td>
+</tr>
+<tr>
+<td>HasAdjustment</td>
+<td>bit</td>
+<td></td>
+<td>Has adjustment (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>IsPay2Parent</td>
+<td>bit</td>
+<td></td>
+<td>Is pay to parent (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>IsReplaced</td>
+<td>bit</td>
+<td></td>
+<td>Is replaced</td>
+</tr>
+<tr>
+<td>IsSDM</td>
+<td>bit</td>
+<td></td>
+<td>Is SDM (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>Month</td>
+<td>int</td>
+<td></td>
+<td>Month</td>
+</tr>
+<tr>
+<td>OwnerId</td>
+<td>int</td>
+<td></td>
+<td>Owner ID</td>
+</tr>
+<tr>
+<td>ProviderID</td>
+<td>int</td>
+<td>IX</td>
+<td>Provider ID</td>
+</tr>
+<tr>
+<td>Quarter</td>
+<td>int</td>
+<td></td>
+<td>Quarter</td>
+</tr>
+<tr>
+<td>SDMComment</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>SDM comment</td>
+</tr>
+<tr>
+<td>SDMDays</td>
+<td>int</td>
+<td></td>
+<td>SDM days</td>
+</tr>
+<tr>
+<td>StartDate</td>
+<td>datetime</td>
+<td>IX</td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>int</td>
+<td>IX</td>
+<td>Status (0 New, 1 Request Adjustment, 2 Calculated, 3 Return)</td>
+</tr>
+<tr>
+<td>TotalDays</td>
+<td>int</td>
+<td></td>
+<td>Total days</td>
+</tr>
+<tr>
+<td>UpateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>WeekNo</td>
+<td>int</td>
+<td></td>
+<td>Week number</td>
+</tr>
+<tr>
+<td>Year</td>
+<td>int</td>
+<td></td>
+<td>Year</td>
+</tr>
+<tr>
+<td>RegistrationFee</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Registration fee</td>
+</tr>
+<tr>
+<td>FullTimePlusFee</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Full-time plus fee</td>
+</tr>
+<tr>
+<td>DropInCareFee</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Drop-in care fee</td>
+</tr>
+<tr>
+<td>FTPlusAmount</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Full-time plus amount</td>
+</tr>
+<tr>
+<td>ActualFTPlusAmount</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Actual full-time plus amount</td>
+</tr>
+<tr>
+<td>DropInAmount</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Drop-in amount</td>
+</tr>
+<tr>
+<td>ActualDropInAmount</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Actual drop-in amount</td>
+</tr>
+<tr>
+<td>CareID</td>
+<td>varchar(50)</td>
+<td></td>
+<td>Care ID</td>
+</tr>
+<tr>
+<td>AuthType</td>
+<td>int</td>
+<td></td>
+<td>Authorization type</td>
+</tr>
+<tr>
+<td>SDMIsSys</td>
+<td>bit</td>
+<td></td>
+<td>SDM is system</td>
+</tr>
+<tr>
+<td>AdjustmentSeqNew</td>
+<td>int</td>
+<td></td>
+<td>New adjustment sequence</td>
+</tr>
+<tr>
+<td>IsCap</td>
+<td>bit</td>
+<td></td>
+<td>Is capped</td>
+</tr>
+<tr>
+<td>PeriodStart</td>
+<td>datetime</td>
+<td>IX</td>
+<td>Period start</td>
+</tr>
+<tr>
+<td>PeriodEnd</td>
+<td>datetime</td>
+<td>IX</td>
+<td>Period end</td>
+</tr>
+<tr>
+<td>ClaimInfo</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Claim information</td>
+</tr>
+<tr>
+<td>FFReciptNo</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Family fee receipt number</td>
+</tr>
+<tr>
+<td>IsLicense</td>
+<td>bit</td>
+<td></td>
+<td>Is licensed</td>
+</tr>
+<tr>
+<td>PvFullTimePlusHours</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Provider full-time plus hours</td>
+</tr>
+<tr>
+<td>HasChange</td>
+<td>bit</td>
+<td></td>
+<td>Has change</td>
+</tr>
+<tr>
+<td>ManualAdjustAmount</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Manual adjustment amount</td>
+</tr>
+<tr>
+<td>PayDate</td>
+<td>datetime</td>
+<td>IX</td>
+<td>Payment date</td>
+</tr>
+<tr>
+<td>RegistrationFee_Sys</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>System registration fee</td>
+</tr>
+<tr>
+<td>RegistrationFee_Manual</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Manual registration fee</td>
+</tr>
+<tr>
+<td>PVTotalAdjustmentAmount</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Provider total adjustment amount</td>
+</tr>
+<tr>
+<td>FFAdjustmentAmount</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Family fee adjustment amount</td>
+</tr>
+<tr>
+<td>IsUDF</td>
+<td>int</td>
+<td></td>
+<td>Is user-defined field</td>
+</tr>
+<tr>
+<td>ClassroomId</td>
+<td>int</td>
+<td></td>
+<td>Classroom ID</td>
+</tr>
+<tr>
+<td>TotalAdjustDay</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Total adjustment days</td>
+</tr>
+<tr>
+<td>ActualAdjustDay</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Actual adjustment days</td>
+</tr>
+<tr>
+<td>OriginalAmount</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Original amount</td>
+</tr>
+<tr>
+<td>SpecialNeedFactor</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Special need factor</td>
+</tr>
+<tr>
+<td>HoldReason</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Hold reason</td>
+</tr>
+<tr>
+<td>TotalAttHours</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Total attendance hours</td>
+</tr>
+<tr>
+<td>DigitalSubmission</td>
+<td>bit</td>
+<td>IX</td>
+<td>Digital submission</td>
+</tr>
+<tr>
+<td>SubmitDate</td>
+<td>datetime</td>
+<td>IX</td>
+<td>Submission date</td>
+</tr>
+<tr>
+<td>MissingDailySiguature</td>
+<td>int</td>
+<td></td>
+<td>Missing daily signature</td>
+</tr>
+<tr>
+<td>MissingConfirmSiguature</td>
+<td>int</td>
+<td></td>
+<td>Missing confirmation signature</td>
+</tr>
+<tr>
+<td>AttendanceSource</td>
+<td>int</td>
+<td></td>
+<td>Attendance source (1: System, 2: Manual Input, 3: Import)</td>
+</tr>
+<tr>
+<td>ChildCareAmount</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Childcare amount</td>
+</tr>
+<tr>
+<td>QAOwnerId</td>
+<td>int</td>
+<td></td>
+<td>QA owner ID</td>
+</tr>
+<tr>
+<td>RowVersion</td>
+<td>timestamp</td>
+<td></td>
+<td>Row version</td>
+</tr>
+<tr>
+<td>ClaimVersion</td>
+<td>int default 1</td>
+<td></td>
+<td>Claim version</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+<tr>
+<td>Meta</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Metadata</td>
+</tr>
+<tr>
+<td>InvoiceAmount</td>
+<td>decimal(38, 6)</td>
+<td></td>
+<td>Invoice amount</td>
+</tr>
+<tr>
+<td>ContractCode</td>
+<td>nvarchar(200)</td>
+<td>IX</td>
+<td>Contract code</td>
+</tr>
+<tr>
+<td>ReturnDate</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Return date</td>
+</tr>
+<tr>
+<td>OtherAmount</td>
+<td>decimal(38, 6)</td>
+<td></td>
+<td>Other amount</td>
+</tr>
+<tr>
+<td>OtherAmountDescription</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Other amount description</td>
+</tr>
+<tr>
+<td>ReturnReason</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Return reason</td>
+</tr>
+<tr>
+<td>OtherReason</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Other reason</td>
+</tr>
+</tbody>
+</table>
 <h2 id="pay_claimextension">Pay_ClaimExtension<a class="header-anchor" href="javascript:;" onclick="location.hash='#pay_claimextension'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Holds information on extensions granted for claim submissions |</p>
+<p>Extends claim information for custom fields</p>
 <h2 id="pay_claimamount">Pay_ClaimAmount<a class="header-anchor" href="javascript:;" onclick="location.hash='#pay_claimamount'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Tracks the amount associated with each claim                  |</p>
-<h2 id="pay_claimels">Pay_ClaimELS<a class="header-anchor" href="javascript:;" onclick="location.hash='#pay_claimels'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Manages Early Learning Scholarship (ELS) claims               |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ClaimAmountId</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>ClaimId</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to claim</td>
+</tr>
+<tr>
+<td>ChildId</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to child</td>
+</tr>
+<tr>
+<td>ProviderId</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to provider</td>
+</tr>
+<tr>
+<td>IsSystem</td>
+<td>bit</td>
+<td></td>
+<td>Is system generated (Y/N)</td>
+</tr>
+<tr>
+<td>RateCategory</td>
+<td>int</td>
+<td></td>
+<td>Rate category</td>
+</tr>
+<tr>
+<td>RateType</td>
+<td>int</td>
+<td></td>
+<td>Rate type</td>
+</tr>
+<tr>
+<td>TotalAmount</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Total amount</td>
+</tr>
+<tr>
+<td>IsPreferred</td>
+<td>bit</td>
+<td></td>
+<td>Is preferred rate (Y/N)</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpdateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>RateCategoryDisplay</td>
+<td>nvarchar(50)</td>
+<td></td>
+<td>Display name for rate category</td>
+</tr>
+<tr>
+<td>RateTypeDisplay</td>
+<td>nvarchar(50)</td>
+<td></td>
+<td>Display name for rate type</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+<tr>
+<td>CareId</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to care</td>
+</tr>
+</tbody>
+</table>
 <h2 id="pay_claimweek">PAY_ClaimWeek<a class="header-anchor" href="javascript:;" onclick="location.hash='#pay_claimweek'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Organizes claims by the week they are submitted               |</p>
-<h2 id="pay_ffassignment">Pay_FFAssignment<a class="header-anchor" href="javascript:;" onclick="location.hash='#pay_ffassignment'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Manages assignments for Family Friend and Neighbor (FFN) care |</p>
-<h2 id="pay_scheduledaily">PAY_ScheduleDaily<a class="header-anchor" href="javascript:;" onclick="location.hash='#pay_scheduledaily'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Manages daily scheduling for payments or services             |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ClaimWeekId</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>ClaimItemId</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to claim item</td>
+</tr>
+<tr>
+<td>ClaimID</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to claim</td>
+</tr>
+<tr>
+<td>ChildID</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to child</td>
+</tr>
+<tr>
+<td>ProviderID</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to provider</td>
+</tr>
+<tr>
+<td>StartDate</td>
+<td>datetime</td>
+<td></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>EndDate</td>
+<td>datetime</td>
+<td></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>RMREW</td>
+<td>int</td>
+<td></td>
+<td>RMR EW</td>
+</tr>
+<tr>
+<td>RMRAgeGroup</td>
+<td>int</td>
+<td></td>
+<td>RMR age group</td>
+</tr>
+<tr>
+<td>RMRRateType</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>RMR rate type</td>
+</tr>
+<tr>
+<td>RMRRate</td>
+<td>decimal(18, 10)</td>
+<td></td>
+<td>RMR rate</td>
+</tr>
+<tr>
+<td>RMRQty</td>
+<td>decimal(18, 10)</td>
+<td></td>
+<td>RMR quantity</td>
+</tr>
+<tr>
+<td>RMRFee</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>RMR fee</td>
+</tr>
+<tr>
+<td>PVEW</td>
+<td>int</td>
+<td></td>
+<td>PV EW</td>
+</tr>
+<tr>
+<td>PVAgeGroup</td>
+<td>int</td>
+<td></td>
+<td>PV age group</td>
+</tr>
+<tr>
+<td>PVRateType</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>PV rate type</td>
+</tr>
+<tr>
+<td>PVRate</td>
+<td>decimal(18, 10)</td>
+<td></td>
+<td>PV rate</td>
+</tr>
+<tr>
+<td>PVQty</td>
+<td>decimal(18, 10)</td>
+<td></td>
+<td>PV quantity</td>
+</tr>
+<tr>
+<td>PVFee</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>PV fee</td>
+</tr>
+<tr>
+<td>UsePV</td>
+<td>int</td>
+<td></td>
+<td>Use PV</td>
+</tr>
+<tr>
+<td>EW</td>
+<td>int</td>
+<td></td>
+<td>EW</td>
+</tr>
+<tr>
+<td>AgeGroup</td>
+<td>int</td>
+<td></td>
+<td>Age group</td>
+</tr>
+<tr>
+<td>RateType</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Rate type</td>
+</tr>
+<tr>
+<td>Rate</td>
+<td>decimal(18, 10)</td>
+<td></td>
+<td>Rate</td>
+</tr>
+<tr>
+<td>Qty</td>
+<td>decimal(18, 10)</td>
+<td></td>
+<td>Quantity</td>
+</tr>
+<tr>
+<td>Amount</td>
+<td>decimal(18, 10)</td>
+<td></td>
+<td>Amount</td>
+</tr>
+<tr>
+<td>ActualUsePV</td>
+<td>int</td>
+<td></td>
+<td>Actual use PV</td>
+</tr>
+<tr>
+<td>ActualEW</td>
+<td>int</td>
+<td></td>
+<td>Actual EW</td>
+</tr>
+<tr>
+<td>ActualAgeGroup</td>
+<td>int</td>
+<td></td>
+<td>Actual age group</td>
+</tr>
+<tr>
+<td>ActualRateType</td>
+<td>nvarchar(500)</td>
+<td></td>
+<td>Actual rate type</td>
+</tr>
+<tr>
+<td>ActualRate</td>
+<td>decimal(18, 10)</td>
+<td></td>
+<td>Actual rate</td>
+</tr>
+<tr>
+<td>ActualQty</td>
+<td>decimal(18, 10)</td>
+<td></td>
+<td>Actual quantity</td>
+</tr>
+<tr>
+<td>ActualAmount</td>
+<td>decimal(18, 10)</td>
+<td></td>
+<td>Actual amount</td>
+</tr>
+<tr>
+<td>Proration</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Proration</td>
+</tr>
+<tr>
+<td>EWFactor</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>EW factor</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>ClaimAmountId</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to claim amount</td>
+</tr>
+<tr>
+<td>IsSystem</td>
+<td>int</td>
+<td></td>
+<td>Is system</td>
+</tr>
+<tr>
+<td>Discount</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Discount</td>
+</tr>
+<tr>
+<td>Adjustment</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Adjustment</td>
+</tr>
+<tr>
+<td>AgeGroupDisplay</td>
+<td>varchar(500)</td>
+<td></td>
+<td>Age group display name</td>
+</tr>
+<tr>
+<td>RMRAgeGroupDisplay</td>
+<td>varchar(500)</td>
+<td></td>
+<td>RMR age group display name</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+<tr>
+<td>CareId</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to care</td>
+</tr>
+<tr>
+<td>RateCategory</td>
+<td>nvarchar(2048)</td>
+<td></td>
+<td>Rate category</td>
+</tr>
+</tbody>
+</table>
 <h2 id="pay_scheduleddate">PAY_ScheduledDate<a class="header-anchor" href="javascript:;" onclick="location.hash='#pay_scheduleddate'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Tracks specific dates scheduled for payments or services      |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ScheduleDayID</td>
+<td>uniqueidentifier</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>CareID</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to care</td>
+</tr>
+<tr>
+<td>ChildID</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to child</td>
+</tr>
+<tr>
+<td>ProviderID</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to provider</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>datetime</td>
+<td>IX</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>Scheduled</td>
+<td>bit</td>
+<td></td>
+<td>Scheduled status (Y/N)</td>
+</tr>
+<tr>
+<td>NormalHours</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Normal hours</td>
+</tr>
+<tr>
+<td>AfterHours</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>After hours</td>
+</tr>
+<tr>
+<td>TotalHours</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Total hours</td>
+</tr>
+<tr>
+<td>TimeStamp</td>
+<td>datetime</td>
+<td></td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td>DayAttendanceType</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Day attendance type</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>int</td>
+<td></td>
+<td>Status</td>
+</tr>
+<tr>
+<td>Comment</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Comment</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>ClaimID</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to claim</td>
+</tr>
+<tr>
+<td>ClassroomId</td>
+<td>int</td>
+<td></td>
+<td>Classroom ID</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+</tbody>
+</table>
+<h2 id="pay_scheduledaily">PAY_ScheduleDaily<a class="header-anchor" href="javascript:;" onclick="location.hash='#pay_scheduledaily'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ScheduleDailyID</td>
+<td>uniqueidentifier</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>CareID</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to care</td>
+</tr>
+<tr>
+<td>ChildID</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to child</td>
+</tr>
+<tr>
+<td>ProviderID</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to provider</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>datetime</td>
+<td>IX</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>WeekyNo</td>
+<td>int</td>
+<td></td>
+<td>Weekly number</td>
+</tr>
+<tr>
+<td>DayOfWeek</td>
+<td>int</td>
+<td></td>
+<td>Day of the week</td>
+</tr>
+<tr>
+<td>SignIn</td>
+<td>datetime</td>
+<td>IX</td>
+<td>Sign in time</td>
+</tr>
+<tr>
+<td>SignOut</td>
+<td>datetime</td>
+<td>IX</td>
+<td>Sign out time</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>int</td>
+<td></td>
+<td>Status</td>
+</tr>
+<tr>
+<td>NormalHours</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Normal hours</td>
+</tr>
+<tr>
+<td>AfterHours</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>After hours</td>
+</tr>
+<tr>
+<td>DayAttendanceType</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Day attendance type</td>
+</tr>
+<tr>
+<td>Comment</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Comment</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>ClaimID</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to claim</td>
+</tr>
+<tr>
+<td>ClassroomId</td>
+<td>int</td>
+<td></td>
+<td>Classroom ID</td>
+</tr>
+<tr>
+<td>IsDropInCare</td>
+<td>bit</td>
+<td></td>
+<td>Is drop-in care</td>
+</tr>
+<tr>
+<td>DropInHours</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Drop-in hours</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+</tbody>
+</table>
+<h2 id="pay_claimels">Pay_ClaimELS<a class="header-anchor" href="javascript:;" onclick="location.hash='#pay_claimels'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ClaimELSId</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>ClaimId</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to claim</td>
+</tr>
+<tr>
+<td>FundType</td>
+<td>int</td>
+<td></td>
+<td>Fund type</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>nvarchar(500)</td>
+<td></td>
+<td>Description</td>
+</tr>
+<tr>
+<td>OtherAmount</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Other amount</td>
+</tr>
+<tr>
+<td>PostAmount</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Post amount</td>
+</tr>
+<tr>
+<td>OrderNo</td>
+<td>int</td>
+<td></td>
+<td>Order number</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpdateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+<tr>
+<td>OriginalAmount</td>
+<td>decimal(38, 6)</td>
+<td></td>
+<td>Original amount</td>
+</tr>
+</tbody>
+</table>
+<h2 id="pay_ffassignment">Pay_FFAssignment<a class="header-anchor" href="javascript:;" onclick="location.hash='#pay_ffassignment'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FFAId</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>CaseId</td>
+<td>int default 0</td>
+<td></td>
+<td>Foreign key to case</td>
+</tr>
+<tr>
+<td>ChildId</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to child</td>
+</tr>
+<tr>
+<td>CareId</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to care</td>
+</tr>
+<tr>
+<td>Month</td>
+<td>date</td>
+<td>IX</td>
+<td>Month of assignment</td>
+</tr>
+<tr>
+<td>FF</td>
+<td>varchar(2)</td>
+<td></td>
+<td>Family fee</td>
+</tr>
+<tr>
+<td>TotalHours</td>
+<td>int</td>
+<td></td>
+<td>Total hours</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td>IX</td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpdateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>FamilyId</td>
+<td>int default 0</td>
+<td></td>
+<td>Foreign key to family</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+</tbody>
+</table>
 
                 </div>
 
@@ -298,18 +1767,13 @@ CareControl                                    </span>
                                         </span>
                                     </li>
                                     <li class="group text-gray-800 hover:text-gray-900">
-                                        <span v-hash="'#pay_claimels'" data-id="pay_claimels" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
-                                            Pay_ClaimELS
-                                        </span>
-                                    </li>
-                                    <li class="group text-gray-800 hover:text-gray-900">
                                         <span v-hash="'#pay_claimweek'" data-id="pay_claimweek" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
                                             PAY_ClaimWeek
                                         </span>
                                     </li>
                                     <li class="group text-gray-800 hover:text-gray-900">
-                                        <span v-hash="'#pay_ffassignment'" data-id="pay_ffassignment" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
-                                            Pay_FFAssignment
+                                        <span v-hash="'#pay_scheduleddate'" data-id="pay_scheduleddate" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            PAY_ScheduledDate
                                         </span>
                                     </li>
                                     <li class="group text-gray-800 hover:text-gray-900">
@@ -318,8 +1782,13 @@ CareControl                                    </span>
                                         </span>
                                     </li>
                                     <li class="group text-gray-800 hover:text-gray-900">
-                                        <span v-hash="'#pay_scheduleddate'" data-id="pay_scheduleddate" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
-                                            PAY_ScheduledDate
+                                        <span v-hash="'#pay_claimels'" data-id="pay_claimels" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            Pay_ClaimELS
+                                        </span>
+                                    </li>
+                                    <li class="group text-gray-800 hover:text-gray-900">
+                                        <span v-hash="'#pay_ffassignment'" data-id="pay_ffassignment" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            Pay_FFAssignment
                                         </span>
                                     </li>
                             </ul>

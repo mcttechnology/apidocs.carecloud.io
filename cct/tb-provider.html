@@ -224,29 +224,1877 @@ CareControl                                    </span>
                     <h2 id="introduction">Introduction<a class="header-anchor" href="javascript:;" onclick="location.hash='#introduction'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>This section introduces the structure of the 'provider' table and its relationships within the database. It specifically focuses on the connections between family members, such as the relationship between parents and children. This documentation aims to provide an overview of how family entities are interconnected.</p>
 <h2 id="pro_provider">PRO_Provider<a class="header-anchor" href="javascript:;" onclick="location.hash='#pro_provider'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Main table for provider information                           |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ProviderID</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>ProviderNO</td>
+<td>nvarchar(30)</td>
+<td>IX</td>
+<td>Provider number</td>
+</tr>
+<tr>
+<td>VenderNO</td>
+<td>nvarchar(500)</td>
+<td>IX</td>
+<td>Vendor number</td>
+</tr>
+<tr>
+<td>ProviderName</td>
+<td>nvarchar(1000)</td>
+<td>_dta</td>
+<td>Provider name</td>
+</tr>
+<tr>
+<td>ProviderCategory</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Provider category</td>
+</tr>
+<tr>
+<td>ProviderType</td>
+<td>int</td>
+<td>IX</td>
+<td>Provider type</td>
+</tr>
+<tr>
+<td>FirstName</td>
+<td>nvarchar(500)</td>
+<td>IX</td>
+<td>First name</td>
+</tr>
+<tr>
+<td>LastName</td>
+<td>nvarchar(500)</td>
+<td>IX</td>
+<td>Last name</td>
+</tr>
+<tr>
+<td>MiddleInitial</td>
+<td>nvarchar(10)</td>
+<td></td>
+<td>Middle initial</td>
+</tr>
+<tr>
+<td>Gender</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Gender</td>
+</tr>
+<tr>
+<td>DateOfBirth</td>
+<td>datetime</td>
+<td></td>
+<td>Date of birth</td>
+</tr>
+<tr>
+<td>Zip</td>
+<td>nvarchar(10)</td>
+<td></td>
+<td>Zip code</td>
+</tr>
+<tr>
+<td>Address</td>
+<td>nvarchar(300)</td>
+<td></td>
+<td>Address</td>
+</tr>
+<tr>
+<td>Unit</td>
+<td>nvarchar(300)</td>
+<td></td>
+<td>Unit number</td>
+</tr>
+<tr>
+<td>City</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>City name</td>
+</tr>
+<tr>
+<td>County</td>
+<td>nvarchar(50)</td>
+<td></td>
+<td>County name</td>
+</tr>
+<tr>
+<td>State</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>State name</td>
+</tr>
+<tr>
+<td>CityID</td>
+<td>int</td>
+<td></td>
+<td>City ID</td>
+</tr>
+<tr>
+<td>CountyID</td>
+<td>int</td>
+<td></td>
+<td>County ID</td>
+</tr>
+<tr>
+<td>StateID</td>
+<td>int</td>
+<td></td>
+<td>State ID</td>
+</tr>
+<tr>
+<td>SameAddress</td>
+<td>bit</td>
+<td></td>
+<td>Same address flag (Y/N)</td>
+</tr>
+<tr>
+<td>MailZip</td>
+<td>nvarchar(10)</td>
+<td></td>
+<td>Mailing zip code</td>
+</tr>
+<tr>
+<td>MailAddress</td>
+<td>nvarchar(300)</td>
+<td></td>
+<td>Mailing address</td>
+</tr>
+<tr>
+<td>MailUnit</td>
+<td>nvarchar(300)</td>
+<td></td>
+<td>Mailing unit number</td>
+</tr>
+<tr>
+<td>MailCity</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>Mailing city name</td>
+</tr>
+<tr>
+<td>MailCounty</td>
+<td>nvarchar(50)</td>
+<td></td>
+<td>Mailing county name</td>
+</tr>
+<tr>
+<td>MailState</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>Mailing state name</td>
+</tr>
+<tr>
+<td>MailCityID</td>
+<td>int</td>
+<td></td>
+<td>Mailing city ID</td>
+</tr>
+<tr>
+<td>MailCountyID</td>
+<td>int</td>
+<td></td>
+<td>Mailing county ID</td>
+</tr>
+<tr>
+<td>MailStateID</td>
+<td>int</td>
+<td></td>
+<td>Mailing state ID</td>
+</tr>
+<tr>
+<td>EMailAddress</td>
+<td>nvarchar(80)</td>
+<td></td>
+<td>Email address</td>
+</tr>
+<tr>
+<td>Phone1</td>
+<td>nvarchar(35)</td>
+<td></td>
+<td>Primary phone number</td>
+</tr>
+<tr>
+<td>Phone2</td>
+<td>nvarchar(35)</td>
+<td></td>
+<td>Secondary phone number</td>
+</tr>
+<tr>
+<td>Cell</td>
+<td>nvarchar(35)</td>
+<td></td>
+<td>Cell phone number</td>
+</tr>
+<tr>
+<td>Fax</td>
+<td>nvarchar(20)</td>
+<td></td>
+<td>Fax number</td>
+</tr>
+<tr>
+<td>RcvMsg</td>
+<td>bit</td>
+<td></td>
+<td>Receive messages (Y/N)</td>
+</tr>
+<tr>
+<td>RegistrationFeeType</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Registration fee type</td>
+</tr>
+<tr>
+<td>SSN</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Social Security Number</td>
+</tr>
+<tr>
+<td>TaxID</td>
+<td>nvarchar(20)</td>
+<td></td>
+<td>Tax ID</td>
+</tr>
+<tr>
+<td>OtherIDType</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Other ID type</td>
+</tr>
+<tr>
+<td>OtherID</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Other ID</td>
+</tr>
+<tr>
+<td>TaxLegalName</td>
+<td>nvarchar(300)</td>
+<td></td>
+<td>Tax legal name</td>
+</tr>
+<tr>
+<td>ExceptionalNeeds</td>
+<td>bit</td>
+<td></td>
+<td>Exceptional needs (Y/N)</td>
+</tr>
+<tr>
+<td>SeverelyHandicapped</td>
+<td>bit</td>
+<td></td>
+<td>Severely handicapped (Y/N)</td>
+</tr>
+<tr>
+<td>PayAbsence</td>
+<td>varchar(50)</td>
+<td></td>
+<td>Pay absence</td>
+</tr>
+<tr>
+<td>FTHours</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Full-time hours</td>
+</tr>
+<tr>
+<td>FollwAgencyHoliday</td>
+<td>bit</td>
+<td></td>
+<td>Follow agency holiday (Y/N)</td>
+</tr>
+<tr>
+<td>ResidentChildren</td>
+<td>int</td>
+<td></td>
+<td>Number of resident children</td>
+</tr>
+<tr>
+<td>TrustLineStatus</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>TrustLine status</td>
+</tr>
+<tr>
+<td>TrustLineComment</td>
+<td>nvarchar(200)</td>
+<td></td>
+<td>TrustLine comment</td>
+</tr>
+<tr>
+<td>TrustLineRegDate</td>
+<td>datetime</td>
+<td></td>
+<td>TrustLine registration date</td>
+</tr>
+<tr>
+<td>TrustLineLiveScanDate</td>
+<td>datetime</td>
+<td></td>
+<td>TrustLine live scan date</td>
+</tr>
+<tr>
+<td>TrustLineRRDate</td>
+<td>datetime</td>
+<td></td>
+<td>TrustLine RR date</td>
+</tr>
+<tr>
+<td>TrustLineResultDate</td>
+<td>datetime</td>
+<td></td>
+<td>TrustLine result date</td>
+</tr>
+<tr>
+<td>TransitionFlag</td>
+<td>bit</td>
+<td></td>
+<td>Transition flag (Y/N)</td>
+</tr>
+<tr>
+<td>SameFamilyID</td>
+<td>int</td>
+<td>IX</td>
+<td>Same family ID</td>
+</tr>
+<tr>
+<td>Prohibit</td>
+<td>bit</td>
+<td></td>
+<td>Prohibit (Y/N)</td>
+</tr>
+<tr>
+<td>ProhibitReson</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Prohibit reason</td>
+</tr>
+<tr>
+<td>IsOnProbation</td>
+<td>bit</td>
+<td></td>
+<td>Is on probation (Y/N)</td>
+</tr>
+<tr>
+<td>ProviderManager</td>
+<td>int</td>
+<td></td>
+<td>Provider manager</td>
+</tr>
+<tr>
+<td>Language</td>
+<td>int</td>
+<td></td>
+<td>Language ID</td>
+</tr>
+<tr>
+<td>OwnerID</td>
+<td>int</td>
+<td>_dta</td>
+<td>Owner ID</td>
+</tr>
+<tr>
+<td>OrgID</td>
+<td>int</td>
+<td></td>
+<td>Organization ID</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>int</td>
+<td></td>
+<td>Status</td>
+</tr>
+<tr>
+<td>Comments</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Comments</td>
+</tr>
+<tr>
+<td>StartDate</td>
+<td>datetime</td>
+<td></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>EndDate</td>
+<td>datetime</td>
+<td></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>History</td>
+<td>int</td>
+<td></td>
+<td>History version</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td>IX</td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>TaxLegalFirstName</td>
+<td>nvarchar(50)</td>
+<td></td>
+<td>Tax legal first name</td>
+</tr>
+<tr>
+<td>TaxLegalMI</td>
+<td>nvarchar(50)</td>
+<td></td>
+<td>Tax legal middle initial</td>
+</tr>
+<tr>
+<td>PaymentMethod</td>
+<td>nvarchar(50)</td>
+<td></td>
+<td>Payment method</td>
+</tr>
+<tr>
+<td>PVCountyID</td>
+<td>nvarchar(100)</td>
+<td>IX</td>
+<td>Provider county ID</td>
+</tr>
+<tr>
+<td>IsAffiadvit</td>
+<td>bit</td>
+<td></td>
+<td>Is affidavit (Y/N)</td>
+</tr>
+<tr>
+<td>AffiadvitDate</td>
+<td>datetime</td>
+<td></td>
+<td>Affidavit date</td>
+</tr>
+<tr>
+<td>TrustLineReceiveDate</td>
+<td>datetime</td>
+<td></td>
+<td>TrustLine receive date</td>
+</tr>
+<tr>
+<td>DriversLicense</td>
+<td>nvarchar(20)</td>
+<td></td>
+<td>Driver's license number</td>
+</tr>
+<tr>
+<td>DriversExpDate</td>
+<td>datetime</td>
+<td></td>
+<td>Driver's license expiration date</td>
+</tr>
+<tr>
+<td>HoldStatus</td>
+<td>int</td>
+<td></td>
+<td>Hold status (0 release, 1 hold new cares, 2 hold export)</td>
+</tr>
+<tr>
+<td>HoldReleaseDate</td>
+<td>datetime</td>
+<td></td>
+<td>Hold release date</td>
+</tr>
+<tr>
+<td>ProviderModel</td>
+<td>int</td>
+<td></td>
+<td>Provider model</td>
+</tr>
+<tr>
+<td>CommunicationMethod</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Communication method</td>
+</tr>
+<tr>
+<td>IsFTHours</td>
+<td>bit</td>
+<td></td>
+<td>Is full-time hours (Y/N)</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+<tr>
+<td>SpokenLanguage</td>
+<td>varchar(500)</td>
+<td></td>
+<td>Spoken language</td>
+</tr>
+<tr>
+<td>SSNEncrypted</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Encrypted Social Security Number</td>
+</tr>
+<tr>
+<td>TaxIDEncrypted</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Encrypted Tax ID</td>
+</tr>
+</tbody>
+</table>
 <h2 id="pro_providerextension">PRO_ProviderExtension<a class="header-anchor" href="javascript:;" onclick="location.hash='#pro_providerextension'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Holds extended information for providers                      |</p>
+<p>Provider extension fields, for custom fields and additional information.</p>
 <h2 id="pro_contact">PRO_Contact<a class="header-anchor" href="javascript:;" onclick="location.hash='#pro_contact'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Holds contact information for providers                       |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ContactID</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>ProviderID</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to provider</td>
+</tr>
+<tr>
+<td>Title</td>
+<td>nvarchar(200)</td>
+<td></td>
+<td>Title</td>
+</tr>
+<tr>
+<td>LastName</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>Last name</td>
+</tr>
+<tr>
+<td>FirstName</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>First name</td>
+</tr>
+<tr>
+<td>MiddleInitial</td>
+<td>nvarchar(10)</td>
+<td></td>
+<td>Middle initial</td>
+</tr>
+<tr>
+<td>DateOfBirth</td>
+<td>datetime</td>
+<td></td>
+<td>Date of birth</td>
+</tr>
+<tr>
+<td>Gender</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Gender</td>
+</tr>
+<tr>
+<td>SSNumber</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>Social Security Number</td>
+</tr>
+<tr>
+<td>PublicSSNumber</td>
+<td>bit</td>
+<td></td>
+<td>Is SSN public (Y/N)</td>
+</tr>
+<tr>
+<td>Language</td>
+<td>int</td>
+<td></td>
+<td>Language ID</td>
+</tr>
+<tr>
+<td>LimitedEnglish</td>
+<td>bit</td>
+<td></td>
+<td>Limited English proficiency (Y/N)</td>
+</tr>
+<tr>
+<td>HomePhone</td>
+<td>nvarchar(35)</td>
+<td></td>
+<td>Home phone number</td>
+</tr>
+<tr>
+<td>WorkPhone</td>
+<td>nvarchar(35)</td>
+<td></td>
+<td>Work phone number</td>
+</tr>
+<tr>
+<td>Cell</td>
+<td>nvarchar(35)</td>
+<td></td>
+<td>Cell phone number</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>nvarchar(50)</td>
+<td></td>
+<td>Email address</td>
+</tr>
+<tr>
+<td>OtherIDType</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Other ID type (e.g., Driver Lic)</td>
+</tr>
+<tr>
+<td>OtherID</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Other ID</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>int</td>
+<td></td>
+<td>Status</td>
+</tr>
+<tr>
+<td>Comments</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Comments</td>
+</tr>
+<tr>
+<td>StartDate</td>
+<td>datetime</td>
+<td></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>EndDate</td>
+<td>datetime</td>
+<td></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>History</td>
+<td>int</td>
+<td></td>
+<td>History version</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+</tbody>
+</table>
 <h2 id="pro_address">PRO_Address<a class="header-anchor" href="javascript:;" onclick="location.hash='#pro_address'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Contains address details for providers and related entities   |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>ProviderId</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to provider</td>
+</tr>
+<tr>
+<td>StartDate</td>
+<td>datetime</td>
+<td></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>EndDate</td>
+<td>datetime</td>
+<td></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>IsEffective</td>
+<td>bit</td>
+<td></td>
+<td>Is effective (Y/N)</td>
+</tr>
+<tr>
+<td>Zip</td>
+<td>nvarchar(10)</td>
+<td></td>
+<td>Zip code</td>
+</tr>
+<tr>
+<td>Address</td>
+<td>nvarchar(300)</td>
+<td></td>
+<td>Address</td>
+</tr>
+<tr>
+<td>Unit</td>
+<td>nvarchar(300)</td>
+<td></td>
+<td>Unit number</td>
+</tr>
+<tr>
+<td>City</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>City name</td>
+</tr>
+<tr>
+<td>County</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>County name</td>
+</tr>
+<tr>
+<td>State</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>State name</td>
+</tr>
+<tr>
+<td>CityID</td>
+<td>int</td>
+<td></td>
+<td>City ID</td>
+</tr>
+<tr>
+<td>CountyID</td>
+<td>int</td>
+<td></td>
+<td>County ID</td>
+</tr>
+<tr>
+<td>StateID</td>
+<td>int</td>
+<td></td>
+<td>State ID</td>
+</tr>
+<tr>
+<td>SameAddress</td>
+<td>bit</td>
+<td></td>
+<td>Same address flag (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>MailZip</td>
+<td>nvarchar(10)</td>
+<td></td>
+<td>Mailing zip code</td>
+</tr>
+<tr>
+<td>MailAddress</td>
+<td>nvarchar(300)</td>
+<td></td>
+<td>Mailing address</td>
+</tr>
+<tr>
+<td>MailUnit</td>
+<td>nvarchar(300)</td>
+<td></td>
+<td>Mailing unit number</td>
+</tr>
+<tr>
+<td>MailCity</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>Mailing city name</td>
+</tr>
+<tr>
+<td>MailCounty</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>Mailing county name</td>
+</tr>
+<tr>
+<td>MailState</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>Mailing state name</td>
+</tr>
+<tr>
+<td>MailCityID</td>
+<td>int</td>
+<td></td>
+<td>Mailing city ID</td>
+</tr>
+<tr>
+<td>MailCountyID</td>
+<td>int</td>
+<td></td>
+<td>Mailing county ID</td>
+</tr>
+<tr>
+<td>MailStateID</td>
+<td>int</td>
+<td></td>
+<td>Mailing state ID</td>
+</tr>
+<tr>
+<td>EMailAddress</td>
+<td>nvarchar(80)</td>
+<td></td>
+<td>Email address</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>int</td>
+<td></td>
+<td>Status</td>
+</tr>
+<tr>
+<td>Comment</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Comments</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>FullAddress</td>
+<td>nvarchar(1024)</td>
+<td></td>
+<td>Full address</td>
+</tr>
+<tr>
+<td>FullMailAddress</td>
+<td>nvarchar(1024)</td>
+<td></td>
+<td>Full mailing address</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+</tbody>
+</table>
 <h2 id="pro_agreement">PRO_Agreement<a class="header-anchor" href="javascript:;" onclick="location.hash='#pro_agreement'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Stores agreements made with or between providers              |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AgreementID</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>EntityRequestID</td>
+<td>uniqueidentifier</td>
+<td></td>
+<td>Entity request ID</td>
+</tr>
+<tr>
+<td>RequestDate</td>
+<td>datetime</td>
+<td></td>
+<td>Request date</td>
+</tr>
+<tr>
+<td>RequestReason</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Request reason</td>
+</tr>
+<tr>
+<td>TerminateDate</td>
+<td>datetime</td>
+<td></td>
+<td>Termination date</td>
+</tr>
+<tr>
+<td>ValidStatus</td>
+<td>int</td>
+<td></td>
+<td>Valid status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>ProviderType</td>
+<td>int</td>
+<td></td>
+<td>Provider type (Interim Provider, Licensed Center-Based, etc.)</td>
+</tr>
+<tr>
+<td>ProviderManager</td>
+<td>int</td>
+<td></td>
+<td>Provider manager</td>
+</tr>
+<tr>
+<td>RequestUser</td>
+<td>int</td>
+<td></td>
+<td>Request user</td>
+</tr>
+<tr>
+<td>FamilyID</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to family</td>
+</tr>
+<tr>
+<td>ProviderID</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to provider</td>
+</tr>
+<tr>
+<td>ContractID</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Contract ID</td>
+</tr>
+<tr>
+<td>CareType</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Care type (Interim Provider, Licensed Center-Based, etc.)</td>
+</tr>
+<tr>
+<td>TrustLineStatus</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>TrustLine status</td>
+</tr>
+<tr>
+<td>TrustLineComment</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>TrustLine comment</td>
+</tr>
+<tr>
+<td>IsInHome</td>
+<td>bit</td>
+<td></td>
+<td>Is in home (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>IsRelative</td>
+<td>bit</td>
+<td></td>
+<td>Is relative (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>Relationship</td>
+<td>int</td>
+<td></td>
+<td>Relationship</td>
+</tr>
+<tr>
+<td>OrientationDate</td>
+<td>datetime</td>
+<td></td>
+<td>Orientation date</td>
+</tr>
+<tr>
+<td>OrientationConfirm</td>
+<td>bit</td>
+<td></td>
+<td>Orientation confirmed (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>OrientationResult</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Orientation result</td>
+</tr>
+<tr>
+<td>PayTo</td>
+<td>int</td>
+<td></td>
+<td>Pay to (0: Family, 1: Provider For In Home)</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>int</td>
+<td></td>
+<td>Status (0: New, 9: Terminate)</td>
+</tr>
+<tr>
+<td>CKAgeGroup</td>
+<td>bit</td>
+<td></td>
+<td>Check age group (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CKCapacity</td>
+<td>bit</td>
+<td></td>
+<td>Check capacity (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CKPvAge</td>
+<td>bit</td>
+<td></td>
+<td>Check provider age (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CKInPvHome</td>
+<td>bit</td>
+<td></td>
+<td>Check care in provider home (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CKAnotherChild</td>
+<td>bit</td>
+<td></td>
+<td>Check provider has another child (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CKSSN</td>
+<td>bit</td>
+<td></td>
+<td>Check provider has SSN (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>Comments</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Comments</td>
+</tr>
+<tr>
+<td>StartDate</td>
+<td>datetime</td>
+<td></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>EndDate</td>
+<td>datetime</td>
+<td></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>ProviderHistory</td>
+<td>int</td>
+<td></td>
+<td>Provider history version</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>IsOOA</td>
+<td>bit</td>
+<td></td>
+<td>Is out of area (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>PVCountyID</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Provider county ID</td>
+</tr>
+<tr>
+<td>CKWithPT</td>
+<td>bit</td>
+<td></td>
+<td>Check with provider (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>TrustLineRetro</td>
+<td>int</td>
+<td></td>
+<td>TrustLine retro</td>
+</tr>
+<tr>
+<td>DenyReason</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Deny reason</td>
+</tr>
+<tr>
+<td>RealProviderType</td>
+<td>int</td>
+<td></td>
+<td>Real provider type</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+</tbody>
+</table>
 <h2 id="pro_garnishment">PRO_Garnishment<a class="header-anchor" href="javascript:;" onclick="location.hash='#pro_garnishment'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Tracks garnishment orders against providers                   |</p>
-<h2 id="pro_garnishmententity">PRO_GarnishmentEntity<a class="header-anchor" href="javascript:;" onclick="location.hash='#pro_garnishmententity'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Details entities involved in garnishment processes            |</p>
-<h2 id="pro_rate">PRO_Rate<a class="header-anchor" href="javascript:;" onclick="location.hash='#pro_rate'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Contains rate information related to providers                |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GarnishmentId</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>ProviderId</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to provider</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>nvarchar(500)</td>
+<td></td>
+<td>Name</td>
+</tr>
+<tr>
+<td>GarnishmentEntityId</td>
+<td>int</td>
+<td></td>
+<td>Garnishment entity ID</td>
+</tr>
+<tr>
+<td>OriginalAmount</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Original amount</td>
+</tr>
+<tr>
+<td>Balance</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Balance</td>
+</tr>
+<tr>
+<td>StartDate</td>
+<td>datetime</td>
+<td></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>EndDate</td>
+<td>datetime</td>
+<td></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>int</td>
+<td></td>
+<td>Status (New; Active; Hold; Terminated)</td>
+</tr>
+<tr>
+<td>ReactivateDate</td>
+<td>datetime</td>
+<td></td>
+<td>Reactivate date</td>
+</tr>
+<tr>
+<td>ProcessingFee</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Processing fee</td>
+</tr>
+<tr>
+<td>PaymentMethod</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Payment method (Set Amount, Set Percentage, etc.)</td>
+</tr>
+<tr>
+<td>SetAmount</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Set amount</td>
+</tr>
+<tr>
+<td>SetPercentage</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Set percentage</td>
+</tr>
+<tr>
+<td>PaymentFrequency</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Payment frequency (Per Month, Per Check Run, etc.)</td>
+</tr>
+<tr>
+<td>LastExportDate</td>
+<td>datetime</td>
+<td></td>
+<td>Last export date</td>
+</tr>
+<tr>
+<td>TerminateDate</td>
+<td>datetime</td>
+<td></td>
+<td>Termination date</td>
+</tr>
+<tr>
+<td>TerminateReason</td>
+<td>nvarchar(32)</td>
+<td></td>
+<td>Termination reason (Paid in Full, Expired, etc.)</td>
+</tr>
+<tr>
+<td>Comment</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Comments</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserId</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserId</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>Agency</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Agency</td>
+</tr>
+<tr>
+<td>Code</td>
+<td>nvarchar(100)</td>
+<td></td>
+<td>Code</td>
+</tr>
+<tr>
+<td>Orderby</td>
+<td>int</td>
+<td></td>
+<td>Order by</td>
+</tr>
+<tr>
+<td>SetHigherAmount</td>
+<td>decimal(18, 4)</td>
+<td></td>
+<td>Set higher amount</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+</tbody>
+</table>
+<h2 id="pro_ratemain">PRO_RateMain<a class="header-anchor" href="javascript:;" onclick="location.hash='#pro_ratemain'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MainRateId</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>ProviderID</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to provider</td>
+</tr>
+<tr>
+<td>StartDate</td>
+<td>datetime</td>
+<td></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>EndDate</td>
+<td>datetime</td>
+<td></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>Comments</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Comments</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpdateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>IsFTHours</td>
+<td>bit</td>
+<td></td>
+<td>Is full-time hours (Y/N)</td>
+</tr>
+<tr>
+<td>FTHours</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Full-time hours</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+</tbody>
+</table>
 <h2 id="pro_holiday">PRO_Holiday<a class="header-anchor" href="javascript:;" onclick="location.hash='#pro_holiday'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Contains information about recognized holidays                |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HolidayID</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>ProviderID</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to provider</td>
+</tr>
+<tr>
+<td>ProviderRuleID</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to provider rule</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>datetime</td>
+<td></td>
+<td>Holiday date</td>
+</tr>
+<tr>
+<td>HolidayType</td>
+<td>nvarchar(200)</td>
+<td></td>
+<td>Type of holiday</td>
+</tr>
+<tr>
+<td>IsPaid</td>
+<td>bit</td>
+<td></td>
+<td>Is paid holiday (Y/N)</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+</tbody>
+</table>
 <h2 id="pro_license">PRO_License<a class="header-anchor" href="javascript:;" onclick="location.hash='#pro_license'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Stores licensing information for providers                    |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LicenseID</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>ProviderID</td>
+<td>int</td>
+<td></td>
+<td>Foreign key to provider</td>
+</tr>
+<tr>
+<td>LicenseNo</td>
+<td>nvarchar(50)</td>
+<td></td>
+<td>License number</td>
+</tr>
+<tr>
+<td>LicenseExpirationDate</td>
+<td>datetime</td>
+<td></td>
+<td>License expiration date</td>
+</tr>
+<tr>
+<td>LicenseIssueDate</td>
+<td>datetime</td>
+<td></td>
+<td>License issue date</td>
+</tr>
+<tr>
+<td>InsuranceAffidavit</td>
+<td>nvarchar(50)</td>
+<td></td>
+<td>Insurance affidavit</td>
+</tr>
+<tr>
+<td>MinAge</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Minimum age</td>
+</tr>
+<tr>
+<td>MaxAge</td>
+<td>decimal(18, 2)</td>
+<td></td>
+<td>Maximum age</td>
+</tr>
+<tr>
+<td>Capacity</td>
+<td>int</td>
+<td></td>
+<td>Capacity</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>int</td>
+<td></td>
+<td>Status</td>
+</tr>
+<tr>
+<td>Comments</td>
+<td>nvarchar(max)</td>
+<td></td>
+<td>Comments</td>
+</tr>
+<tr>
+<td>History</td>
+<td>int</td>
+<td></td>
+<td>History version</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpateUserID</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>EDocID</td>
+<td>nvarchar(20)</td>
+<td></td>
+<td>Electronic document ID</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+</tbody>
+</table>
 <h2 id="pro_qris">PRO_QRIS<a class="header-anchor" href="javascript:;" onclick="location.hash='#pro_qris'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Manages Quality Rating and Improvement System (QRIS) data     |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>ProviderId</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to provider</td>
+</tr>
+<tr>
+<td>Code</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>QRIS code</td>
+</tr>
+<tr>
+<td>StartDate</td>
+<td>datetime</td>
+<td></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>EndDate</td>
+<td>datetime</td>
+<td></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserId</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpdateUserId</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+</tbody>
+</table>
 <h2 id="pro_accreditationstatus">PRO_AccreditationStatus<a class="header-anchor" href="javascript:;" onclick="location.hash='#pro_accreditationstatus'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Tracks the accreditation status of providers                  |</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Index</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>int identity</td>
+<td>PK</td>
+<td>Primary key, unique identifier</td>
+</tr>
+<tr>
+<td>ProviderId</td>
+<td>int</td>
+<td>IX</td>
+<td>Foreign key to provider</td>
+</tr>
+<tr>
+<td>Code</td>
+<td>nvarchar(30)</td>
+<td></td>
+<td>Accreditation status code</td>
+</tr>
+<tr>
+<td>StartDate</td>
+<td>datetime</td>
+<td></td>
+<td>Start date</td>
+</tr>
+<tr>
+<td>EndDate</td>
+<td>datetime</td>
+<td></td>
+<td>End date</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>bit</td>
+<td></td>
+<td>Disabled status (0 No, 1 Yes)</td>
+</tr>
+<tr>
+<td>CreateUserId</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who created</td>
+</tr>
+<tr>
+<td>UpdateUserId</td>
+<td>int</td>
+<td></td>
+<td>ID of the user who updated</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>int</td>
+<td></td>
+<td>Version</td>
+</tr>
+<tr>
+<td>CreateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record creation time</td>
+</tr>
+<tr>
+<td>UpdateTime</td>
+<td>datetimeoffset</td>
+<td></td>
+<td>Record update time</td>
+</tr>
+</tbody>
+</table>
 
                 </div>
 
@@ -321,13 +2169,8 @@ CareControl                                    </span>
                                         </span>
                                     </li>
                                     <li class="group text-gray-800 hover:text-gray-900">
-                                        <span v-hash="'#pro_garnishmententity'" data-id="pro_garnishmententity" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
-                                            PRO_GarnishmentEntity
-                                        </span>
-                                    </li>
-                                    <li class="group text-gray-800 hover:text-gray-900">
-                                        <span v-hash="'#pro_rate'" data-id="pro_rate" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
-                                            PRO_Rate
+                                        <span v-hash="'#pro_ratemain'" data-id="pro_ratemain" class="cursor-pointer font-medium block text-sm transform transition-colors duration-200 py-2">
+                                            PRO_RateMain
                                         </span>
                                     </li>
                                     <li class="group text-gray-800 hover:text-gray-900">
