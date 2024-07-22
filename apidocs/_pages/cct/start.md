@@ -26,6 +26,8 @@ CC4 is divided into two deployment methods: AWS deployment and local deployment.
 | FAM_NeedSummary              | Summary of family needs                             |
 | FAM_NeedSummarySchedule      | Scheduling for needs assessment                     |
 | FAM_NOA                      | Notice of Action documents                          |
+| FAM_EnhancedReferral         | Enhanced referral information                       |
+| FAM_EnhancedReferralProvider | Provider information for enhanced referrals         |
 
 ### Case
 
@@ -51,6 +53,7 @@ CC4 is divided into two deployment methods: AWS deployment and local deployment.
 | PRO_License             | Stores licensing information for providers                    |
 | PRO_QRIS                | Manages Quality Rating and Improvement System (QRIS) data     |
 | PRO_AccreditationStatus | Tracks the accreditation status of providers                  |
+| PRO_RegistrationFee     | Contains information about registration fees for providers    |
 
 ### Care
 
@@ -76,14 +79,17 @@ CC4 is divided into two deployment methods: AWS deployment and local deployment.
 
 ### Ledger
 
-| Table               | Description                                                 |
-|---------------------|-------------------------------------------------------------|
-| FIN_Export          | Manages the export of financial data and reports            |
-| Fin_ExternalInvoice | Stores invoices received from external entities             |
-| FIN_Ledger          | Main ledger containing comprehensive financial transactions |
-| FIN_SubLedger       | Subsidiary ledger tracking detailed financial transactions  |
-| FIN_SubLedgerItem   | Details individual items within a sub-ledger                |
-| FIN_Provider        | Stores financial information specific to providers          |
+| Table                      | Description                                                 |
+|----------------------------|-------------------------------------------------------------|
+| FIN_Export                 | Manages the export of financial data and reports            |
+| Fin_ExternalInvoice        | Stores invoices received from external entities             |
+| FIN_Ledger                 | Main ledger containing comprehensive financial transactions |
+| FIN_SubLedger              | Subsidiary ledger tracking detailed financial transactions  |
+| FIN_SubLedgerItem          | Details individual items within a sub-ledger                |
+| FIN_Provider               | Stores financial information specific to providers          |
+| PAY_RegistrationFee        | Manages registration fees for providers                     |
+| PAT_RegistrationFeePayment | Tracks payments made for registration fees                  |
+| PAY_GarnishmentPayment     | Tracks payments made for garnishments                       |
 
 ## Data Sources
 

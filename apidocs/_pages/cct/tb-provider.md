@@ -354,5 +354,26 @@ Provider extension fields, for custom fields and additional information.
 | CreateTime     | datetimeoffset   |         | Record creation time                 |
 | UpdateTime     | datetimeoffset   |         | Record update time                   |
 
+## PRO_RegistrationFee
 
+| Field                | Type                | Index   | Description                          |
+|----------------------|---------------------|---------|--------------------------------------|
+| RegistrationFeeID    | int identity        | PK      | Primary key, unique identifier       |
+| ProviderID           | int                 | IX      | Foreign key to provider              |
+| MinAge               | decimal(18, 2)      |         | Minimum age                          |
+| MaxAge               | decimal(18, 2)      |         | Maximum age                          |
+| RegistrationFee      | decimal(18, 2)      |         | Registration fee                     |
+| Status               | int                 |         | Status                               |
+| Comments             | nvarchar(max)       |         | Comments                             |
+| StartDate            | datetime            |         | Start date                           |
+| EndDate              | datetime            |         | End date                             |
+| History              | int                 |         | History version                      |
+| Disable              | bit                 |         | Disabled status (0 No, 1 Yes)        |
+| CreateUserID         | int                 |         | ID of the user who created           |
+| UpateUserID          | int                 |         | ID of the user who updated           |
+| Version              | int                 |         | Version                              |
+| IsEffective          | bit                 |         | Is effective                         |
+| RegistrationFeeType  | nvarchar(2048)      |         | Registration fee type                |
+| CreateTime           | datetimeoffset      |         | Record creation time                 |
+| UpdateTime           | datetimeoffset      |         | Record update time                   |
 

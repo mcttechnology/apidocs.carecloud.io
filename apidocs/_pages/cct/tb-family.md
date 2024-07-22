@@ -495,3 +495,43 @@ Extended parent information, mainly for future custom extensions.
 | BatchCode     | nvarchar(2048) |       | Batch code                                                                                                                                              |
 | CreateTime    | datetimeoffset |       | Record creation time                                                                                                                                    |
 | UpdateTime    | datetimeoffset |       | Record update time                                                                                                                                      |
+
+## FAM_EnhancedReferral
+
+| Field         | Type                | Index   | Description                          |
+|---------------|---------------------|---------|--------------------------------------|
+| Id            | int identity        | PK      | Primary key, unique identifier       |
+| CaseId        | int                 | IX      | Foreign key to case                  |
+| FamilyID      | int                 |         | Foreign key to family                |
+| ChildID       | int                 |         | Foreign key to child                 |
+| ReferralDate  | datetime            |         | Referral date                        |
+| Comment       | nvarchar(500)       |         | Comment                              |
+| Status        | int                 |         | Status                               |
+| Disable       | bit                 |         | Disabled status (0 No, 1 Yes)        |
+| CreateUserId  | int                 |         | ID of the user who created           |
+| UpateUserId   | int                 |         | ID of the user who updated           |
+| Version       | int                 |         | Version                              |
+| RequestDate   | datetime            |         | Request date                         |
+| GearsUpdated  | bit                 |         | Gears updated (0 No, 1 Yes)          |
+| Source        | nvarchar(100)       |         | Source                               |
+| CreateTime    | datetimeoffset      |         | Record creation time                 |
+| UpdateTime    | datetimeoffset      |         | Record update time                   |
+| Meta          | nvarchar(max)       |         | Metadata                             |
+
+## FAM_EnhancedReferralProvider
+
+| Field         | Type                | Index   | Description                          |
+|---------------|---------------------|---------|--------------------------------------|
+| Id            | int identity        | PK      | Primary key, unique identifier       |
+| ReferralId    | int                 | IX      | Foreign key to referral              |
+| ProviderName  | nvarchar(100)       |         | Provider name                        |
+| Contact       | nvarchar(100)       |         | Contact name                         |
+| Phone         | nvarchar(30)        |         | Phone number                         |
+| VacancyDate   | datetime            |         | Vacancy date                         |
+| Status        | int                 |         | Status                               |
+| Disable       | bit                 |         | Disabled status (0 No, 1 Yes)        |
+| CreateUserId  | int                 |         | ID of the user who created           |
+| UpateUserId   | int                 |         | ID of the user who updated           |
+| Version       | int                 |         | Version                              |
+| CreateTime    | datetimeoffset      |         | Record creation time                 |
+| UpdateTime    | datetimeoffset      |         | Record update time                   |

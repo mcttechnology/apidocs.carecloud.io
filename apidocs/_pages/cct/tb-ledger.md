@@ -241,3 +241,68 @@ This section introduces the structure of the 'ledger' table and its relationship
 | PaymentReceiptNo           | varchar(500)        | IX      | Payment receipt number               |
 | LastPullFromPortalTime     | datetimeoffset      |         | Last pull from portal time           |
 | LastSyncToPortalTime       | datetimeoffset      |         | Last sync to portal time             |
+
+
+## Pay_RegistrationFee
+
+| Field                 | Type                | Index   | Description                          |
+|-----------------------|---------------------|---------|--------------------------------------|
+| Id                    | int identity        | PK      | Primary key, unique identifier       |
+| ProviderId            | int                 |         | Foreign key to provider              |
+| ChildId               | int                 | IX      | Foreign key to child                 |
+| FamilyId              | int                 |         | Foreign key to family                |
+| Amount                | decimal(18, 4)      |         | Registration fee amount              |
+| Balance               | decimal(18, 4)      |         | Balance amount                       |
+| StartDate             | datetime            |         | Start date                           |
+| EndDate               | datetime            |         | End date                             |
+| Disable               | bit                 |         | Disabled status (0 No, 1 Yes)        |
+| CreateUserID          | int                 |         | ID of the user who created           |
+| UpateUserID           | int                 |         | ID of the user who updated           |
+| Version               | int                 |         | Version                              |
+| RegistrationFeeType   | nvarchar(2048)      |         | Registration fee type                |
+| CreateTime            | datetimeoffset      |         | Record creation time                 |
+| UpdateTime            | datetimeoffset      |         | Record update time                   |
+
+## Pay_RegistrationFeePayment
+
+| Field              | Type                | Index   | Description                          |
+|--------------------|---------------------|---------|--------------------------------------|
+| Id                 | int identity        | PK      | Primary key, unique identifier       |
+| RegistrationFeeId  | int                 | IX      | Foreign key to registration fee      |
+| ClaimId            | int                 |         | Foreign key to claim                 |
+| ClaimCode          | int                 |         | Claim code                           |
+| ClaimDate          | datetime            |         | Claim date                           |
+| Amount             | decimal(18, 4)      |         | Payment amount                       |
+| Balance            | decimal(18, 4)      |         | Balance amount                       |
+| Disable            | bit                 |         | Disabled status (0 No, 1 Yes)        |
+| CreateUserID       | int                 |         | ID of the user who created           |
+| UpateUserID        | int                 |         | ID of the user who updated           |
+| Version            | int                 |         | Version                              |
+| Comment            | nvarchar(2048)      |         | Comment                              |
+| CreateTime         | datetimeoffset      |         | Record creation time                 |
+| UpdateTime         | datetimeoffset      |         | Record update time                   |
+| ExportId           | int                 |         | Export ID                            |
+| ProviderId         | int                 |         | Foreign key to provider              |
+| ChildId            | int                 |         | Foreign key to child                 |
+| FamilyId           | int                 |         | Foreign key to family                |
+
+## PRO_GarnishmentPayment
+
+| Field          | Type                | Index   | Description                          |
+|----------------|---------------------|---------|--------------------------------------|
+| Id             | int identity        | PK      | Primary key, unique identifier       |
+| ProviderId     | int                 | IX      | Foreign key to provider              |
+| GarnishmentId  | int                 | IX      | Foreign key to garnishment           |
+| ExportDate     | datetime            |         | Export date                          |
+| ProcessingFee  | decimal(18, 4)      |         | Processing fee                       |
+| Amount         | decimal(18, 4)      |         | Amount                               |
+| Payment        | decimal(18, 4)      |         | Payment                              |
+| Balance        | decimal(18, 4)      |         | Balance                              |
+| CreateUserId   | int                 |         | ID of the user who created           |
+| UpateUserId    | int                 |         | ID of the user who updated           |
+| Version        | int                 |         | Version                              |
+| CreateTime     | datetimeoffset      |         | Record creation time                 |
+| UpdateTime     | datetimeoffset      |         | Record update time                   |
+| ExportId       | int                 |         | Export ID                            |
+| Disable        | bit                 |         | Disabled status (0 No, 1 Yes)        |
+| LedgerId       | int                 |         | Foreign key to ledger                |
