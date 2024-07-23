@@ -4,22 +4,22 @@ title: Data Synchronization Model
 
 ## Entity Metadata
 
-| Name                                    | Entity           | Entity Type             | DataSource Code     | Description               |
-|-----------------------------------------|------------------|-------------------------|---------------------|---------------------------|
-| [Family](family.html)                   | family           | wks_family              | cc-family           | Family Entity             |
-| [Family Member](Family-Member.md)       | family_member    | wks_family_member       | cc-family-member    | Parent, Child, Contact    |
-| [Family Income](Family-Income.md)       | family_income    | wks_family_extensions   | cc-family-income    |                           |
-| [Family Need](Family-Need.md)           | family_need      | wks_family_extensions   | cc-family-need      |                           |
-| [Family Case](Case.md)                  | family_case      | wks_case                | cc-family-case      | Family case               |
-| [Family Invoice](Family-Billing.md)     | family_invoice   | wks_billing             | cc-family-invoice   | Family Fee                |
-| [Provider](Provider.md)                 | provider         | wks_provider            | cc-provider         | Site, FCCH, School        |
-| Provider Holiday                        | provider_holiday | wks_provider_extensions | cc-provider-holiday |                           |
-| [Provider Payment](Provider-Billing.md) | provider_payment | wks_billing             | cc-provider-payment | Provider payment          |
-| [Care Service](Care-Service.md)         | care             | wks_service             | cc-service-care     | Care and Schedule         |
-| [Claim](Claim.md)                       | claim            | wks_claim               | cc-claim            | Claim                     |
-| [Claim Attendance](Claim-Attendance.md) | claim_attendance | wks_attendance          | cc-claim-attendance | Attendance and Submission |
-| Document                                | document         | wks_document            | cc-document         | Timesheet  ,EOP           |
-| Note                                    | note             | wks_note                | cc-note             | Note                      |
+| Name                                 | Entity           | Entity Type             | DataSource Code     | Description               |
+|--------------------------------------|------------------|-------------------------|---------------------|---------------------------|
+| [Family](family-entity)              | family           | wks_family              | cc-family           | Family Entity             |
+| [Family Member](family-member)       | family_member    | wks_family_member       | cc-family-member    | Parent, Child, Contact    |
+| [Family Income](family-income)       | family_income    | wks_family_extensions   | cc-family-income    |                           |
+| [Family Need](family-need)           | family_need      | wks_family_extensions   | cc-family-need      |                           |
+| [Family Case](family-case)           | family_case      | wks_case                | cc-family-case      | Family case               |
+| [Family Invoice](family-invoice)     | family_invoice   | wks_billing             | cc-family-invoice   | Family Fee                |
+| [Provider](provider-entity)          | provider         | wks_provider            | cc-provider         | Site, FCCH, School        |
+| [Provider Holiday](provider-holiday) | provider_holiday | wks_provider_extensions | cc-provider-holiday |                           |
+| [Provider Payment](provider-payment) | provider_payment | wks_billing             | cc-provider-payment | Provider payment          |
+| [Care Service](service-care)         | care             | wks_service             | cc-service-care     | Care and Schedule         |
+| [Claim](claim-entity)                | claim            | wks_claim               | cc-claim            | Claim                     |
+| [Claim Attendance](claim-attendance) | claim_attendance | wks_attendance          | cc-claim-attendance | Attendance and Submission |
+| Document                             | document         | wks_document            | cc-document         | Timesheet  ,EOP           |
+| [Note](note)                         | note             | wks_note                | cc-note             | Note                      |
 
 
 ## Key Standards for Field Naming:

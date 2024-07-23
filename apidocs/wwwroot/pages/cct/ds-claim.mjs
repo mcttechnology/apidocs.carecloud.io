@@ -12,7 +12,8 @@ export default {
         provide('csi_claim', csi_claim)
         
         onMounted(async () => {
-            ds.value = await fetchDS('ds_ClaimQuery.json');
+            //ds.value = await fetchDS('ds_ClaimQuery.json');
+            ds.value = await fetch_agency_DS('ds_cc4.json', 'ClaimQuery');
             csi_claim.value = await fetch_agency_DS('ds_csi.json', 'ClaimQuery');
         })
         return {  ds }

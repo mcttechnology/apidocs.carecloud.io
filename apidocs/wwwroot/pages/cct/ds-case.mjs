@@ -11,7 +11,8 @@ export default {
         provide('ds', ds)
         provide('csi_case', csi_case)
         onMounted(async () => {
-            ds.value = await fetchDS('ds_QueryCaseWithFamilyFee.json');
+            //ds.value = await fetchDS('ds_QueryCaseWithFamilyFee.json');
+            ds.value = await fetch_agency_DS('ds_cc4.json', 'QueryCaseWithFamilyFee');
             csi_case.value = await fetch_agency_DS('ds_csi.json', 'QueryCaseWithFamilyFee');
         })
         return {  ds }
