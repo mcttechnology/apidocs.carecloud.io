@@ -13,9 +13,11 @@ export default {
         provide('ds', ds)
         provide('children', children)
         provide('csi_children', csi_children)
+        provide('csi_family', csi_family)
         onMounted(async () => {
-            ds.value = await fetchDS('ds_QueryFamilyView.json');
-            children.value = await fetchDS('ds_QueryChildren.json');
+            ds.value = await fetch_agency_DS('ds_cc4.json','QueryFamilyView');
+            children.value = await fetch_agency_DS('ds_cc4.json', 'QueryChildren');
+            // children.value = await fetchDS('ds_QueryChildren.json');
             
             csi_children.value = await fetch_agency_DS('ds_csi.json', 'QueryChildren');
             csi_family.value = await fetch_agency_DS('ds_csi.json', 'QueryFamilyView');

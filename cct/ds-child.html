@@ -280,7 +280,14 @@ import { ref } from "vue"
 import { mount } from "app.mjs"
 
 
-        import App from "/pages/cct/ds-child.mjs" 
+    const App = {
+        setup() {
+            function nav(url) {
+                window.open(url)
+            }
+            return { nav }
+        }
+    }
     
 const Sidebar = {
     setup() {

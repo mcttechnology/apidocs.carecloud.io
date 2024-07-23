@@ -12,7 +12,8 @@ export default {
         provide('csi_care', csi_care)
         
         onMounted(async () => {
-            ds.value = await fetchDS('ds_QueryCare.json');
+            //ds.value = await fetchDS('ds_QueryCare.json');
+            ds.value = await fetch_agency_DS('ds_cc4.json', 'QueryCare');
             csi_care.value = await fetch_agency_DS('ds_csi.json', 'QueryCare');
         })
         return {  ds }
