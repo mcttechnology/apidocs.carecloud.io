@@ -226,7 +226,7 @@ CareControl                                    </span>
 <h2 id="cc4-standard">CC4 Standard<a class="header-anchor" href="javascript:;" onclick="location.hash='#cc4-standard'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p><dsgrid class="not-prose mb-4"></dsgrid></p>
 <h2 id="csi-customer-define">CSI - Customer Define<a class="header-anchor" href="javascript:;" onclick="location.hash='#csi-customer-define'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p><dsgrid :dataSource="csi_care" class="not-prose mb-4" ></dsgrid></p>
+<p><dsgrid dataSource="csi_care" class="not-prose mb-4" ></dsgrid></p>
 
                 </div>
 
@@ -321,10 +321,7 @@ mount('#sidebar', Sidebar)
 <script src="/mjs/docs.mjs" type="module"></script>
 
 
-<script type="module">
-import { setMetadata } from "/pages/vue/data.mjs"
-setMetadata()
-</script>
+
     </main>
 </div>
 

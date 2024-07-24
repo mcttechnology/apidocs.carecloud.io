@@ -222,17 +222,17 @@ CareControl                                    </span>
 
                 <div class="content">
                     <h2 id="introduction">Introduction<a class="header-anchor" href="javascript:;" onclick="location.hash='#introduction'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>This data comes from View QueryCare. You can use View directly, and if you have access to the database, you can also access the data through the API.</p>
+<p>The Family module in CC4 is designed to manage family-related information efficiently. It centralizes data on family members, including contact details, relationships, This module allows for seamless tracking and updating of family records, ensuring accurate and up-to-date information is always available. By integrating with other modules, the Family module supports comprehensive subsidy management, providing a holistic view of each family’s status and needs.</p>
 <h2 id="cc4-standard">CC4 Standard<a class="header-anchor" href="javascript:;" onclick="location.hash='#cc4-standard'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <h3 id="family">Family<a class="header-anchor" href="javascript:;" onclick="location.hash='#family'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p><dsgrid class="not-prose mb-4"></dsgrid></p>
+<p><dsgrid dataSource="ds" class="not-prose mb-4"></dsgrid></p>
 <h3 id="child">Child<a class="header-anchor" href="javascript:;" onclick="location.hash='#child'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p><dsgrid :dataSource="children" class="not-prose mb-4" ></dsgrid></p>
+<p><dsgrid dataSource="children" class="not-prose mb-4" ></dsgrid></p>
 <h2 id="csi-customer-define">CSI - Customer Define<a class="header-anchor" href="javascript:;" onclick="location.hash='#csi-customer-define'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <h3 id="family-1">Family<a class="header-anchor" href="javascript:;" onclick="location.hash='#family-1'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p><dsgrid :dataSource="csi_family" class="not-prose mb-4" ></dsgrid></p>
+<p><dsgrid dataSource="csi_family" class="not-prose mb-4" ></dsgrid></p>
 <h3 id="child-1">Child<a class="header-anchor" href="javascript:;" onclick="location.hash='#child-1'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p><dsgrid :dataSource="csi_children" class="not-prose mb-4" ></dsgrid></p>
+<p><dsgrid dataSource="csi_children" class="not-prose mb-4" ></dsgrid></p>
 
                 </div>
 
@@ -355,10 +355,7 @@ mount('#sidebar', Sidebar)
 <script src="/mjs/docs.mjs" type="module"></script>
 
 
-<script type="module">
-import { setMetadata } from "/pages/vue/data.mjs"
-setMetadata()
-</script>
+
     </main>
 </div>
 

@@ -222,11 +222,11 @@ CareControl                                    </span>
 
                 <div class="content">
                     <h2 id="introduction">Introduction<a class="header-anchor" href="javascript:;" onclick="location.hash='#introduction'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>This data comes from View QueryCare. You can use View directly, and if you have access to the database, you can also access the data through the API.</p>
+<p>The Provider module in CC4 is tailored for child care service providers who offer subsidized care. This module centralizes provider information, including contact details, service offerings, and compliance documentation. Providers can manage their profiles, update service availability, and submit monthly attendance records through this module. By integrating with other modules, the Provider module ensures accurate subsidy calculations and efficient communication between providers and the subsidy management system, enhancing the overall effectiveness of subsidy administration.</p>
 <h2 id="cc4-standard">CC4 Standard<a class="header-anchor" href="javascript:;" onclick="location.hash='#cc4-standard'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p><dsgrid class="not-prose mb-4"></dsgrid></p>
 <h2 id="csi-customer-define">CSI - Customer Define<a class="header-anchor" href="javascript:;" onclick="location.hash='#csi-customer-define'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p><dsgrid :dataSource="csi_provider" class="not-prose mb-4" ></dsgrid></p>
+<p><dsgrid dataSource="csi_provider" class="not-prose mb-4" ></dsgrid></p>
 
                 </div>
 
@@ -321,10 +321,7 @@ mount('#sidebar', Sidebar)
 <script src="/mjs/docs.mjs" type="module"></script>
 
 
-<script type="module">
-import { setMetadata } from "/pages/vue/data.mjs"
-setMetadata()
-</script>
+
     </main>
 </div>
 

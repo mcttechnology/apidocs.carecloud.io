@@ -16,6 +16,6 @@ export default {
             ds.value = await fetch_agency_DS('ds_cc4.json', 'QueryCare');
             csi_care.value = await fetch_agency_DS('ds_csi.json', 'QueryCare');
         })
-        return {  ds }
+        return {  ds, csi_care }
     }
 }

@@ -16,6 +16,6 @@ export default {
             ds.value = await fetch_agency_DS('ds_cc4.json', 'ClaimQuery');
             csi_claim.value = await fetch_agency_DS('ds_csi.json', 'ClaimQuery');
         })
-        return {  ds }
+        return {  ds, csi_claim }
     }
 }
