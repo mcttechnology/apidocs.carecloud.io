@@ -17,6 +17,6 @@ export default {
             ds.value = await fetch_agency_DS('ds_cc4.json', 'QueryProvider');
             csi_provider.value = await fetch_agency_DS('ds_csi.json', 'QueryProvider');
         })
-        return {  ds }
+        return {  ds, csi_provider }
     }
 }

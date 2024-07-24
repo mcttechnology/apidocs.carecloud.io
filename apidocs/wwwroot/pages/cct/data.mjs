@@ -1,4 +1,5 @@
-import { inject } from "vue"
+import {inject} from "vue"
+
 export async function fetchDS(file) {
     const res = await fetch('/pages/cct/' + file);
     const result = await (res).json()
@@ -10,14 +11,17 @@ export async function fetch_agency_DS(file, code) {
     const res = await fetch('/pages/cct/' + file);
     const result = await (res).json()
     const ds = result.SystemSettings.Data[1].Items.find(i => i.Item.Code === code);
-    return ds.DataSourceField.filter(f =>  f.Description?.length > 0);
+    const fields =  ds.DataSourceField.filter(f =>  f.Description?.length > 0);
+    return fields;
 }
 
 export const dsgrid = {
     props: {
-        dataSource: {
-            type: Array,
-            required: false
+        datasource: {
+            // type: Array,
+            type: String,
+            required: false,
+            default: 'ds'
         }
     },
     template: `
@@ -28,8 +32,9 @@ export const dsgrid = {
             </template>
         </DataGrid>`,
     setup(props) {
-        const injectedDs = inject('ds');
-        const resolvedDataSource =  props.dataSource || injectedDs;
+        // const injectedDs = inject('ds');
+        // console.log('dsgrid setup', props);
+        const resolvedDataSource =  inject(props.datasource) ; //|| injectedDs;
         return { resolvedDataSource };
     }
 }

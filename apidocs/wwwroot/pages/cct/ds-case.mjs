@@ -15,6 +15,6 @@ export default {
             ds.value = await fetch_agency_DS('ds_cc4.json', 'QueryCaseWithFamilyFee');
             csi_case.value = await fetch_agency_DS('ds_csi.json', 'QueryCaseWithFamilyFee');
         })
-        return {  ds }
+        return {  ds, csi_case }
     }
 }
